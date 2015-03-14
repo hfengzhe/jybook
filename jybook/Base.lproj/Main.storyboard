@@ -74,22 +74,23 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="feR-IQ-biU" id="Ebj-sj-8za">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0n-Sy-nbP">
-                                            <rect key="frame" x="8" y="8" width="584" height="28"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Gs-EL-ioc">
+                                            <rect key="frame" x="40" y="0.0" width="520" height="44"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="N0n-Sy-nbP" firstAttribute="trailing" secondItem="Ebj-sj-8za" secondAttribute="trailingMargin" id="BTt-Z5-Wld"/>
-                                        <constraint firstItem="N0n-Sy-nbP" firstAttribute="leading" secondItem="Ebj-sj-8za" secondAttribute="leadingMargin" id="bX9-Jo-lYJ"/>
-                                        <constraint firstItem="N0n-Sy-nbP" firstAttribute="top" secondItem="Ebj-sj-8za" secondAttribute="topMargin" id="dJO-to-OEo"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="N0n-Sy-nbP" secondAttribute="bottom" constant="-0.5" id="hTA-18-Pbn"/>
+                                        <constraint firstItem="8Gs-EL-ioc" firstAttribute="leading" secondItem="Ebj-sj-8za" secondAttribute="leadingMargin" constant="32" id="hNT-28-938"/>
+                                        <constraint firstItem="8Gs-EL-ioc" firstAttribute="top" secondItem="Ebj-sj-8za" secondAttribute="top" id="ugd-jw-bmi"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="8Gs-EL-ioc" secondAttribute="bottom" constant="-8.5" id="wVu-c6-pM6"/>
+                                        <constraint firstItem="8Gs-EL-ioc" firstAttribute="centerX" secondItem="Ebj-sj-8za" secondAttribute="centerX" id="xAa-bQ-ZER"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="label" destination="N0n-Sy-nbP" id="rf8-cc-NcL"/>
+                                    <outlet property="catalogbtn" destination="8Gs-EL-ioc" id="c4q-eE-mDZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -102,6 +103,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kG8-dg-7AJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="179" y="-560"/>
+        </scene>
+        <!--Book Page View Controller-->
+        <scene sceneID="h4f-gQ-1SZ">
+            <objects>
+                <viewController id="Mwf-Pb-X7X" customClass="BookPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cry-1W-932"/>
+                        <viewControllerLayoutGuide type="bottom" id="2cb-MZ-mIO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xnn-eY-kWa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JzP-Lh-aeL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="901" y="-560"/>
         </scene>
     </scenes>
 </document>

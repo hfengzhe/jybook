@@ -29,6 +29,7 @@
 		E98511BC1AB4197B00F02181 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511BB1AB4197B00F02181 /* Book.m */; };
 		E98511C41AB437C700F02181 /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C31AB437C700F02181 /* BookViewController.m */; };
 		E98511C71AB438A400F02181 /* BookCatalogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C61AB438A400F02181 /* BookCatalogTableViewCell.m */; };
+		E98511CA1AB4419900F02181 /* BookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C91AB4419900F02181 /* BookPageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		E98511C31AB437C700F02181 /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
 		E98511C51AB438A400F02181 /* BookCatalogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookCatalogTableViewCell.h; sourceTree = "<group>"; };
 		E98511C61AB438A400F02181 /* BookCatalogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookCatalogTableViewCell.m; sourceTree = "<group>"; };
+		E98511C81AB4419900F02181 /* BookPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookPageViewController.h; sourceTree = "<group>"; };
+		E98511C91AB4419900F02181 /* BookPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,8 @@
 				E98511C31AB437C700F02181 /* BookViewController.m */,
 				E98511C51AB438A400F02181 /* BookCatalogTableViewCell.h */,
 				E98511C61AB438A400F02181 /* BookCatalogTableViewCell.m */,
+				E98511C81AB4419900F02181 /* BookPageViewController.h */,
+				E98511C91AB4419900F02181 /* BookPageViewController.m */,
 			);
 			path = jybook;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E98511CA1AB4419900F02181 /* BookPageViewController.m in Sources */,
 				E98511C41AB437C700F02181 /* BookViewController.m in Sources */,
 				E98511BC1AB4197B00F02181 /* Book.m in Sources */,
 				E98511C71AB438A400F02181 /* BookCatalogTableViewCell.m in Sources */,

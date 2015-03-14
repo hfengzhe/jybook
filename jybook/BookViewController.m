@@ -44,12 +44,15 @@
     return [self.book.catalog count];
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 48;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BookCatalogTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Catalog" forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.label.text = self.book.catalog[indexPath.row];
+    [cell.catalogbtn setTitle:self.book.catalog[indexPath.row] forState:UIControlStateNormal];
     return cell;
 }
 

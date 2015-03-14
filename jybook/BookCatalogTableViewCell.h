@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BookCatalogTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UIButton *catalogbtn;
 
 @end
