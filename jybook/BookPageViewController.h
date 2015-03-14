@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BookPageViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextView *content;
+@property (strong, nonatomic) NSString *chaptertext;
 
 @end

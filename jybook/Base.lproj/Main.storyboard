@@ -80,6 +80,9 @@
                                             <state key="normal" title="Button">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="viewChapter:" destination="oTj-Cp-yd9" eventType="touchUpInside" id="YkL-Ko-nCh"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -91,6 +94,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="catalogbtn" destination="8Gs-EL-ioc" id="c4q-eE-mDZ"/>
+                                    <segue destination="Mwf-Pb-X7X" kind="show" identifier="showchapter" id="3YQ-rw-Xoj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -115,8 +119,19 @@
                     <view key="view" contentMode="scaleToFill" id="Xnn-eY-kWa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vb3-He-2h1">
+                                <rect key="frame" x="0.0" y="15" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="content" destination="vb3-He-2h1" id="3U9-jr-Qa7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JzP-Lh-aeL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
