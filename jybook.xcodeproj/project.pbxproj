@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E985112D1AB1F2E900F02181 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E985112C1AB1F2E900F02181 /* main.m */; };
 		E98511301AB1F2E900F02181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E985112F1AB1F2E900F02181 /* AppDelegate.m */; };
-		E98511331AB1F2E900F02181 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511321AB1F2E900F02181 /* ViewController.m */; };
 		E98511361AB1F2E900F02181 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E98511341AB1F2E900F02181 /* Main.storyboard */; };
 		E98511381AB1F2E900F02181 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98511371AB1F2E900F02181 /* Images.xcassets */; };
 		E985113B1AB1F2E900F02181 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98511391AB1F2E900F02181 /* LaunchScreen.xib */; };
@@ -18,7 +17,7 @@
 		E985115A1AB317DA00F02181 /* feihuwaizhuan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511591AB317DA00F02181 /* feihuwaizhuan.jpg */; };
 		E98511651AB3180B00F02181 /* lianchenjue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115B1AB3180B00F02181 /* lianchenjue.jpg */; };
 		E98511661AB3180B00F02181 /* ludingji.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115C1AB3180B00F02181 /* ludingji.jpg */; };
-		E98511671AB3180B00F02181 /* shedianyingxiongzhuan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115D1AB3180B00F02181 /* shedianyingxiongzhuan.jpg */; };
+		E98511671AB3180B00F02181 /* shediaoyingxiongzhuan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115D1AB3180B00F02181 /* shediaoyingxiongzhuan.jpg */; };
 		E98511681AB3180B00F02181 /* shendiaoxialv.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115E1AB3180B00F02181 /* shendiaoxialv.jpg */; };
 		E98511691AB3180B00F02181 /* shujianenchoulu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115F1AB3180B00F02181 /* shujianenchoulu.jpg */; };
 		E985116A1AB3180B00F02181 /* tianlongbabu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511601AB3180B00F02181 /* tianlongbabu.jpg */; };
@@ -26,6 +25,8 @@
 		E985116C1AB3180B00F02181 /* xiaoaojianghu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511621AB3180B00F02181 /* xiaoaojianghu.jpg */; };
 		E985116D1AB3180B00F02181 /* xueshanfeihu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511631AB3180B00F02181 /* xueshanfeihu.jpg */; };
 		E985116E1AB3180B00F02181 /* yitiantulongji.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511641AB3180B00F02181 /* yitiantulongji.jpg */; };
+		E98511B61AB407EE00F02181 /* HomeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511B51AB407EE00F02181 /* HomeCollectionViewController.m */; };
+		E98511BC1AB4197B00F02181 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511BB1AB4197B00F02181 /* Book.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,8 +45,6 @@
 		E985112C1AB1F2E900F02181 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E985112E1AB1F2E900F02181 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E985112F1AB1F2E900F02181 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E98511311AB1F2E900F02181 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E98511321AB1F2E900F02181 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E98511351AB1F2E900F02181 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E98511371AB1F2E900F02181 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E985113A1AB1F2E900F02181 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -56,7 +55,7 @@
 		E98511591AB317DA00F02181 /* feihuwaizhuan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = feihuwaizhuan.jpg; sourceTree = "<group>"; };
 		E985115B1AB3180B00F02181 /* lianchenjue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lianchenjue.jpg; sourceTree = "<group>"; };
 		E985115C1AB3180B00F02181 /* ludingji.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ludingji.jpg; sourceTree = "<group>"; };
-		E985115D1AB3180B00F02181 /* shedianyingxiongzhuan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shedianyingxiongzhuan.jpg; sourceTree = "<group>"; };
+		E985115D1AB3180B00F02181 /* shediaoyingxiongzhuan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shediaoyingxiongzhuan.jpg; sourceTree = "<group>"; };
 		E985115E1AB3180B00F02181 /* shendiaoxialv.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shendiaoxialv.jpg; sourceTree = "<group>"; };
 		E985115F1AB3180B00F02181 /* shujianenchoulu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shujianenchoulu.jpg; sourceTree = "<group>"; };
 		E98511601AB3180B00F02181 /* tianlongbabu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tianlongbabu.jpg; sourceTree = "<group>"; };
@@ -64,6 +63,10 @@
 		E98511621AB3180B00F02181 /* xiaoaojianghu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xiaoaojianghu.jpg; sourceTree = "<group>"; };
 		E98511631AB3180B00F02181 /* xueshanfeihu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xueshanfeihu.jpg; sourceTree = "<group>"; };
 		E98511641AB3180B00F02181 /* yitiantulongji.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yitiantulongji.jpg; sourceTree = "<group>"; };
+		E98511B41AB407EE00F02181 /* HomeCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCollectionViewController.h; sourceTree = "<group>"; };
+		E98511B51AB407EE00F02181 /* HomeCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewController.m; sourceTree = "<group>"; };
+		E98511BA1AB4197B00F02181 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		E98511BB1AB4197B00F02181 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,16 +108,14 @@
 		E98511291AB1F2E900F02181 /* jybook */ = {
 			isa = PBXGroup;
 			children = (
-				E98511561AB3170100F02181 /* image */,
 				E98511511AB3117800F02181 /* book */,
-				E985112E1AB1F2E900F02181 /* AppDelegate.h */,
-				E985112F1AB1F2E900F02181 /* AppDelegate.m */,
-				E98511311AB1F2E900F02181 /* ViewController.h */,
-				E98511321AB1F2E900F02181 /* ViewController.m */,
-				E98511341AB1F2E900F02181 /* Main.storyboard */,
+				E98511561AB3170100F02181 /* image */,
 				E98511371AB1F2E900F02181 /* Images.xcassets */,
-				E98511391AB1F2E900F02181 /* LaunchScreen.xib */,
 				E985112A1AB1F2E900F02181 /* Supporting Files */,
+				E98511B41AB407EE00F02181 /* HomeCollectionViewController.h */,
+				E98511B51AB407EE00F02181 /* HomeCollectionViewController.m */,
+				E98511BA1AB4197B00F02181 /* Book.h */,
+				E98511BB1AB4197B00F02181 /* Book.m */,
 			);
 			path = jybook;
 			sourceTree = "<group>";
@@ -122,6 +123,10 @@
 		E985112A1AB1F2E900F02181 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E98511391AB1F2E900F02181 /* LaunchScreen.xib */,
+				E985112E1AB1F2E900F02181 /* AppDelegate.h */,
+				E985112F1AB1F2E900F02181 /* AppDelegate.m */,
+				E98511341AB1F2E900F02181 /* Main.storyboard */,
 				E985112B1AB1F2E900F02181 /* Info.plist */,
 				E985112C1AB1F2E900F02181 /* main.m */,
 			);
@@ -157,7 +162,7 @@
 			children = (
 				E985115B1AB3180B00F02181 /* lianchenjue.jpg */,
 				E985115C1AB3180B00F02181 /* ludingji.jpg */,
-				E985115D1AB3180B00F02181 /* shedianyingxiongzhuan.jpg */,
+				E985115D1AB3180B00F02181 /* shediaoyingxiongzhuan.jpg */,
 				E985115E1AB3180B00F02181 /* shendiaoxialv.jpg */,
 				E985115F1AB3180B00F02181 /* shujianenchoulu.jpg */,
 				E98511601AB3180B00F02181 /* tianlongbabu.jpg */,
@@ -254,7 +259,7 @@
 				E98511361AB1F2E900F02181 /* Main.storyboard in Resources */,
 				E985116B1AB3180B00F02181 /* xiakexing.jpg in Resources */,
 				E98511681AB3180B00F02181 /* shendiaoxialv.jpg in Resources */,
-				E98511671AB3180B00F02181 /* shedianyingxiongzhuan.jpg in Resources */,
+				E98511671AB3180B00F02181 /* shediaoyingxiongzhuan.jpg in Resources */,
 				E985116A1AB3180B00F02181 /* tianlongbabu.jpg in Resources */,
 				E985115A1AB317DA00F02181 /* feihuwaizhuan.jpg in Resources */,
 				E98511661AB3180B00F02181 /* ludingji.jpg in Resources */,
@@ -283,9 +288,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E98511331AB1F2E900F02181 /* ViewController.m in Sources */,
+				E98511BC1AB4197B00F02181 /* Book.m in Sources */,
 				E98511301AB1F2E900F02181 /* AppDelegate.m in Sources */,
 				E985112D1AB1F2E900F02181 /* main.m in Sources */,
+				E98511B61AB407EE00F02181 /* HomeCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

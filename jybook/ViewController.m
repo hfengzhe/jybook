@@ -17,11 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    NSArray *images = @[@"lianchenjue",@"ludingji",@"shediaoyingxiongzhuan",@"shendiaoxialv",@"shujianenchoulu",@"tianlongbabu",@"xiakexing",@"xiaoaojianghu", @"xueshanfeihu", @"yitiantulongji", @"feihuwaizhuan",@"bixiejian"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (NSInteger) collectionview 
 
 @end
