@@ -45,6 +45,9 @@
 		E98511ED1AB4934800F02181 /* 侠客行.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511EA1AB4934800F02181 /* 侠客行.txt */; };
 		E98511EE1AB4934800F02181 /* 越女剑.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511EB1AB4934800F02181 /* 越女剑.txt */; };
 		E98511F01AB494BC00F02181 /* 鹿鼎记.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511EF1AB494BC00F02181 /* 鹿鼎记.txt */; };
+		E98511F41AB49A0A00F02181 /* 鸳鸯刀.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511F31AB49A0A00F02181 /* 鸳鸯刀.jpg */; };
+		E98511F81AB49B9C00F02181 /* 越女剑.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511F71AB49B9C00F02181 /* 越女剑.jpg */; };
+		E98511FA1AB49C8C00F02181 /* 白马啸西风.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511F91AB49C8C00F02181 /* 白马啸西风.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +109,9 @@
 		E98511EA1AB4934800F02181 /* 侠客行.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "侠客行.txt"; sourceTree = "<group>"; };
 		E98511EB1AB4934800F02181 /* 越女剑.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "越女剑.txt"; sourceTree = "<group>"; };
 		E98511EF1AB494BC00F02181 /* 鹿鼎记.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "鹿鼎记.txt"; sourceTree = "<group>"; };
+		E98511F31AB49A0A00F02181 /* 鸳鸯刀.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "鸳鸯刀.jpg"; sourceTree = "<group>"; };
+		E98511F71AB49B9C00F02181 /* 越女剑.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "越女剑.jpg"; sourceTree = "<group>"; };
+		E98511F91AB49C8C00F02181 /* 白马啸西风.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "白马啸西风.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +226,9 @@
 		E98511561AB3170100F02181 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				E98511F91AB49C8C00F02181 /* 白马啸西风.jpg */,
+				E98511F71AB49B9C00F02181 /* 越女剑.jpg */,
+				E98511F31AB49A0A00F02181 /* 鸳鸯刀.jpg */,
 				E985115B1AB3180B00F02181 /* 连城诀.jpg */,
 				E985115C1AB3180B00F02181 /* 鹿鼎记.jpg */,
 				E985115D1AB3180B00F02181 /* 射雕英雄传.jpg */,
@@ -317,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E98511361AB1F2E900F02181 /* Main.storyboard in Resources */,
+				E98511F41AB49A0A00F02181 /* 鸳鸯刀.jpg in Resources */,
 				E98511E21AB48F2500F02181 /* 雪山飞狐.txt in Resources */,
 				E98511ED1AB4934800F02181 /* 侠客行.txt in Resources */,
 				E98511DC1AB48EDD00F02181 /* 天龙八部.txt in Resources */,
@@ -331,6 +341,7 @@
 				E98511CE1AB48E5B00F02181 /* 碧血剑.txt in Resources */,
 				E985115A1AB317DA00F02181 /* 飞狐外传.jpg in Resources */,
 				E98511661AB3180B00F02181 /* 鹿鼎记.jpg in Resources */,
+				E98511FA1AB49C8C00F02181 /* 白马啸西风.jpg in Resources */,
 				E985113B1AB1F2E900F02181 /* LaunchScreen.xib in Resources */,
 				E98511651AB3180B00F02181 /* 连城诀.jpg in Resources */,
 				E98511D21AB48E8A00F02181 /* 连城诀.txt in Resources */,
@@ -342,6 +353,7 @@
 				E98511381AB1F2E900F02181 /* Images.xcassets in Resources */,
 				E98511DA1AB48ECE00F02181 /* 书剑恩仇录.txt in Resources */,
 				E985116E1AB3180B00F02181 /* 倚天屠龙记.jpg in Resources */,
+				E98511F81AB49B9C00F02181 /* 越女剑.jpg in Resources */,
 				E98511691AB3180B00F02181 /* 书剑恩仇录.jpg in Resources */,
 				E98511EC1AB4934800F02181 /* 白马啸西风.txt in Resources */,
 				E98511D81AB48EC000F02181 /* 神雕侠侣.txt in Resources */,
