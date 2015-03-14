@@ -13,18 +13,18 @@
 		E98511381AB1F2E900F02181 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98511371AB1F2E900F02181 /* Images.xcassets */; };
 		E985113B1AB1F2E900F02181 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98511391AB1F2E900F02181 /* LaunchScreen.xib */; };
 		E98511471AB1F2E900F02181 /* jybookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511461AB1F2E900F02181 /* jybookTests.m */; };
-		E98511581AB3172E00F02181 /* bixiejian.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511571AB3172E00F02181 /* bixiejian.jpg */; };
-		E985115A1AB317DA00F02181 /* feihuwaizhuan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511591AB317DA00F02181 /* feihuwaizhuan.jpg */; };
-		E98511651AB3180B00F02181 /* lianchenjue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115B1AB3180B00F02181 /* lianchenjue.jpg */; };
-		E98511661AB3180B00F02181 /* ludingji.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115C1AB3180B00F02181 /* ludingji.jpg */; };
-		E98511671AB3180B00F02181 /* shediaoyingxiongzhuan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115D1AB3180B00F02181 /* shediaoyingxiongzhuan.jpg */; };
-		E98511681AB3180B00F02181 /* shendiaoxialv.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115E1AB3180B00F02181 /* shendiaoxialv.jpg */; };
-		E98511691AB3180B00F02181 /* shujianenchoulu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115F1AB3180B00F02181 /* shujianenchoulu.jpg */; };
-		E985116A1AB3180B00F02181 /* tianlongbabu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511601AB3180B00F02181 /* tianlongbabu.jpg */; };
-		E985116B1AB3180B00F02181 /* xiakexing.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511611AB3180B00F02181 /* xiakexing.jpg */; };
-		E985116C1AB3180B00F02181 /* xiaoaojianghu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511621AB3180B00F02181 /* xiaoaojianghu.jpg */; };
-		E985116D1AB3180B00F02181 /* xueshanfeihu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511631AB3180B00F02181 /* xueshanfeihu.jpg */; };
-		E985116E1AB3180B00F02181 /* yitiantulongji.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511641AB3180B00F02181 /* yitiantulongji.jpg */; };
+		E98511581AB3172E00F02181 /* 碧血剑.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511571AB3172E00F02181 /* 碧血剑.jpg */; };
+		E985115A1AB317DA00F02181 /* 飞狐外传.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511591AB317DA00F02181 /* 飞狐外传.jpg */; };
+		E98511651AB3180B00F02181 /* 连城诀.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115B1AB3180B00F02181 /* 连城诀.jpg */; };
+		E98511661AB3180B00F02181 /* 鹿鼎记.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115C1AB3180B00F02181 /* 鹿鼎记.jpg */; };
+		E98511671AB3180B00F02181 /* 射雕英雄传.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115D1AB3180B00F02181 /* 射雕英雄传.jpg */; };
+		E98511681AB3180B00F02181 /* 神雕侠侣.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115E1AB3180B00F02181 /* 神雕侠侣.jpg */; };
+		E98511691AB3180B00F02181 /* 书剑恩仇录.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115F1AB3180B00F02181 /* 书剑恩仇录.jpg */; };
+		E985116A1AB3180B00F02181 /* 天龙八部.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511601AB3180B00F02181 /* 天龙八部.jpg */; };
+		E985116B1AB3180B00F02181 /* 侠客行.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511611AB3180B00F02181 /* 侠客行.jpg */; };
+		E985116C1AB3180B00F02181 /* 笑傲江湖.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511621AB3180B00F02181 /* 笑傲江湖.jpg */; };
+		E985116D1AB3180B00F02181 /* 雪山飞狐.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511631AB3180B00F02181 /* 雪山飞狐.jpg */; };
+		E985116E1AB3180B00F02181 /* 倚天屠龙记.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511641AB3180B00F02181 /* 倚天屠龙记.jpg */; };
 		E98511B61AB407EE00F02181 /* BookShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511B51AB407EE00F02181 /* BookShelfViewController.m */; };
 		E98511BC1AB4197B00F02181 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511BB1AB4197B00F02181 /* Book.m */; };
 		E98511C41AB437C700F02181 /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C31AB437C700F02181 /* BookViewController.m */; };
@@ -69,18 +69,18 @@
 		E98511401AB1F2E900F02181 /* jybookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jybookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98511451AB1F2E900F02181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E98511461AB1F2E900F02181 /* jybookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jybookTests.m; sourceTree = "<group>"; };
-		E98511571AB3172E00F02181 /* bixiejian.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bixiejian.jpg; sourceTree = "<group>"; };
-		E98511591AB317DA00F02181 /* feihuwaizhuan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = feihuwaizhuan.jpg; sourceTree = "<group>"; };
-		E985115B1AB3180B00F02181 /* lianchenjue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lianchenjue.jpg; sourceTree = "<group>"; };
-		E985115C1AB3180B00F02181 /* ludingji.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ludingji.jpg; sourceTree = "<group>"; };
-		E985115D1AB3180B00F02181 /* shediaoyingxiongzhuan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shediaoyingxiongzhuan.jpg; sourceTree = "<group>"; };
-		E985115E1AB3180B00F02181 /* shendiaoxialv.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shendiaoxialv.jpg; sourceTree = "<group>"; };
-		E985115F1AB3180B00F02181 /* shujianenchoulu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shujianenchoulu.jpg; sourceTree = "<group>"; };
-		E98511601AB3180B00F02181 /* tianlongbabu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tianlongbabu.jpg; sourceTree = "<group>"; };
-		E98511611AB3180B00F02181 /* xiakexing.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xiakexing.jpg; sourceTree = "<group>"; };
-		E98511621AB3180B00F02181 /* xiaoaojianghu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xiaoaojianghu.jpg; sourceTree = "<group>"; };
-		E98511631AB3180B00F02181 /* xueshanfeihu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xueshanfeihu.jpg; sourceTree = "<group>"; };
-		E98511641AB3180B00F02181 /* yitiantulongji.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yitiantulongji.jpg; sourceTree = "<group>"; };
+		E98511571AB3172E00F02181 /* 碧血剑.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "碧血剑.jpg"; sourceTree = "<group>"; };
+		E98511591AB317DA00F02181 /* 飞狐外传.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "飞狐外传.jpg"; sourceTree = "<group>"; };
+		E985115B1AB3180B00F02181 /* 连城诀.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "连城诀.jpg"; sourceTree = "<group>"; };
+		E985115C1AB3180B00F02181 /* 鹿鼎记.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "鹿鼎记.jpg"; sourceTree = "<group>"; };
+		E985115D1AB3180B00F02181 /* 射雕英雄传.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "射雕英雄传.jpg"; sourceTree = "<group>"; };
+		E985115E1AB3180B00F02181 /* 神雕侠侣.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "神雕侠侣.jpg"; sourceTree = "<group>"; };
+		E985115F1AB3180B00F02181 /* 书剑恩仇录.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "书剑恩仇录.jpg"; sourceTree = "<group>"; };
+		E98511601AB3180B00F02181 /* 天龙八部.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "天龙八部.jpg"; sourceTree = "<group>"; };
+		E98511611AB3180B00F02181 /* 侠客行.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "侠客行.jpg"; sourceTree = "<group>"; };
+		E98511621AB3180B00F02181 /* 笑傲江湖.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "笑傲江湖.jpg"; sourceTree = "<group>"; };
+		E98511631AB3180B00F02181 /* 雪山飞狐.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "雪山飞狐.jpg"; sourceTree = "<group>"; };
+		E98511641AB3180B00F02181 /* 倚天屠龙记.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "倚天屠龙记.jpg"; sourceTree = "<group>"; };
 		E98511B41AB407EE00F02181 /* BookShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookShelfViewController.h; sourceTree = "<group>"; };
 		E98511B51AB407EE00F02181 /* BookShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookShelfViewController.m; sourceTree = "<group>"; };
 		E98511BA1AB4197B00F02181 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
@@ -220,18 +220,18 @@
 		E98511561AB3170100F02181 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				E985115B1AB3180B00F02181 /* lianchenjue.jpg */,
-				E985115C1AB3180B00F02181 /* ludingji.jpg */,
-				E985115D1AB3180B00F02181 /* shediaoyingxiongzhuan.jpg */,
-				E985115E1AB3180B00F02181 /* shendiaoxialv.jpg */,
-				E985115F1AB3180B00F02181 /* shujianenchoulu.jpg */,
-				E98511601AB3180B00F02181 /* tianlongbabu.jpg */,
-				E98511611AB3180B00F02181 /* xiakexing.jpg */,
-				E98511621AB3180B00F02181 /* xiaoaojianghu.jpg */,
-				E98511631AB3180B00F02181 /* xueshanfeihu.jpg */,
-				E98511641AB3180B00F02181 /* yitiantulongji.jpg */,
-				E98511591AB317DA00F02181 /* feihuwaizhuan.jpg */,
-				E98511571AB3172E00F02181 /* bixiejian.jpg */,
+				E985115B1AB3180B00F02181 /* 连城诀.jpg */,
+				E985115C1AB3180B00F02181 /* 鹿鼎记.jpg */,
+				E985115D1AB3180B00F02181 /* 射雕英雄传.jpg */,
+				E985115E1AB3180B00F02181 /* 神雕侠侣.jpg */,
+				E985115F1AB3180B00F02181 /* 书剑恩仇录.jpg */,
+				E98511601AB3180B00F02181 /* 天龙八部.jpg */,
+				E98511611AB3180B00F02181 /* 侠客行.jpg */,
+				E98511621AB3180B00F02181 /* 笑傲江湖.jpg */,
+				E98511631AB3180B00F02181 /* 雪山飞狐.jpg */,
+				E98511641AB3180B00F02181 /* 倚天屠龙记.jpg */,
+				E98511591AB317DA00F02181 /* 飞狐外传.jpg */,
+				E98511571AB3172E00F02181 /* 碧血剑.jpg */,
 			);
 			name = image;
 			sourceTree = "<group>";
@@ -320,32 +320,32 @@
 				E98511E21AB48F2500F02181 /* 雪山飞狐.txt in Resources */,
 				E98511ED1AB4934800F02181 /* 侠客行.txt in Resources */,
 				E98511DC1AB48EDD00F02181 /* 天龙八部.txt in Resources */,
-				E985116B1AB3180B00F02181 /* xiakexing.jpg in Resources */,
-				E98511681AB3180B00F02181 /* shendiaoxialv.jpg in Resources */,
+				E985116B1AB3180B00F02181 /* 侠客行.jpg in Resources */,
+				E98511681AB3180B00F02181 /* 神雕侠侣.jpg in Resources */,
 				E98511E41AB48F4200F02181 /* 倚天屠龙记.txt in Resources */,
 				E98511EE1AB4934800F02181 /* 越女剑.txt in Resources */,
 				E98511E01AB48F0C00F02181 /* 笑傲江湖.txt in Resources */,
 				E98511D01AB48E7600F02181 /* 飞狐外传.txt in Resources */,
-				E98511671AB3180B00F02181 /* shediaoyingxiongzhuan.jpg in Resources */,
-				E985116A1AB3180B00F02181 /* tianlongbabu.jpg in Resources */,
+				E98511671AB3180B00F02181 /* 射雕英雄传.jpg in Resources */,
+				E985116A1AB3180B00F02181 /* 天龙八部.jpg in Resources */,
 				E98511CE1AB48E5B00F02181 /* 碧血剑.txt in Resources */,
-				E985115A1AB317DA00F02181 /* feihuwaizhuan.jpg in Resources */,
-				E98511661AB3180B00F02181 /* ludingji.jpg in Resources */,
+				E985115A1AB317DA00F02181 /* 飞狐外传.jpg in Resources */,
+				E98511661AB3180B00F02181 /* 鹿鼎记.jpg in Resources */,
 				E985113B1AB1F2E900F02181 /* LaunchScreen.xib in Resources */,
-				E98511651AB3180B00F02181 /* lianchenjue.jpg in Resources */,
+				E98511651AB3180B00F02181 /* 连城诀.jpg in Resources */,
 				E98511D21AB48E8A00F02181 /* 连城诀.txt in Resources */,
-				E98511581AB3172E00F02181 /* bixiejian.jpg in Resources */,
+				E98511581AB3172E00F02181 /* 碧血剑.jpg in Resources */,
 				E98511E61AB48F5600F02181 /* 鸳鸯刀.txt in Resources */,
 				E98511F01AB494BC00F02181 /* 鹿鼎记.txt in Resources */,
 				E98511D61AB48EB100F02181 /* 射雕英雄传.txt in Resources */,
-				E985116D1AB3180B00F02181 /* xueshanfeihu.jpg in Resources */,
+				E985116D1AB3180B00F02181 /* 雪山飞狐.jpg in Resources */,
 				E98511381AB1F2E900F02181 /* Images.xcassets in Resources */,
 				E98511DA1AB48ECE00F02181 /* 书剑恩仇录.txt in Resources */,
-				E985116E1AB3180B00F02181 /* yitiantulongji.jpg in Resources */,
-				E98511691AB3180B00F02181 /* shujianenchoulu.jpg in Resources */,
+				E985116E1AB3180B00F02181 /* 倚天屠龙记.jpg in Resources */,
+				E98511691AB3180B00F02181 /* 书剑恩仇录.jpg in Resources */,
 				E98511EC1AB4934800F02181 /* 白马啸西风.txt in Resources */,
 				E98511D81AB48EC000F02181 /* 神雕侠侣.txt in Resources */,
-				E985116C1AB3180B00F02181 /* xiaoaojianghu.jpg in Resources */,
+				E985116C1AB3180B00F02181 /* 笑傲江湖.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

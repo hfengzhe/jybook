@@ -20,7 +20,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSArray *)books {
     if (_books == nil) {
-        _books = [NSArray arrayWithObjects:@"lianchenjue", @"ludingji", @"shediaoyingxiongzhuan", @"shendiaoxialv", @"shujianenchoulu", @"tianlongbabu", @"xiakexing", @"xiaoaojianghu", @"xueshanfeihu", @"yitiantulongji", @"feihuwaizhuan", @"bixiejian", nil];
+        _books = [NSArray arrayWithObjects:@"连城诀", @"鹿鼎记", @"射雕英雄传", @"神雕侠侣", @"书剑恩仇录", @"天龙八部", @"侠客行", @"笑傲江湖", @"雪山飞狐", @"倚天屠龙记", @"飞狐外传", @"碧血剑", nil];
     }
     return _books;
 }
