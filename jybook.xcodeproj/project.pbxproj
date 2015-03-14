@@ -27,6 +27,8 @@
 		E985116E1AB3180B00F02181 /* yitiantulongji.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511641AB3180B00F02181 /* yitiantulongji.jpg */; };
 		E98511B61AB407EE00F02181 /* HomeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511B51AB407EE00F02181 /* HomeCollectionViewController.m */; };
 		E98511BC1AB4197B00F02181 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511BB1AB4197B00F02181 /* Book.m */; };
+		E98511C41AB437C700F02181 /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C31AB437C700F02181 /* BookViewController.m */; };
+		E98511C71AB438A400F02181 /* BookCatalogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C61AB438A400F02181 /* BookCatalogTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,10 @@
 		E98511B51AB407EE00F02181 /* HomeCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewController.m; sourceTree = "<group>"; };
 		E98511BA1AB4197B00F02181 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		E98511BB1AB4197B00F02181 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		E98511C21AB437C700F02181 /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
+		E98511C31AB437C700F02181 /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
+		E98511C51AB438A400F02181 /* BookCatalogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookCatalogTableViewCell.h; sourceTree = "<group>"; };
+		E98511C61AB438A400F02181 /* BookCatalogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookCatalogTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,14 +114,18 @@
 		E98511291AB1F2E900F02181 /* jybook */ = {
 			isa = PBXGroup;
 			children = (
-				E98511511AB3117800F02181 /* book */,
 				E98511561AB3170100F02181 /* image */,
+				E98511511AB3117800F02181 /* book */,
 				E98511371AB1F2E900F02181 /* Images.xcassets */,
 				E985112A1AB1F2E900F02181 /* Supporting Files */,
 				E98511B41AB407EE00F02181 /* HomeCollectionViewController.h */,
 				E98511B51AB407EE00F02181 /* HomeCollectionViewController.m */,
 				E98511BA1AB4197B00F02181 /* Book.h */,
 				E98511BB1AB4197B00F02181 /* Book.m */,
+				E98511C21AB437C700F02181 /* BookViewController.h */,
+				E98511C31AB437C700F02181 /* BookViewController.m */,
+				E98511C51AB438A400F02181 /* BookCatalogTableViewCell.h */,
+				E98511C61AB438A400F02181 /* BookCatalogTableViewCell.m */,
 			);
 			path = jybook;
 			sourceTree = "<group>";
@@ -288,7 +298,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E98511C41AB437C700F02181 /* BookViewController.m in Sources */,
 				E98511BC1AB4197B00F02181 /* Book.m in Sources */,
+				E98511C71AB438A400F02181 /* BookCatalogTableViewCell.m in Sources */,
 				E98511301AB1F2E900F02181 /* AppDelegate.m in Sources */,
 				E985112D1AB1F2E900F02181 /* main.m in Sources */,
 				E98511B61AB407EE00F02181 /* HomeCollectionViewController.m in Sources */,

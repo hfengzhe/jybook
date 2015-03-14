@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9nC-ef-u2C">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -43,6 +44,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="oTj-Cp-yd9" kind="show" identifier="showbook" id="OLv-E4-Lro"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -55,6 +59,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wKM-Td-U2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-535" y="-560"/>
+        </scene>
+        <!--Book View Controller-->
+        <scene sceneID="sGp-GZ-BrB">
+            <objects>
+                <tableViewController id="oTj-Cp-yd9" customClass="BookViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="oEA-CS-AYt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Catalog" id="feR-IQ-biU" customClass="BookCatalogTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="feR-IQ-biU" id="Ebj-sj-8za">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0n-Sy-nbP">
+                                            <rect key="frame" x="8" y="8" width="584" height="28"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="N0n-Sy-nbP" firstAttribute="trailing" secondItem="Ebj-sj-8za" secondAttribute="trailingMargin" id="BTt-Z5-Wld"/>
+                                        <constraint firstItem="N0n-Sy-nbP" firstAttribute="leading" secondItem="Ebj-sj-8za" secondAttribute="leadingMargin" id="bX9-Jo-lYJ"/>
+                                        <constraint firstItem="N0n-Sy-nbP" firstAttribute="top" secondItem="Ebj-sj-8za" secondAttribute="topMargin" id="dJO-to-OEo"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="N0n-Sy-nbP" secondAttribute="bottom" constant="-0.5" id="hTA-18-Pbn"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="N0n-Sy-nbP" id="rf8-cc-NcL"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="oTj-Cp-yd9" id="vOy-0N-ihO"/>
+                            <outlet property="delegate" destination="oTj-Cp-yd9" id="fsP-xl-gTz"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kG8-dg-7AJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="179" y="-560"/>
         </scene>
     </scenes>
 </document>

@@ -12,5 +12,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *img;
 @property (nonatomic, strong) NSArray *catalog;
+@property (nonatomic, strong) NSDictionary *contents;
 
+- (id) initWithName:(NSString *)name;
 @end

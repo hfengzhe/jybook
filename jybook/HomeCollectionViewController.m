@@ -7,6 +7,8 @@
 //
 
 #import "HomeCollectionViewController.h"
+#import "Book.h"
+#import "BookViewController.h"
 
 @interface HomeCollectionViewController ()
 @property (nonatomic, strong) NSArray *books;
@@ -77,19 +79,22 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark <UICollectionViewDelegate>
 
-/*
+
 // Uncomment this method to specify if the specified item should be highlighted during tracking
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
 	return YES;
 }
-*/
 
-/*
+
+
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-*/
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"showbook" sender:self];
+}
 
 /*
 // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
@@ -105,5 +110,19 @@ static NSString * const reuseIdentifier = @"Cell";
 	
 }
 */
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    if ([segue.identifier isEqualToString:@"showbook"]) {
+
+        NSIndexPath *selectedIndexPath = [[self.collectionView indexPathsForSelectedItems] objectAtIndex:0];
+        NSString *name = self.books[selectedIndexPath.row];
+        Book *selectedBook = [[Book alloc] initWithName:name];
+        
+        BookViewController *bvc = segue.destinationViewController;
+        bvc.book = selectedBook;
+
+    }
+}
 
 @end
