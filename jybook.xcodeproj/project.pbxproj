@@ -25,7 +25,7 @@
 		E985116C1AB3180B00F02181 /* xiaoaojianghu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511621AB3180B00F02181 /* xiaoaojianghu.jpg */; };
 		E985116D1AB3180B00F02181 /* xueshanfeihu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511631AB3180B00F02181 /* xueshanfeihu.jpg */; };
 		E985116E1AB3180B00F02181 /* yitiantulongji.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511641AB3180B00F02181 /* yitiantulongji.jpg */; };
-		E98511B61AB407EE00F02181 /* HomeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511B51AB407EE00F02181 /* HomeCollectionViewController.m */; };
+		E98511B61AB407EE00F02181 /* BookShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511B51AB407EE00F02181 /* BookShelfViewController.m */; };
 		E98511BC1AB4197B00F02181 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511BB1AB4197B00F02181 /* Book.m */; };
 		E98511C41AB437C700F02181 /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C31AB437C700F02181 /* BookViewController.m */; };
 		E98511C71AB438A400F02181 /* BookCatalogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C61AB438A400F02181 /* BookCatalogTableViewCell.m */; };
@@ -43,7 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E98511271AB1F2E900F02181 /* jybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E98511271AB1F2E900F02181 /* 金庸全集.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "金庸全集.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E985112B1AB1F2E900F02181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E985112C1AB1F2E900F02181 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E985112E1AB1F2E900F02181 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -66,8 +66,8 @@
 		E98511621AB3180B00F02181 /* xiaoaojianghu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xiaoaojianghu.jpg; sourceTree = "<group>"; };
 		E98511631AB3180B00F02181 /* xueshanfeihu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xueshanfeihu.jpg; sourceTree = "<group>"; };
 		E98511641AB3180B00F02181 /* yitiantulongji.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yitiantulongji.jpg; sourceTree = "<group>"; };
-		E98511B41AB407EE00F02181 /* HomeCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCollectionViewController.h; sourceTree = "<group>"; };
-		E98511B51AB407EE00F02181 /* HomeCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewController.m; sourceTree = "<group>"; };
+		E98511B41AB407EE00F02181 /* BookShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookShelfViewController.h; sourceTree = "<group>"; };
+		E98511B51AB407EE00F02181 /* BookShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookShelfViewController.m; sourceTree = "<group>"; };
 		E98511BA1AB4197B00F02181 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		E98511BB1AB4197B00F02181 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		E98511C21AB437C700F02181 /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		E98511281AB1F2E900F02181 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E98511271AB1F2E900F02181 /* jybook.app */,
+				E98511271AB1F2E900F02181 /* 金庸全集.app */,
 				E98511401AB1F2E900F02181 /* jybookTests.xctest */,
 			);
 			name = Products;
@@ -121,8 +121,8 @@
 				E98511511AB3117800F02181 /* book */,
 				E98511371AB1F2E900F02181 /* Images.xcassets */,
 				E985112A1AB1F2E900F02181 /* Supporting Files */,
-				E98511B41AB407EE00F02181 /* HomeCollectionViewController.h */,
-				E98511B51AB407EE00F02181 /* HomeCollectionViewController.m */,
+				E98511B41AB407EE00F02181 /* BookShelfViewController.h */,
+				E98511B51AB407EE00F02181 /* BookShelfViewController.m */,
 				E98511BA1AB4197B00F02181 /* Book.h */,
 				E98511BB1AB4197B00F02181 /* Book.m */,
 				E98511C21AB437C700F02181 /* BookViewController.h */,
@@ -208,7 +208,7 @@
 			);
 			name = jybook;
 			productName = jybook;
-			productReference = E98511271AB1F2E900F02181 /* jybook.app */;
+			productReference = E98511271AB1F2E900F02181 /* 金庸全集.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E985113F1AB1F2E900F02181 /* jybookTests */ = {
@@ -309,7 +309,7 @@
 				E98511C71AB438A400F02181 /* BookCatalogTableViewCell.m in Sources */,
 				E98511301AB1F2E900F02181 /* AppDelegate.m in Sources */,
 				E985112D1AB1F2E900F02181 /* main.m in Sources */,
-				E98511B61AB407EE00F02181 /* HomeCollectionViewController.m in Sources */,
+				E98511B61AB407EE00F02181 /* BookShelfViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,9 +431,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = jybook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "金庸全集";
 			};
 			name = Debug;
 		};
@@ -441,9 +442,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = jybook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "金庸全集";
 			};
 			name = Release;
 		};

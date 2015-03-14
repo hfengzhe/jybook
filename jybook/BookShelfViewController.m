@@ -6,15 +6,15 @@
 //  Copyright (c) 2015年 yilang. All rights reserved.
 //
 
-#import "HomeCollectionViewController.h"
+#import "BookShelfViewController.h"
 #import "Book.h"
 #import "BookViewController.h"
 
-@interface HomeCollectionViewController ()
+@interface BookShelfViewController ()
 @property (nonatomic, strong) NSArray *books;
 @end
 
-@implementation HomeCollectionViewController
+@implementation BookShelfViewController
 
 static NSString * const reuseIdentifier = @"Cell";
 
@@ -33,7 +33,6 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    NSLog(@"view did load");
     // Do any additional setup after loading the view.
 }
 

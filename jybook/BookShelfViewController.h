@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeCollectionViewController : UICollectionViewController
+@interface BookShelfViewController : UICollectionViewController
 
 @end
