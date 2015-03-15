@@ -66,8 +66,8 @@ static NSString * const reuseIdentifier = @"Cell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 
     // Configure the cell
-    NSString *imgname = [NSString stringWithFormat:@"%@.jpg", self.books[indexPath.row]];
-    UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imgname]];
+    NSString *imgpath = [[NSBundle mainBundle] pathForResource:self.books[indexPath.row] ofType:@"jpg" inDirectory:@"cover"];
+    UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgpath]];
     [image setFrame:CGRectMake(10, 10, 125, 180)];
     [cell.contentView addSubview:image];
 
