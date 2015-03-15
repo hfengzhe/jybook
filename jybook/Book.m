@@ -14,10 +14,18 @@
     self = [super init];
     if (self) {
         self.name = name;
-        self.img = name;
         self.catalog = [NSArray arrayWithObjects:@"first chapter",@"second chapter", @"third chapter",@"fourth chapter", @"fifth chapter", @"six chapter", @"seven chapter", @"eight chatper", @"nine chapter", @"ten chapter", @"eleven chapter", @"twenty two chapter", @"theraf chapter", @"mamafasfd chapter", @"adfafa chapter", @"afsaf chapter", @"sfsdafsfd chapter", nil];
         self.contents = nil;
     }
     return self;
 }
+
+- (NSArray *)catalog {
+    if (_catalog == nil) {
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        
+    }
+    return _catalog;
+}
+
 @end

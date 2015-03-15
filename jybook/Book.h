@@ -10,7 +10,6 @@
 
 @interface Book : NSObject
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *img;
 @property (nonatomic, strong) NSArray *catalog;
 @property (nonatomic, strong) NSDictionary *contents;
 
