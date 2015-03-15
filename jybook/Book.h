@@ -10,7 +10,7 @@
 
 @interface Book : NSObject
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSArray *catalog;
+@property (nonatomic, strong) NSArray *chapters;
 @property (nonatomic, strong) NSDictionary *contents;
 
 - (id) initWithName:(NSString *)name;

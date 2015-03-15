@@ -13,6 +13,7 @@
 @interface Book ()
 @property (nonatomic, strong) NSString *epubpath;
 @property (nonatomic, strong) NSString *bookpath;
+@property (nonatomic, strong) NSDictionary *bookcatalog;
 @end
 
 @implementation Book
@@ -24,8 +25,7 @@
         self.epubpath = [[NSBundle mainBundle] pathForResource:self.name ofType:@"epub" inDirectory:@"epub"];
         NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         self.bookpath = [documentPath stringByAppendingPathComponent:self.name];
-        
-        self.catalog = [NSArray arrayWithObjects:@"first chapter",@"second chapter", @"third chapter",@"fourth chapter", @"fifth chapter", @"six chapter", @"seven chapter", @"eight chatper", @"nine chapter", @"ten chapter", @"eleven chapter", @"twenty two chapter", @"theraf chapter", @"mamafasfd chapter", @"adfafa chapter", @"afsaf chapter", @"sfsdafsfd chapter", nil];
+    
         self.contents = nil;
         [self parseContentOpf];
     }
@@ -53,16 +53,14 @@
     NSString *metaString = [NSString stringWithContentsOfFile:metapath encoding:NSUTF8StringEncoding error:nil];
     TBXML *metaxml = [TBXML tbxmlWithXMLString:metaString error:nil];
     TBXMLElement *root = metaxml.rootXMLElement;
-    if (root) {
-        TBXMLElement *rootfiles = root->currentChild;
-        if (rootfiles) {
-            TBXMLElement *rootfile = rootfiles->firstChild;
-            while (rootfile) {
-                if ([[TBXML valueOfAttributeNamed:@"media-type" forElement:rootfile] isEqualToString:@"application/oebps-package+xml"]) {
-                    return [self.bookpath stringByAppendingPathComponent:[TBXML valueOfAttributeNamed:@"full-path" forElement:rootfile]];
-                } else {
+    TBXMLElement *rootfiles = root->currentChild;
+    if (rootfiles) {
+        TBXMLElement *rootfile = rootfiles->firstChild;
+        while (rootfile) {
+            if ([[TBXML valueOfAttributeNamed:@"media-type" forElement:rootfile] isEqualToString:@"application/oebps-package+xml"]) {
+                return [self.bookpath stringByAppendingPathComponent:[TBXML valueOfAttributeNamed:@"full-path" forElement:rootfile]];
+            } else {
                     rootfile = rootfile->nextSibling;
-                }
             }
         }
     }
@@ -75,15 +73,22 @@
     if (![manager fileExistsAtPath:opfpath]) {
         NSLog(@"content opf file:%@ not exists", opfpath);
     }
-    NSLog(@"opf path:%@", opfpath);
+    NSString *content = [NSString stringWithContentsOfFile:opfpath encoding:NSUTF8StringEncoding error:nil];
+    TBXML *contentxml = [TBXML tbxmlWithXMLString:content error:nil];
+    TBXMLElement *manifest = [TBXML childElementNamed:@"manifest" parentElement:contentxml.rootXMLElement];
+    TBXMLElement *item = manifest->firstChild;
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    while (item) {
+        NSString *itemid = [TBXML valueOfAttributeNamed:@"id" forElement:item];
+        NSString *href = [TBXML valueOfAttributeNamed:@"href" forElement:item];
+        [dict setObject:href forKey:itemid];
+        item = item->nextSibling;
+    }
+    self.bookcatalog = [NSDictionary dictionaryWithDictionary:dict];
 }
 
-- (NSArray *)catalog {
-    if (_catalog == nil) {
-        NSMutableArray *array = [[NSMutableArray alloc] init];
-        
-    }
-    return _catalog;
+- (NSArray *)chapters {
+    return [self.bookcatalog allKeys];
 }
 
 @end

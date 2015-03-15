@@ -42,7 +42,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.book.catalog count];
+    return [self.book.chapters count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -56,7 +56,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BookCatalogTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Catalog" forIndexPath:indexPath];
 
-    [cell.catalogbtn setTitle:self.book.catalog[indexPath.row] forState:UIControlStateNormal];
+    [cell.catalogbtn setTitle:self.book.chapters[indexPath.row] forState:UIControlStateNormal];
     return cell;
 }
 
