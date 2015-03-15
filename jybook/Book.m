@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *epubpath;
 @property (nonatomic, strong) NSString *bookpath;
 @property (nonatomic, strong) NSDictionary *bookcatalog;
+@property (nonatomic, strong) NSArray *bookspine;
 @end
 
 @implementation Book
@@ -75,6 +76,7 @@
     }
     NSString *content = [NSString stringWithContentsOfFile:opfpath encoding:NSUTF8StringEncoding error:nil];
     TBXML *contentxml = [TBXML tbxmlWithXMLString:content error:nil];
+    
     TBXMLElement *manifest = [TBXML childElementNamed:@"manifest" parentElement:contentxml.rootXMLElement];
     TBXMLElement *item = manifest->firstChild;
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
@@ -85,10 +87,20 @@
         item = item->nextSibling;
     }
     self.bookcatalog = [NSDictionary dictionaryWithDictionary:dict];
+    
+    TBXMLElement *spine = [TBXML childElementNamed:@"spine" parentElement:contentxml.rootXMLElement];
+    TBXMLElement *itemref = spine->firstChild;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    while (itemref) {
+        NSString *idref = [TBXML valueOfAttributeNamed:@"idref" forElement:itemref];
+        [array addObject:idref];
+        itemref = itemref->nextSibling;
+    }
+    self.bookspine = [NSArray arrayWithArray:array];
 }
 
 - (NSArray *)chapters {
-    return [self.bookcatalog allKeys];
+    return self.bookspine;
 }
 
 @end
