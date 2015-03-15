@@ -7,48 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BFAC2FA824F2C68B39119E3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F2926182403E4019B6119D7 /* libPods.a */; };
 		E985112D1AB1F2E900F02181 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E985112C1AB1F2E900F02181 /* main.m */; };
 		E98511301AB1F2E900F02181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E985112F1AB1F2E900F02181 /* AppDelegate.m */; };
 		E98511361AB1F2E900F02181 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E98511341AB1F2E900F02181 /* Main.storyboard */; };
 		E98511381AB1F2E900F02181 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98511371AB1F2E900F02181 /* Images.xcassets */; };
 		E985113B1AB1F2E900F02181 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98511391AB1F2E900F02181 /* LaunchScreen.xib */; };
 		E98511471AB1F2E900F02181 /* jybookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511461AB1F2E900F02181 /* jybookTests.m */; };
-		E98511581AB3172E00F02181 /* 碧血剑.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511571AB3172E00F02181 /* 碧血剑.jpg */; };
-		E985115A1AB317DA00F02181 /* 飞狐外传.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511591AB317DA00F02181 /* 飞狐外传.jpg */; };
-		E98511651AB3180B00F02181 /* 连城诀.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115B1AB3180B00F02181 /* 连城诀.jpg */; };
-		E98511661AB3180B00F02181 /* 鹿鼎记.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115C1AB3180B00F02181 /* 鹿鼎记.jpg */; };
-		E98511671AB3180B00F02181 /* 射雕英雄传.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115D1AB3180B00F02181 /* 射雕英雄传.jpg */; };
-		E98511681AB3180B00F02181 /* 神雕侠侣.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115E1AB3180B00F02181 /* 神雕侠侣.jpg */; };
-		E98511691AB3180B00F02181 /* 书剑恩仇录.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E985115F1AB3180B00F02181 /* 书剑恩仇录.jpg */; };
-		E985116A1AB3180B00F02181 /* 天龙八部.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511601AB3180B00F02181 /* 天龙八部.jpg */; };
-		E985116B1AB3180B00F02181 /* 侠客行.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511611AB3180B00F02181 /* 侠客行.jpg */; };
-		E985116C1AB3180B00F02181 /* 笑傲江湖.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511621AB3180B00F02181 /* 笑傲江湖.jpg */; };
-		E985116D1AB3180B00F02181 /* 雪山飞狐.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511631AB3180B00F02181 /* 雪山飞狐.jpg */; };
-		E985116E1AB3180B00F02181 /* 倚天屠龙记.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511641AB3180B00F02181 /* 倚天屠龙记.jpg */; };
 		E98511B61AB407EE00F02181 /* BookShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511B51AB407EE00F02181 /* BookShelfViewController.m */; };
 		E98511BC1AB4197B00F02181 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511BB1AB4197B00F02181 /* Book.m */; };
 		E98511C41AB437C700F02181 /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C31AB437C700F02181 /* BookViewController.m */; };
 		E98511C71AB438A400F02181 /* BookCatalogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C61AB438A400F02181 /* BookCatalogTableViewCell.m */; };
 		E98511CA1AB4419900F02181 /* BookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C91AB4419900F02181 /* BookPageViewController.m */; };
-		E98511CE1AB48E5B00F02181 /* 碧血剑.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511CD1AB48E5B00F02181 /* 碧血剑.txt */; };
-		E98511D01AB48E7600F02181 /* 飞狐外传.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511CF1AB48E7600F02181 /* 飞狐外传.txt */; };
-		E98511D21AB48E8A00F02181 /* 连城诀.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511D11AB48E8A00F02181 /* 连城诀.txt */; };
-		E98511D61AB48EB100F02181 /* 射雕英雄传.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511D51AB48EB100F02181 /* 射雕英雄传.txt */; };
-		E98511D81AB48EC000F02181 /* 神雕侠侣.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511D71AB48EC000F02181 /* 神雕侠侣.txt */; };
-		E98511DA1AB48ECE00F02181 /* 书剑恩仇录.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511D91AB48ECE00F02181 /* 书剑恩仇录.txt */; };
-		E98511DC1AB48EDD00F02181 /* 天龙八部.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511DB1AB48EDD00F02181 /* 天龙八部.txt */; };
-		E98511E01AB48F0C00F02181 /* 笑傲江湖.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511DF1AB48F0C00F02181 /* 笑傲江湖.txt */; };
-		E98511E21AB48F2500F02181 /* 雪山飞狐.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511E11AB48F2500F02181 /* 雪山飞狐.txt */; };
-		E98511E41AB48F4200F02181 /* 倚天屠龙记.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511E31AB48F4200F02181 /* 倚天屠龙记.txt */; };
-		E98511E61AB48F5600F02181 /* 鸳鸯刀.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511E51AB48F5600F02181 /* 鸳鸯刀.txt */; };
-		E98511EC1AB4934800F02181 /* 白马啸西风.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511E91AB4934800F02181 /* 白马啸西风.txt */; };
-		E98511ED1AB4934800F02181 /* 侠客行.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511EA1AB4934800F02181 /* 侠客行.txt */; };
-		E98511EE1AB4934800F02181 /* 越女剑.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511EB1AB4934800F02181 /* 越女剑.txt */; };
-		E98511F01AB494BC00F02181 /* 鹿鼎记.txt in Resources */ = {isa = PBXBuildFile; fileRef = E98511EF1AB494BC00F02181 /* 鹿鼎记.txt */; };
-		E98511F41AB49A0A00F02181 /* 鸳鸯刀.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511F31AB49A0A00F02181 /* 鸳鸯刀.jpg */; };
-		E98511F81AB49B9C00F02181 /* 越女剑.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511F71AB49B9C00F02181 /* 越女剑.jpg */; };
-		E98511FA1AB49C8C00F02181 /* 白马啸西风.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E98511F91AB49C8C00F02181 /* 白马啸西风.jpg */; };
 		E98511FC1AB537EF00F02181 /* epub in Resources */ = {isa = PBXBuildFile; fileRef = E98511FB1AB537EF00F02181 /* epub */; };
+		E985120F1AB55D4B00F02181 /* cover in Resources */ = {isa = PBXBuildFile; fileRef = E985120E1AB55D4B00F02181 /* cover */; };
+		E98512111AB55DEA00F02181 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = E98512101AB55DEA00F02181 /* txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +35,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5BD7C2F9F5DF8603FD469482 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6F2926182403E4019B6119D7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		791EA403C344396DF54BF750 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E98511271AB1F2E900F02181 /* 金庸全集.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "金庸全集.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E985112B1AB1F2E900F02181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E985112C1AB1F2E900F02181 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -73,18 +49,6 @@
 		E98511401AB1F2E900F02181 /* jybookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jybookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98511451AB1F2E900F02181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E98511461AB1F2E900F02181 /* jybookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jybookTests.m; sourceTree = "<group>"; };
-		E98511571AB3172E00F02181 /* 碧血剑.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "碧血剑.jpg"; sourceTree = "<group>"; };
-		E98511591AB317DA00F02181 /* 飞狐外传.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "飞狐外传.jpg"; sourceTree = "<group>"; };
-		E985115B1AB3180B00F02181 /* 连城诀.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "连城诀.jpg"; sourceTree = "<group>"; };
-		E985115C1AB3180B00F02181 /* 鹿鼎记.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "鹿鼎记.jpg"; sourceTree = "<group>"; };
-		E985115D1AB3180B00F02181 /* 射雕英雄传.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "射雕英雄传.jpg"; sourceTree = "<group>"; };
-		E985115E1AB3180B00F02181 /* 神雕侠侣.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "神雕侠侣.jpg"; sourceTree = "<group>"; };
-		E985115F1AB3180B00F02181 /* 书剑恩仇录.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "书剑恩仇录.jpg"; sourceTree = "<group>"; };
-		E98511601AB3180B00F02181 /* 天龙八部.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "天龙八部.jpg"; sourceTree = "<group>"; };
-		E98511611AB3180B00F02181 /* 侠客行.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "侠客行.jpg"; sourceTree = "<group>"; };
-		E98511621AB3180B00F02181 /* 笑傲江湖.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "笑傲江湖.jpg"; sourceTree = "<group>"; };
-		E98511631AB3180B00F02181 /* 雪山飞狐.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "雪山飞狐.jpg"; sourceTree = "<group>"; };
-		E98511641AB3180B00F02181 /* 倚天屠龙记.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "倚天屠龙记.jpg"; sourceTree = "<group>"; };
 		E98511B41AB407EE00F02181 /* BookShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookShelfViewController.h; sourceTree = "<group>"; };
 		E98511B51AB407EE00F02181 /* BookShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookShelfViewController.m; sourceTree = "<group>"; };
 		E98511BA1AB4197B00F02181 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
@@ -95,25 +59,9 @@
 		E98511C61AB438A400F02181 /* BookCatalogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookCatalogTableViewCell.m; sourceTree = "<group>"; };
 		E98511C81AB4419900F02181 /* BookPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookPageViewController.h; sourceTree = "<group>"; };
 		E98511C91AB4419900F02181 /* BookPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookPageViewController.m; sourceTree = "<group>"; };
-		E98511CD1AB48E5B00F02181 /* 碧血剑.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "碧血剑.txt"; sourceTree = "<group>"; };
-		E98511CF1AB48E7600F02181 /* 飞狐外传.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "飞狐外传.txt"; sourceTree = "<group>"; };
-		E98511D11AB48E8A00F02181 /* 连城诀.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "连城诀.txt"; sourceTree = "<group>"; };
-		E98511D51AB48EB100F02181 /* 射雕英雄传.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "射雕英雄传.txt"; sourceTree = "<group>"; };
-		E98511D71AB48EC000F02181 /* 神雕侠侣.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "神雕侠侣.txt"; sourceTree = "<group>"; };
-		E98511D91AB48ECE00F02181 /* 书剑恩仇录.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "书剑恩仇录.txt"; sourceTree = "<group>"; };
-		E98511DB1AB48EDD00F02181 /* 天龙八部.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "天龙八部.txt"; sourceTree = "<group>"; };
-		E98511DF1AB48F0C00F02181 /* 笑傲江湖.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "笑傲江湖.txt"; sourceTree = "<group>"; };
-		E98511E11AB48F2500F02181 /* 雪山飞狐.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "雪山飞狐.txt"; sourceTree = "<group>"; };
-		E98511E31AB48F4200F02181 /* 倚天屠龙记.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "倚天屠龙记.txt"; sourceTree = "<group>"; };
-		E98511E51AB48F5600F02181 /* 鸳鸯刀.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "鸳鸯刀.txt"; sourceTree = "<group>"; };
-		E98511E91AB4934800F02181 /* 白马啸西风.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "白马啸西风.txt"; sourceTree = "<group>"; };
-		E98511EA1AB4934800F02181 /* 侠客行.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "侠客行.txt"; sourceTree = "<group>"; };
-		E98511EB1AB4934800F02181 /* 越女剑.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "越女剑.txt"; sourceTree = "<group>"; };
-		E98511EF1AB494BC00F02181 /* 鹿鼎记.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "鹿鼎记.txt"; sourceTree = "<group>"; };
-		E98511F31AB49A0A00F02181 /* 鸳鸯刀.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "鸳鸯刀.jpg"; sourceTree = "<group>"; };
-		E98511F71AB49B9C00F02181 /* 越女剑.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "越女剑.jpg"; sourceTree = "<group>"; };
-		E98511F91AB49C8C00F02181 /* 白马啸西风.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "白马啸西风.jpg"; sourceTree = "<group>"; };
 		E98511FB1AB537EF00F02181 /* epub */ = {isa = PBXFileReference; lastKnownFileType = folder; path = epub; sourceTree = "<group>"; };
+		E985120E1AB55D4B00F02181 /* cover */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cover; sourceTree = "<group>"; };
+		E98512101AB55DEA00F02181 /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; path = txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BFAC2FA824F2C68B39119E3 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,12 +83,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		497753D881882A434B1B5607 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5BD7C2F9F5DF8603FD469482 /* Pods.debug.xcconfig */,
+				791EA403C344396DF54BF750 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E985111E1AB1F2E900F02181 = {
 			isa = PBXGroup;
 			children = (
+				E98511FD1AB5548400F02181 /* Frameworks */,
 				E98511291AB1F2E900F02181 /* jybook */,
 				E98511431AB1F2E900F02181 /* jybookTests */,
 				E98511281AB1F2E900F02181 /* Products */,
+				497753D881882A434B1B5607 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,9 +115,9 @@
 		E98511291AB1F2E900F02181 /* jybook */ = {
 			isa = PBXGroup;
 			children = (
+				E98512101AB55DEA00F02181 /* txt */,
+				E985120E1AB55D4B00F02181 /* cover */,
 				E98511FB1AB537EF00F02181 /* epub */,
-				E98511561AB3170100F02181 /* image */,
-				E98511511AB3117800F02181 /* book */,
 				E98511371AB1F2E900F02181 /* Images.xcassets */,
 				E985112A1AB1F2E900F02181 /* Supporting Files */,
 				E98511B41AB407EE00F02181 /* BookShelfViewController.h */,
@@ -204,48 +164,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E98511511AB3117800F02181 /* book */ = {
+		E98511FD1AB5548400F02181 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E98511EF1AB494BC00F02181 /* 鹿鼎记.txt */,
-				E98511E91AB4934800F02181 /* 白马啸西风.txt */,
-				E98511EA1AB4934800F02181 /* 侠客行.txt */,
-				E98511EB1AB4934800F02181 /* 越女剑.txt */,
-				E98511E51AB48F5600F02181 /* 鸳鸯刀.txt */,
-				E98511E31AB48F4200F02181 /* 倚天屠龙记.txt */,
-				E98511E11AB48F2500F02181 /* 雪山飞狐.txt */,
-				E98511DF1AB48F0C00F02181 /* 笑傲江湖.txt */,
-				E98511DB1AB48EDD00F02181 /* 天龙八部.txt */,
-				E98511D91AB48ECE00F02181 /* 书剑恩仇录.txt */,
-				E98511D71AB48EC000F02181 /* 神雕侠侣.txt */,
-				E98511D51AB48EB100F02181 /* 射雕英雄传.txt */,
-				E98511D11AB48E8A00F02181 /* 连城诀.txt */,
-				E98511CF1AB48E7600F02181 /* 飞狐外传.txt */,
-				E98511CD1AB48E5B00F02181 /* 碧血剑.txt */,
+				6F2926182403E4019B6119D7 /* libPods.a */,
 			);
-			name = book;
-			sourceTree = "<group>";
-		};
-		E98511561AB3170100F02181 /* image */ = {
-			isa = PBXGroup;
-			children = (
-				E98511F91AB49C8C00F02181 /* 白马啸西风.jpg */,
-				E98511F71AB49B9C00F02181 /* 越女剑.jpg */,
-				E98511F31AB49A0A00F02181 /* 鸳鸯刀.jpg */,
-				E985115B1AB3180B00F02181 /* 连城诀.jpg */,
-				E985115C1AB3180B00F02181 /* 鹿鼎记.jpg */,
-				E985115D1AB3180B00F02181 /* 射雕英雄传.jpg */,
-				E985115E1AB3180B00F02181 /* 神雕侠侣.jpg */,
-				E985115F1AB3180B00F02181 /* 书剑恩仇录.jpg */,
-				E98511601AB3180B00F02181 /* 天龙八部.jpg */,
-				E98511611AB3180B00F02181 /* 侠客行.jpg */,
-				E98511621AB3180B00F02181 /* 笑傲江湖.jpg */,
-				E98511631AB3180B00F02181 /* 雪山飞狐.jpg */,
-				E98511641AB3180B00F02181 /* 倚天屠龙记.jpg */,
-				E98511591AB317DA00F02181 /* 飞狐外传.jpg */,
-				E98511571AB3172E00F02181 /* 碧血剑.jpg */,
-			);
-			name = image;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,9 +179,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E985114A1AB1F2E900F02181 /* Build configuration list for PBXNativeTarget "jybook" */;
 			buildPhases = (
+				298C88E38E5F69B2F7009419 /* Check Pods Manifest.lock */,
 				E98511231AB1F2E900F02181 /* Sources */,
 				E98511241AB1F2E900F02181 /* Frameworks */,
 				E98511251AB1F2E900F02181 /* Resources */,
+				4CED5C23A27CE9AB2BE7C7DA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -330,38 +256,10 @@
 			files = (
 				E98511FC1AB537EF00F02181 /* epub in Resources */,
 				E98511361AB1F2E900F02181 /* Main.storyboard in Resources */,
-				E98511F41AB49A0A00F02181 /* 鸳鸯刀.jpg in Resources */,
-				E98511E21AB48F2500F02181 /* 雪山飞狐.txt in Resources */,
-				E98511ED1AB4934800F02181 /* 侠客行.txt in Resources */,
-				E98511DC1AB48EDD00F02181 /* 天龙八部.txt in Resources */,
-				E985116B1AB3180B00F02181 /* 侠客行.jpg in Resources */,
-				E98511681AB3180B00F02181 /* 神雕侠侣.jpg in Resources */,
-				E98511E41AB48F4200F02181 /* 倚天屠龙记.txt in Resources */,
-				E98511EE1AB4934800F02181 /* 越女剑.txt in Resources */,
-				E98511E01AB48F0C00F02181 /* 笑傲江湖.txt in Resources */,
-				E98511D01AB48E7600F02181 /* 飞狐外传.txt in Resources */,
-				E98511671AB3180B00F02181 /* 射雕英雄传.jpg in Resources */,
-				E985116A1AB3180B00F02181 /* 天龙八部.jpg in Resources */,
-				E98511CE1AB48E5B00F02181 /* 碧血剑.txt in Resources */,
-				E985115A1AB317DA00F02181 /* 飞狐外传.jpg in Resources */,
-				E98511661AB3180B00F02181 /* 鹿鼎记.jpg in Resources */,
-				E98511FA1AB49C8C00F02181 /* 白马啸西风.jpg in Resources */,
+				E985120F1AB55D4B00F02181 /* cover in Resources */,
+				E98512111AB55DEA00F02181 /* txt in Resources */,
 				E985113B1AB1F2E900F02181 /* LaunchScreen.xib in Resources */,
-				E98511651AB3180B00F02181 /* 连城诀.jpg in Resources */,
-				E98511D21AB48E8A00F02181 /* 连城诀.txt in Resources */,
-				E98511581AB3172E00F02181 /* 碧血剑.jpg in Resources */,
-				E98511E61AB48F5600F02181 /* 鸳鸯刀.txt in Resources */,
-				E98511F01AB494BC00F02181 /* 鹿鼎记.txt in Resources */,
-				E98511D61AB48EB100F02181 /* 射雕英雄传.txt in Resources */,
-				E985116D1AB3180B00F02181 /* 雪山飞狐.jpg in Resources */,
 				E98511381AB1F2E900F02181 /* Images.xcassets in Resources */,
-				E98511DA1AB48ECE00F02181 /* 书剑恩仇录.txt in Resources */,
-				E985116E1AB3180B00F02181 /* 倚天屠龙记.jpg in Resources */,
-				E98511F81AB49B9C00F02181 /* 越女剑.jpg in Resources */,
-				E98511691AB3180B00F02181 /* 书剑恩仇录.jpg in Resources */,
-				E98511EC1AB4934800F02181 /* 白马啸西风.txt in Resources */,
-				E98511D81AB48EC000F02181 /* 神雕侠侣.txt in Resources */,
-				E985116C1AB3180B00F02181 /* 笑傲江湖.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +271,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		298C88E38E5F69B2F7009419 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4CED5C23A27CE9AB2BE7C7DA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E98511231AB1F2E900F02181 /* Sources */ = {
@@ -505,6 +436,7 @@
 		};
 		E985114B1AB1F2E900F02181 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BD7C2F9F5DF8603FD469482 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -516,6 +448,7 @@
 		};
 		E985114C1AB1F2E900F02181 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 791EA403C344396DF54BF750 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
