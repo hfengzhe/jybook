@@ -70,7 +70,8 @@
     if ([segue.identifier isEqualToString:@"showchapter"]) {
         NSUInteger selectedChapter = [self.tableView indexPathForSelectedRow].row;
         BookPageViewController *bpvc = segue.destinationViewController;
-        NSString *chaptertext = [NSString stringWithFormat:@"%lu\nhello worldafdasdfsalkkfjsalfjasjfasjfsa;jfasjfassdhjkquiwerwqeryoqwryqworqwrpqwurwqpiruqwpruwqp", (unsigned long)selectedChapter];
+        NSLog(@"selected row:%lul", (unsigned long)selectedChapter);
+        NSString *chaptertext = [self.book contentPathForChapter:selectedChapter];
         bpvc.chaptertext = chaptertext;
     }
 }

@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSArray *bookspine;
 @property (nonatomic, strong) NSDictionary *chapterTitleDict;
 @property (nonatomic, strong) NSDictionary *chapterFileDict;
+
 @end
 
 @implementation Book
@@ -27,8 +28,6 @@
         self.epubpath = [[NSBundle mainBundle] pathForResource:self.name ofType:@"epub" inDirectory:@"epub"];
         NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         self.bookpath = [documentPath stringByAppendingPathComponent:self.name];
-    
-        self.contents = nil;
     }
     return self;
 }
@@ -138,14 +137,27 @@
 }
 
 - (NSArray *)chapters {
-    [self parseTocNcx];
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (NSString *tocid in self.bookspine) {
-        if (self.chapterTitleDict[tocid] ) {
-            [array addObject:self.chapterTitleDict[tocid]];
+    if (!_chapters) {
+        [self parseTocNcx];
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        for (NSString *tocid in self.bookspine) {
+            if (self.chapterTitleDict[tocid] ) {
+                [array addObject:self.chapterTitleDict[tocid]];
+            }
         }
+        _chapters = [NSArray arrayWithArray:array];
     }
-    return array;
+    return _chapters;
+}
+
+- (NSString *) contentPathForChapter:(NSUInteger) index {
+    NSString *title = [self.chapters objectAtIndex:index];
+    NSString *tocid = [[self.chapterTitleDict allKeysForObject:title] objectAtIndex:0];
+
+    if (self.chapterFileDict[tocid]) {
+        return [self.bookpath stringByAppendingPathComponent:[NSString stringWithFormat:@"OEBPS/%@", self.chapterFileDict[tocid]]];
+    }
+    return nil;
 }
 
 @end
