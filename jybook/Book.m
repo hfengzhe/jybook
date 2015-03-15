@@ -13,8 +13,9 @@
 @interface Book ()
 @property (nonatomic, strong) NSString *epubpath;
 @property (nonatomic, strong) NSString *bookpath;
-@property (nonatomic, strong) NSDictionary *bookcatalog;
 @property (nonatomic, strong) NSArray *bookspine;
+@property (nonatomic, strong) NSDictionary *chapterTitleDict;
+@property (nonatomic, strong) NSDictionary *chapterFileDict;
 @end
 
 @implementation Book
@@ -28,10 +29,10 @@
         self.bookpath = [documentPath stringByAppendingPathComponent:self.name];
     
         self.contents = nil;
-        [self parseContentOpf];
     }
     return self;
 }
+
 
 - (void)unzipBook {
     ZipArchive *za = [[ZipArchive alloc] init];
@@ -44,14 +45,16 @@
     }
 }
 
-- (NSString *) getOpfFilePathByParseMetaXml {
-    NSString *metapath = [self.bookpath stringByAppendingPathComponent:@"META-INF/container.xml"];
-    NSFileManager *manager = [NSFileManager defaultManager];
+- (NSString *) parseMetaContainerXml {
+    //NSLog(@"----parse meta container xml");
+    NSString *metapath = [self.bookpath stringByAppendingPathComponent:@"META-INF/container.xml"];    NSFileManager *manager = [NSFileManager defaultManager];
     if (![manager fileExistsAtPath:metapath]) {
+        //NSLog(@"metapath %@ not exists", metapath);
         [self unzipBook];
     }
 
     NSString *metaString = [NSString stringWithContentsOfFile:metapath encoding:NSUTF8StringEncoding error:nil];
+    //NSLog(@"meta container:%@", metaString);
     TBXML *metaxml = [TBXML tbxmlWithXMLString:metaString error:nil];
     TBXMLElement *root = metaxml.rootXMLElement;
     TBXMLElement *rootfiles = root->currentChild;
@@ -59,7 +62,8 @@
         TBXMLElement *rootfile = rootfiles->firstChild;
         while (rootfile) {
             if ([[TBXML valueOfAttributeNamed:@"media-type" forElement:rootfile] isEqualToString:@"application/oebps-package+xml"]) {
-                return [self.bookpath stringByAppendingPathComponent:[TBXML valueOfAttributeNamed:@"full-path" forElement:rootfile]];
+                 return [self.bookpath stringByAppendingPathComponent:[TBXML valueOfAttributeNamed:@"full-path" forElement:rootfile]];
+
             } else {
                     rootfile = rootfile->nextSibling;
             }
@@ -68,13 +72,15 @@
     return nil;
 }
 
-- (void)parseContentOpf {
-    NSString *opfpath = [self getOpfFilePathByParseMetaXml];
+- (NSString *)parseContentOpf {
+    //NSLog(@"-----parse content opf-----");
+    NSString *opfpath = [self parseMetaContainerXml];
     NSFileManager *manager = [NSFileManager defaultManager];
     if (![manager fileExistsAtPath:opfpath]) {
         NSLog(@"content opf file:%@ not exists", opfpath);
     }
     NSString *content = [NSString stringWithContentsOfFile:opfpath encoding:NSUTF8StringEncoding error:nil];
+    //NSLog(@"content opf:%@", content);
     TBXML *contentxml = [TBXML tbxmlWithXMLString:content error:nil];
     
     TBXMLElement *manifest = [TBXML childElementNamed:@"manifest" parentElement:contentxml.rootXMLElement];
@@ -86,9 +92,10 @@
         [dict setObject:href forKey:itemid];
         item = item->nextSibling;
     }
-    self.bookcatalog = [NSDictionary dictionaryWithDictionary:dict];
+    self.chapterFileDict = [NSDictionary dictionaryWithDictionary:dict];
     
     TBXMLElement *spine = [TBXML childElementNamed:@"spine" parentElement:contentxml.rootXMLElement];
+    
     TBXMLElement *itemref = spine->firstChild;
     NSMutableArray *array = [[NSMutableArray alloc] init];
     while (itemref) {
@@ -97,10 +104,48 @@
         itemref = itemref->nextSibling;
     }
     self.bookspine = [NSArray arrayWithArray:array];
+    
+    NSString *tocid = [TBXML valueOfAttributeNamed:@"toc" forElement:spine];
+    return [self.bookpath stringByAppendingPathComponent:[NSString stringWithFormat:@"OEBPS/%@",self.chapterFileDict[tocid]]];
+}
+
+- (void) parseTocNcx {
+    //NSLog(@"----parse toc ncx-----");
+    NSString *tocpath = [self parseContentOpf];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if (![manager fileExistsAtPath:tocpath]) {
+        NSLog(@"toc file:%@ not exists", tocpath);
+    }
+    
+    NSString *tocString = [NSString stringWithContentsOfFile:tocpath encoding:NSUTF8StringEncoding error:nil];
+    TBXML *tocxml = [TBXML tbxmlWithXMLString:tocString error:nil];
+    //NSLog(@"toc ncx content:%@", tocString);
+
+    TBXMLElement *navmap = [TBXML childElementNamed:@"ncx:navMap" parentElement:tocxml.rootXMLElement];
+    TBXMLElement *navpoint = [TBXML childElementNamed:@"ncx:navPoint" parentElement:navmap];
+
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    
+    while (navpoint) {
+        NSString *tocid = [TBXML valueOfAttributeNamed:@"id" forElement:navpoint];
+        TBXMLElement *navLabel = navpoint->firstChild;
+        TBXMLElement *text = navLabel->firstChild;
+        NSString *title = [TBXML textForElement:text];
+        [dict setObject:title forKey:tocid];
+        navpoint = navpoint->nextSibling;
+    }
+    self.chapterTitleDict = [NSDictionary dictionaryWithDictionary:dict];
 }
 
 - (NSArray *)chapters {
-    return self.bookspine;
+    [self parseTocNcx];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (NSString *tocid in self.bookspine) {
+        if (self.chapterTitleDict[tocid] ) {
+            [array addObject:self.chapterTitleDict[tocid]];
+        }
+    }
+    return array;
 }
 
 @end
