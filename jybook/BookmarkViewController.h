@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Book.h"
 
 @interface BookmarkViewController : UITableViewController
-@property (nonatomic, strong) NSArray *bookmarks;
+@property (nonatomic, strong) Book *book;
 
 @end

@@ -9,6 +9,7 @@
 #import "BookViewController.h"
 #import "BookCatalogTableViewCell.h"
 #import "BookPageViewController.h"
+#import "BookmarkViewController.h"
 
 @interface BookViewController ()
 
@@ -22,9 +23,16 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.bookNavigationItem.title = self.book.name;
-    self.bookmarkBarButtonItem.title = @"书签";
+    self.navigationItem.title = self.book.name;
+    UIBarButtonItem *showBookmarkBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"📚" style:UIBarButtonItemStyleDone target:self action:@selector(clickShowBookmark)];
+
+    self.navigationItem.rightBarButtonItem = showBookmarkBarButtonItem;
+}
+
+- (void)clickShowBookmark {
+    BookmarkViewController *bmvc = [[BookmarkViewController alloc] init];
+    bmvc.book = self.book;
+    [self presentViewController:bmvc animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +61,6 @@
     return cell;
 }
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -66,6 +73,8 @@
         //NSLog(@"selected row:%lul", (unsigned long)selectedChapter);
         NSString *path = [self.book contentPathForChapter:self.book.chapters[selectedChapter]];
         bpvc.url = [NSURL fileURLWithPath:path];
+        bpvc.book = self.book;
+        
     }
 }
 

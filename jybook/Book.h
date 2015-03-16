@@ -11,6 +11,7 @@
 @interface Book : NSObject
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray *chapters; //array of tocid
+@property (nonatomic, strong) NSArray *bookmarks;
 
 - (id) initWithName:(NSString *)name;
 

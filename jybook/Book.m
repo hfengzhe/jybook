@@ -155,6 +155,13 @@
     return _chapters;
 }
 
+- (NSArray *) bookmarks {
+    if (!_bookmarks) {
+        _bookmarks = [[NSArray alloc] initWithObjects:@"bookmark1",@"bookmark2", nil];
+    }
+    return _bookmarks;
+}
+
 - (NSString *) titleForChapter:(NSString *) chapter {
     if ([self.chapterTitleDict count]) {
         return self.chapterTitleDict[chapter];

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Book.h"
 
 @interface BookPageViewController : UIViewController
+@property (nonatomic, weak) Book *book;
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 @property (nonatomic, strong) NSURL *url;
 
