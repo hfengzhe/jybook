@@ -11,4 +11,6 @@
 
 @interface BookViewController : UITableViewController
 @property (nonatomic, strong) Book *book;
+@property (weak, nonatomic) IBOutlet UINavigationItem *bookNavigationItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *bookmarkBarButtonItem;
 @end

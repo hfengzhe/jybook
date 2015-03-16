@@ -99,6 +99,15 @@
                             <outlet property="delegate" destination="oTj-Cp-yd9" id="fsP-xl-gTz"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="LUe-1U-FM2">
+                        <barButtonItem key="rightBarButtonItem" id="Vos-gT-3og"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bookNavigationItem" destination="LUe-1U-FM2" id="d85-dJ-jm5"/>
+                        <outlet property="bookmarkBarButtonItem" destination="Vos-gT-3og" id="LTn-Tb-k6e"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kG8-dg-7AJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
