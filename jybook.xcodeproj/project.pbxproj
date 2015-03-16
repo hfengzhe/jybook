@@ -24,7 +24,6 @@
 		E98511CA1AB4419900F02181 /* BookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C91AB4419900F02181 /* BookPageViewController.m */; };
 		E98511FC1AB537EF00F02181 /* epub in Resources */ = {isa = PBXBuildFile; fileRef = E98511FB1AB537EF00F02181 /* epub */; };
 		E985120F1AB55D4B00F02181 /* cover in Resources */ = {isa = PBXBuildFile; fileRef = E985120E1AB55D4B00F02181 /* cover */; };
-		E98512111AB55DEA00F02181 /* txt in Resources */ = {isa = PBXBuildFile; fileRef = E98512101AB55DEA00F02181 /* txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +68,6 @@
 		E98511C91AB4419900F02181 /* BookPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookPageViewController.m; sourceTree = "<group>"; };
 		E98511FB1AB537EF00F02181 /* epub */ = {isa = PBXFileReference; lastKnownFileType = folder; path = epub; sourceTree = "<group>"; };
 		E985120E1AB55D4B00F02181 /* cover */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cover; sourceTree = "<group>"; };
-		E98512101AB55DEA00F02181 /* txt */ = {isa = PBXFileReference; lastKnownFileType = folder; path = txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +122,6 @@
 		E98511291AB1F2E900F02181 /* jybook */ = {
 			isa = PBXGroup;
 			children = (
-				E98512101AB55DEA00F02181 /* txt */,
 				E985120E1AB55D4B00F02181 /* cover */,
 				E98511FB1AB537EF00F02181 /* epub */,
 				E98511371AB1F2E900F02181 /* Images.xcassets */,
@@ -270,7 +267,6 @@
 				E98511FC1AB537EF00F02181 /* epub in Resources */,
 				E98511361AB1F2E900F02181 /* Main.storyboard in Resources */,
 				E985120F1AB55D4B00F02181 /* cover in Resources */,
-				E98512111AB55DEA00F02181 /* txt in Resources */,
 				E985113B1AB1F2E900F02181 /* LaunchScreen.xib in Resources */,
 				E98511381AB1F2E900F02181 /* Images.xcassets in Resources */,
 				E96F17E81AB733080004A8C4 /* Podfile.lock in Resources */,
