@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BookPageViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextView *content;
-@property (strong, nonatomic) NSString *chaptertext;
+@property (weak, nonatomic) IBOutlet UIWebView *webview;
+@property (nonatomic, strong) NSURL *url;
 
 @end

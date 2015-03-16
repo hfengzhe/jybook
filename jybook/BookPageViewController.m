@@ -17,7 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.content.text = self.chaptertext;
+    NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
+    [self.webview loadRequest:req];
 }
 
 - (void)didReceiveMemoryWarning {

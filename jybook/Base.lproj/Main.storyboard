@@ -116,17 +116,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vb3-He-2h1">
-                                <rect key="frame" x="0.0" y="15" width="600" height="600"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qzz-Pv-wju">
+                                <rect key="frame" x="16" y="0.0" width="568" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Qzz-Pv-wju" firstAttribute="trailing" secondItem="Xnn-eY-kWa" secondAttribute="trailingMargin" id="06Y-OG-id2"/>
+                            <constraint firstItem="Qzz-Pv-wju" firstAttribute="top" secondItem="Xnn-eY-kWa" secondAttribute="top" id="UNJ-Kb-cM3"/>
+                            <constraint firstItem="Qzz-Pv-wju" firstAttribute="bottom" secondItem="2cb-MZ-mIO" secondAttribute="top" id="XRd-Q2-5UN"/>
+                            <constraint firstItem="Qzz-Pv-wju" firstAttribute="leading" secondItem="Xnn-eY-kWa" secondAttribute="leadingMargin" id="tZA-fW-v31"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="content" destination="vb3-He-2h1" id="3U9-jr-Qa7"/>
+                        <outlet property="webview" destination="Qzz-Pv-wju" id="wc5-O0-x34"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JzP-Lh-aeL" userLabel="First Responder" sceneMemberID="firstResponder"/>

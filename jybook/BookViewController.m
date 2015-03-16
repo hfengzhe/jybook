@@ -68,8 +68,8 @@
         NSUInteger selectedChapter = [self.tableView indexPathForSelectedRow].row;
         BookPageViewController *bpvc = segue.destinationViewController;
         //NSLog(@"selected row:%lul", (unsigned long)selectedChapter);
-        NSString *chaptertext = [self.book contentPathForChapter:selectedChapter];
-        bpvc.chaptertext = chaptertext;
+        NSString *path = [self.book contentPathForChapter:selectedChapter];
+        bpvc.url = [NSURL fileURLWithPath:path];
     }
 }
 
