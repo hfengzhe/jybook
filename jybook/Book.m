@@ -145,6 +145,9 @@
                 [array addObject:self.chapterTitleDict[tocid]];
             }
         }
+        if (![array count]) {
+            [array addObject:self.name];
+        }
         _chapters = [NSArray arrayWithArray:array];
     }
     return _chapters;
@@ -152,8 +155,13 @@
 
 - (NSString *) contentPathForChapter:(NSUInteger) index {
     NSString *title = [self.chapters objectAtIndex:index];
-    NSString *tocid = [[self.chapterTitleDict allKeysForObject:title] objectAtIndex:0];
-
+    NSString *tocid = nil;
+    if ([self.chapterTitleDict count]) {
+        tocid = [[self.chapterTitleDict allKeysForObject:title] objectAtIndex:0];
+    } else {
+        tocid = self.bookspine[0];
+    }
+    
     if (self.chapterFileDict[tocid]) {
         return [self.bookpath stringByAppendingPathComponent:[NSString stringWithFormat:@"OEBPS/%@", self.chapterFileDict[tocid]]];
     }
