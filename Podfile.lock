@@ -1,0 +1,13 @@
+PODS:
+  - TBXML (1.5)
+  - ZipArchive (1.4.0)
+
+DEPENDENCIES:
+  - TBXML (~> 1.5)
+  - ZipArchive (~> 1.4.0)
+
+SPEC CHECKSUMS:
+  TBXML: a279440030ba55c40e1455cafba3b0a44e1963d4
+  ZipArchive: c0062c1241a22fa28bf67e5dcdbc068226378ea3
+
+COCOAPODS: 0.36.0
