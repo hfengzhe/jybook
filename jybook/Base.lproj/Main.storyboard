@@ -74,26 +74,22 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="feR-IQ-biU" id="Ebj-sj-8za">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Gs-EL-ioc">
-                                            <rect key="frame" x="40" y="0.0" width="520" height="44"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <state key="normal" title="Button">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="viewChapter:" destination="oTj-Cp-yd9" eventType="touchUpInside" id="YkL-Ko-nCh"/>
-                                            </connections>
-                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lth-uD-t1y">
+                                            <rect key="frame" x="8" y="8" width="584" height="28"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="8Gs-EL-ioc" firstAttribute="leading" secondItem="Ebj-sj-8za" secondAttribute="leadingMargin" constant="32" id="hNT-28-938"/>
-                                        <constraint firstItem="8Gs-EL-ioc" firstAttribute="top" secondItem="Ebj-sj-8za" secondAttribute="top" id="ugd-jw-bmi"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="8Gs-EL-ioc" secondAttribute="bottom" constant="-8.5" id="wVu-c6-pM6"/>
-                                        <constraint firstItem="8Gs-EL-ioc" firstAttribute="centerX" secondItem="Ebj-sj-8za" secondAttribute="centerX" id="xAa-bQ-ZER"/>
+                                        <constraint firstItem="Lth-uD-t1y" firstAttribute="leading" secondItem="Ebj-sj-8za" secondAttribute="leadingMargin" id="9lh-kb-64X"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Lth-uD-t1y" secondAttribute="bottom" constant="-0.5" id="HSI-EA-jOL"/>
+                                        <constraint firstItem="Lth-uD-t1y" firstAttribute="trailing" secondItem="Ebj-sj-8za" secondAttribute="trailingMargin" id="XF6-da-cvb"/>
+                                        <constraint firstItem="Lth-uD-t1y" firstAttribute="top" secondItem="Ebj-sj-8za" secondAttribute="topMargin" id="vhd-CD-kX6"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="catalogbtn" destination="8Gs-EL-ioc" id="c4q-eE-mDZ"/>
+                                    <outlet property="chapterLabel" destination="Lth-uD-t1y" id="rXr-Ct-ca8"/>
                                     <segue destination="Mwf-Pb-X7X" kind="show" identifier="showchapter" id="3YQ-rw-Xoj"/>
                                 </connections>
                             </tableViewCell>

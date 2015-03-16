@@ -49,14 +49,11 @@
     return 48;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"showchapter" sender:self];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BookCatalogTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Catalog" forIndexPath:indexPath];
 
-    [cell.catalogbtn setTitle:self.book.chapters[indexPath.row] forState:UIControlStateNormal];
+    //[cell.catalogbtn setTitle:self.book.chapters[indexPath.row] forState:UIControlStateNormal];
+    [cell.chapterLabel setText:self.book.chapters[indexPath.row]];
     return cell;
 }
 
@@ -70,7 +67,7 @@
     if ([segue.identifier isEqualToString:@"showchapter"]) {
         NSUInteger selectedChapter = [self.tableView indexPathForSelectedRow].row;
         BookPageViewController *bpvc = segue.destinationViewController;
-        NSLog(@"selected row:%lul", (unsigned long)selectedChapter);
+        //NSLog(@"selected row:%lul", (unsigned long)selectedChapter);
         NSString *chaptertext = [self.book contentPathForChapter:selectedChapter];
         bpvc.chaptertext = chaptertext;
     }
