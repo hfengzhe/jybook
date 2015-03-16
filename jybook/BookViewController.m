@@ -49,7 +49,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BookCatalogTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Catalog" forIndexPath:indexPath];
 
-    [cell.chapterLabel setText:self.book.chapters[indexPath.row]];
+    [cell.chapterLabel setText:[self.book titleForChapter:self.book.chapters[indexPath.row]]];
     return cell;
 }
 
@@ -64,7 +64,7 @@
         NSUInteger selectedChapter = [self.tableView indexPathForSelectedRow].row;
         BookPageViewController *bpvc = segue.destinationViewController;
         //NSLog(@"selected row:%lul", (unsigned long)selectedChapter);
-        NSString *path = [self.book contentPathForChapter:selectedChapter];
+        NSString *path = [self.book contentPathForChapter:self.book.chapters[selectedChapter]];
         bpvc.url = [NSURL fileURLWithPath:path];
     }
 }

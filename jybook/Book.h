@@ -10,9 +10,12 @@
 
 @interface Book : NSObject
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSArray *chapters;
+@property (nonatomic, strong) NSArray *chapters; //array of tocid
 
 - (id) initWithName:(NSString *)name;
-- (NSString *) contentPathForChapter:(NSUInteger) index;
+
+- (NSString *) titleForChapter:(NSString *) chapter;
+
+- (NSString *) contentPathForChapter: (NSString *) chapter;
 
 @end
