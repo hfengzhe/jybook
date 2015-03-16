@@ -16,10 +16,6 @@
 
 @implementation BookViewController
 
-- (IBAction)viewChapter:(id)sender {
-    [self performSegueWithIdentifier:@"showchapter" sender:self];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -52,7 +48,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BookCatalogTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Catalog" forIndexPath:indexPath];
 
-    //[cell.catalogbtn setTitle:self.book.chapters[indexPath.row] forState:UIControlStateNormal];
     [cell.chapterLabel setText:self.book.chapters[indexPath.row]];
     return cell;
 }
