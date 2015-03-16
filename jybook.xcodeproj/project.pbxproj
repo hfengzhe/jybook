@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1BFAC2FA824F2C68B39119E3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F2926182403E4019B6119D7 /* libPods.a */; };
+		E96F17E01AB71FE50004A8C4 /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F17DF1AB71FE50004A8C4 /* BookmarkViewController.m */; };
+		E96F17E31AB724450004A8C4 /* BookmarkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F17E21AB724450004A8C4 /* BookmarkTableViewCell.m */; };
 		E985112D1AB1F2E900F02181 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E985112C1AB1F2E900F02181 /* main.m */; };
 		E98511301AB1F2E900F02181 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E985112F1AB1F2E900F02181 /* AppDelegate.m */; };
 		E98511361AB1F2E900F02181 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E98511341AB1F2E900F02181 /* Main.storyboard */; };
@@ -38,6 +40,10 @@
 		5BD7C2F9F5DF8603FD469482 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6F2926182403E4019B6119D7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		791EA403C344396DF54BF750 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E96F17DE1AB71FE50004A8C4 /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
+		E96F17DF1AB71FE50004A8C4 /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
+		E96F17E11AB724450004A8C4 /* BookmarkTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkTableViewCell.h; sourceTree = "<group>"; };
+		E96F17E21AB724450004A8C4 /* BookmarkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkTableViewCell.m; sourceTree = "<group>"; };
 		E98511271AB1F2E900F02181 /* 金庸全集.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "金庸全集.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E985112B1AB1F2E900F02181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E985112C1AB1F2E900F02181 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -130,6 +136,10 @@
 				E98511C61AB438A400F02181 /* BookCatalogTableViewCell.m */,
 				E98511C81AB4419900F02181 /* BookPageViewController.h */,
 				E98511C91AB4419900F02181 /* BookPageViewController.m */,
+				E96F17DE1AB71FE50004A8C4 /* BookmarkViewController.h */,
+				E96F17DF1AB71FE50004A8C4 /* BookmarkViewController.m */,
+				E96F17E11AB724450004A8C4 /* BookmarkTableViewCell.h */,
+				E96F17E21AB724450004A8C4 /* BookmarkTableViewCell.m */,
 			);
 			path = jybook;
 			sourceTree = "<group>";
@@ -310,6 +320,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E96F17E31AB724450004A8C4 /* BookmarkTableViewCell.m in Sources */,
+				E96F17E01AB71FE50004A8C4 /* BookmarkViewController.m in Sources */,
 				E98511CA1AB4419900F02181 /* BookPageViewController.m in Sources */,
 				E98511C41AB437C700F02181 /* BookViewController.m in Sources */,
 				E98511BC1AB4197B00F02181 /* Book.m in Sources */,
