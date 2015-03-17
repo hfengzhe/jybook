@@ -24,15 +24,6 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     self.navigationItem.title = self.book.name;
-    UIBarButtonItem *showBookmarkBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"📚" style:UIBarButtonItemStyleDone target:self action:@selector(clickShowBookmark)];
-
-    self.navigationItem.rightBarButtonItem = showBookmarkBarButtonItem;
-}
-
-- (void)clickShowBookmark {
-    BookmarkViewController *bmvc = [[BookmarkViewController alloc] init];
-    bmvc.book = self.book;
-    [self presentViewController:bmvc animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,16 +56,17 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
     if ([segue.identifier isEqualToString:@"showchapter"]) {
         NSUInteger selectedChapter = [self.tableView indexPathForSelectedRow].row;
         BookPageViewController *bpvc = segue.destinationViewController;
-        //NSLog(@"selected row:%lul", (unsigned long)selectedChapter);
         NSString *path = [self.book contentPathForChapter:self.book.chapters[selectedChapter]];
         bpvc.url = [NSURL fileURLWithPath:path];
         bpvc.book = self.book;
         
+    } else if ([segue.identifier isEqualToString:@"showbookmark"]) {
+        BookmarkViewController *bmvc = segue.destinationViewController;
+        bmvc.book = self.book;
     }
 }
 

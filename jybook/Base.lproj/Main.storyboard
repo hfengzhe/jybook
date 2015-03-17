@@ -100,6 +100,13 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="DJZ-8E-x7w">
+                        <barButtonItem key="rightBarButtonItem" title="📚" id="cuK-ey-G13">
+                            <connections>
+                                <segue destination="QAL-gI-JME" kind="show" identifier="showbookmark" id="feA-uM-Tum"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
@@ -121,13 +128,19 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mvu-v8-Ofh" id="fpN-uf-r9y">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heO-pP-51N">
-                                            <rect key="frame" x="8" y="0.0" width="584" height="44"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heO-pP-51N">
+                                            <rect key="frame" x="8" y="0.0" width="584" height="36"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="heO-pP-51N" firstAttribute="leading" secondItem="fpN-uf-r9y" secondAttribute="leadingMargin" id="9LT-L0-tTQ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="heO-pP-51N" secondAttribute="bottom" constant="-0.5" id="Hha-cW-jbX"/>
+                                        <constraint firstItem="heO-pP-51N" firstAttribute="top" secondItem="fpN-uf-r9y" secondAttribute="top" id="Nbp-rL-q6E"/>
+                                        <constraint firstItem="heO-pP-51N" firstAttribute="trailing" secondItem="fpN-uf-r9y" secondAttribute="trailingMargin" id="Wdc-57-gVd"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="bookmarkLabel" destination="heO-pP-51N" id="0Ft-DY-xue"/>
@@ -142,7 +155,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Trh-Y7-W27" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="901" y="-1292"/>
+            <point key="canvasLocation" x="957" y="-1162"/>
         </scene>
         <!--Book Page View Controller-->
         <scene sceneID="h4f-gQ-1SZ">
@@ -175,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JzP-Lh-aeL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="901" y="-560"/>
+            <point key="canvasLocation" x="977" y="-188"/>
         </scene>
     </scenes>
 </document>

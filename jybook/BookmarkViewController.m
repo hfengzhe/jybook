@@ -20,10 +20,9 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    [self.tableView registerClass:[BookmarkTableViewCell class] forCellReuseIdentifier:@"bookmarkcell"];
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,18 +44,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BookmarkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookmarkcell" forIndexPath:indexPath];
     cell.bookmarkLabel.text = self.book.bookmarks[indexPath.row];
-
     return cell;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 48;
+}
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
+
 
 /*
 // Override to support editing the table view.
