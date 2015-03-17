@@ -144,6 +144,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="bookmarkLabel" destination="heO-pP-51N" id="0Ft-DY-xue"/>
+                                    <segue destination="Mwf-Pb-X7X" kind="show" identifier="enterbookmark" id="MDB-JH-jDY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -191,4 +192,7 @@
             <point key="canvasLocation" x="977" y="-188"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="MDB-JH-jDY"/>
+    </inferredMetricsTieBreakers>
 </document>

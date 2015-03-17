@@ -27,6 +27,8 @@
     self.webview.scrollView.bounces = NO;
     self.webview.scrollView.showsHorizontalScrollIndicator = NO;
     self.webview.scrollView.showsVerticalScrollIndicator = NO;
+    self.webview.scrollView.delaysContentTouches = NO;
+    
     self.webview.scrollView.delegate = self;
     
     UIBarButtonItem *nextBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"▶︎" style:UIBarButtonItemStyleDone target:self action:@selector(switchToNextPage)];
@@ -43,6 +45,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void) viewWillAppear:(BOOL)animated  {
+    NSUInteger page = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
+    if (page != self.currentPage) {
+        [self jumpToPage:self.currentPage];
+    }
 }
 
 - (void)switchToNextPage {
@@ -66,9 +76,17 @@
     }
 }
 
+- (void)jumpToPage:(NSUInteger) page {
+    NSLog(@"jump to page:%lul", (unsigned long)page);
+    CGRect frame = self.webview.scrollView.frame;
+    frame.origin.x = page * frame.size.width;
+    frame.origin.y = 0;
+    [self.webview.scrollView scrollRectToVisible:frame animated:NO];
+    
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
-
 }
 
 

@@ -8,6 +8,7 @@
 
 #import "BookmarkViewController.h"
 #import "BookmarkTableViewCell.h"
+#import "BookPageViewController.h"
 
 @interface BookmarkViewController ()
 
@@ -80,14 +81,31 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+    if ([segue.identifier isEqualToString:@"enterbookmark"]) {
+        NSUInteger index = [self.tableView indexPathForSelectedRow].row;
+        NSString *position = self.book.bookmarks[index];
+        NSArray *array = [position componentsSeparatedByString:@":"];
+        if ([array count] != 2) {
+            NSLog(@"invalid bookmark position:%@", position);
+        }
+        NSString *chapter = [array objectAtIndex:0];
+        NSString *page = [array objectAtIndex:1];
+        
+        BookPageViewController *bpvc = segue.destinationViewController;
+        
+        bpvc.chapterIndex = [self.book.chapters indexOfObject:chapter];
+        NSString *path = [self.book contentPathForChapter:chapter];
+        bpvc.url = [NSURL fileURLWithPath:path];
+        bpvc.book = self.book;
+        bpvc.currentPage = page.integerValue;
+    }
 }
-*/
+
 
 @end
