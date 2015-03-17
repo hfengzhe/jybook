@@ -43,7 +43,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BookmarkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookmarkcell" forIndexPath:indexPath];
-    cell.bookmarkLabel.text = self.book.bookmarks[indexPath.row];
+    cell.bookmarkLabel.text = [self.book bookmarkTitleForPosition:self.book.bookmarks[indexPath.row]];
     return cell;
 }
 

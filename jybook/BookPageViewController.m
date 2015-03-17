@@ -58,12 +58,17 @@
 }
 
 - (void)toggleBookmark {
-    NSString *position = [NSString stringWithFormat:@"%@:%lul", [self.book titleForChapter:self.book.chapters[self.chapterIndex]], self.currentPage];
-    [self.book.bookmarks addObject:position];
+    NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
+    if ([self.book.bookmarks containsObject:position]) {
+        [self.book.bookmarks removeObject:position];
+    } else {
+        [self.book.bookmarks addObject:position];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
+
 }
 
 

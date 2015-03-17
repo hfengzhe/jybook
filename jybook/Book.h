@@ -19,4 +19,6 @@
 
 - (NSString *) contentPathForChapter: (NSString *) chapter;
 
+- (NSString *) bookmarkTitleForPosition: (NSString *) position;
+
 @end

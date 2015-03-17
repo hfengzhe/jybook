@@ -177,4 +177,14 @@
     return nil;
 }
 
+- (NSString *) bookmarkTitleForPosition: (NSString *) position {
+    NSArray *array = [position componentsSeparatedByString:@":"];
+    if ([array count] == 2) {
+        NSString *chapter = [array objectAtIndex:0];
+        NSString *page = [array objectAtIndex:1];
+        return [NSString stringWithFormat:@"%@\tPage:%@",[self titleForChapter:chapter], page];
+    }
+    return position;
+}
+
 @end
