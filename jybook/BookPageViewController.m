@@ -17,8 +17,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
     NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
     [self.webview loadRequest:req];
+    
+    self.webview.paginationMode = UIWebPaginationModeLeftToRight;
+    self.webview.paginationBreakingMode = UIWebPaginationBreakingModePage;
+    self.webview.scrollView.pagingEnabled = YES;
+    self.webview.scrollView.bounces = NO;
+    self.webview.scrollView.showsHorizontalScrollIndicator = NO;
+    self.webview.scrollView.showsVerticalScrollIndicator = NO;
     
     UIBarButtonItem *nextBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"▶︎" style:UIBarButtonItemStyleDone target:self action:@selector(switchToNextPage)];
     
