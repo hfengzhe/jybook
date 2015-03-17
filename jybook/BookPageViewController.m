@@ -65,6 +65,8 @@
 
 - (void)switchNightMode {
     NSLog(@"----switch night mode-----");
+    NSString *str = @"document.body.style.background='#FF0000;'";
+    [self.webview stringByEvaluatingJavaScriptFromString:str];
 }
 
 - (void)toggleBookmark {
