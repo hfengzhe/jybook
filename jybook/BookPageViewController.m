@@ -27,6 +27,7 @@
     self.webview.scrollView.bounces = NO;
     self.webview.scrollView.showsHorizontalScrollIndicator = NO;
     self.webview.scrollView.showsVerticalScrollIndicator = NO;
+    self.webview.scrollView.delegate = self;
     
     UIBarButtonItem *nextBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"▶︎" style:UIBarButtonItemStyleDone target:self action:@selector(switchToNextPage)];
     
@@ -57,17 +58,13 @@
 }
 
 - (void)toggleBookmark {
-    NSLog(@"----toggle bookmark----");
+    NSString *position = [NSString stringWithFormat:@"%@:%lul", [self.book titleForChapter:self.book.chapters[self.chapterIndex]], self.currentPage];
+    [self.book.bookmarks addObject:position];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
 }
-*/
+
 
 @end

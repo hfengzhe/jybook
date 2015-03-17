@@ -157,7 +157,7 @@
 
 - (NSMutableArray *) bookmarks {
     if (!_bookmarks) {
-        _bookmarks = [[NSMutableArray alloc] initWithObjects:@"bookmark1",@"bookmark2", nil];
+        _bookmarks = [[NSMutableArray alloc] init];
     }
     return _bookmarks;
 }

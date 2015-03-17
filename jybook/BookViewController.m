@@ -60,6 +60,7 @@
     if ([segue.identifier isEqualToString:@"showchapter"]) {
         NSUInteger selectedChapter = [self.tableView indexPathForSelectedRow].row;
         BookPageViewController *bpvc = segue.destinationViewController;
+        bpvc.chapterIndex = selectedChapter;
         NSString *path = [self.book contentPathForChapter:self.book.chapters[selectedChapter]];
         bpvc.url = [NSURL fileURLWithPath:path];
         bpvc.book = self.book;
