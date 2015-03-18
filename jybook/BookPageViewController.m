@@ -105,7 +105,6 @@
     if ([self.book.bookmarks containsObject:position]) {
         [self.book.bookmarks removeObject:position];
         [self.bookmarkBarButtonItem setTitle:@"📑"];
-        [self.bookmarkBarButtonItem setTitle:@"📕"];
     } else {
         [self.book.bookmarks addObject:position];
         [self.bookmarkBarButtonItem setTitle:@"📕"];
