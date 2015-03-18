@@ -51,6 +51,7 @@
 - (void) viewWillAppear:(BOOL)animated  {
     NSUInteger page = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
     if (page != self.currentPage) {
+        self.webview.hidden = YES;
         [self jumpToPage:self.currentPage];
     }
 }
@@ -86,12 +87,14 @@
 }
 
 - (void)jumpToPage:(NSUInteger) page {
-    NSLog(@"jump to page:%lul", (unsigned long)page);
-    CGRect frame = self.webview.scrollView.frame;
-    frame.origin.x = page * frame.size.width;
-    frame.origin.y = 0;
-    [self.webview.scrollView scrollRectToVisible:frame animated:NO];
+    CGFloat offset = page * self.webview.scrollView.frame.size.width;
+    //NSLog(@"offset:%f", offset);
+    NSString *pageScrollFunc = [NSString stringWithFormat:@"function pageScroll(xoffset) {window.scroll(xoffset, 0);}"];
+    NSString *jump = [NSString stringWithFormat:@"pageScroll(%f)", offset];
     
+    [self.webview stringByEvaluatingJavaScriptFromString:pageScrollFunc];
+    [self.webview stringByEvaluatingJavaScriptFromString:jump];
+    self.webview.hidden = NO;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

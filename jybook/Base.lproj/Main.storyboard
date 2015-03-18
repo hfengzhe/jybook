@@ -170,17 +170,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qzz-Pv-wju">
-                                <rect key="frame" x="16" y="0.0" width="568" height="600"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qzz-Pv-wju">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Qzz-Pv-wju" firstAttribute="trailing" secondItem="Xnn-eY-kWa" secondAttribute="trailingMargin" id="06Y-OG-id2"/>
-                            <constraint firstItem="Qzz-Pv-wju" firstAttribute="top" secondItem="Xnn-eY-kWa" secondAttribute="top" id="UNJ-Kb-cM3"/>
-                            <constraint firstItem="Qzz-Pv-wju" firstAttribute="bottom" secondItem="2cb-MZ-mIO" secondAttribute="top" id="XRd-Q2-5UN"/>
-                            <constraint firstItem="Qzz-Pv-wju" firstAttribute="leading" secondItem="Xnn-eY-kWa" secondAttribute="leadingMargin" id="tZA-fW-v31"/>
+                            <constraint firstAttribute="bottom" secondItem="Qzz-Pv-wju" secondAttribute="bottom" id="Pns-fL-tPO"/>
+                            <constraint firstAttribute="trailing" secondItem="Qzz-Pv-wju" secondAttribute="trailing" id="bPK-LM-86G"/>
+                            <constraint firstItem="Qzz-Pv-wju" firstAttribute="leading" secondItem="Xnn-eY-kWa" secondAttribute="leading" id="uLh-m8-CPy"/>
+                            <constraint firstItem="Qzz-Pv-wju" firstAttribute="top" secondItem="Xnn-eY-kWa" secondAttribute="top" id="wXD-5p-SMj"/>
                         </constraints>
                     </view>
                     <connections>
