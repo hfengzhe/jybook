@@ -104,10 +104,11 @@
     NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
     if ([self.book.bookmarks containsObject:position]) {
         [self.book.bookmarks removeObject:position];
+        [self.bookmarkBarButtonItem setTitle:@"📑"];
         [self.bookmarkBarButtonItem setTitle:@"📕"];
     } else {
         [self.book.bookmarks addObject:position];
-        [self.bookmarkBarButtonItem setTitle:@"📑"];
+        [self.bookmarkBarButtonItem setTitle:@"📕"];
     }
 }
 
@@ -134,8 +135,13 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"scrollview  dis scroll");
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
+    NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
+    if ([self.book.bookmarks containsObject:position]) {
+        [self.bookmarkBarButtonItem setTitle:@"📕"];
+    } else {
+        [self.bookmarkBarButtonItem setTitle:@"📑"];
+    }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
