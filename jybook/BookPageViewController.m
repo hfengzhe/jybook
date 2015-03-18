@@ -64,6 +64,27 @@
     NSLog(@"----switch to prev page--------");
 }
 
+- (void)switchToPrevChapter {
+    if (self.chapterIndex > 0) {
+        self.webview.hidden = YES;
+        self.chapterIndex = self.chapterIndex - 1;
+        self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
+        NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
+        [self.webview loadRequest:req];
+        self.webview.hidden = NO;
+    }
+}
+
+- (void)switchToNextChapter {
+    if (self.chapterIndex < [self.book.chapters count] - 1) {
+        self.webview.hidden = YES;
+        self.chapterIndex = self.chapterIndex + 1;
+        self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
+        NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
+        [self.webview loadRequest:req];
+        self.webview.hidden = NO;    }
+}
+
 - (void)switchNightMode {
     if (self.nightMode) {
         self.nightMode = FALSE;
@@ -95,6 +116,19 @@
     [self.webview stringByEvaluatingJavaScriptFromString:pageScrollFunc];
     [self.webview stringByEvaluatingJavaScriptFromString:jump];
     self.webview.hidden = NO;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
+    if (translation.x > 0) {
+        if (self.currentPage == 1) {
+            [self switchToPrevChapter];
+        }
+    } else {
+        if (self.currentPage == self.webview.pageCount) {
+            [self switchToNextChapter];
+        }
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
