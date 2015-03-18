@@ -60,7 +60,9 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.book.bookmarks removeObjectAtIndex:indexPath.row];
+        NSMutableArray *array = [NSMutableArray arrayWithArray:self.book.bookmarks];
+        [array removeObjectAtIndex:indexPath.row];
+        [self.book setBookmarks:array];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

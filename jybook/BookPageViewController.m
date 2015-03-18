@@ -106,13 +106,11 @@
         NSMutableArray *array = [NSMutableArray arrayWithArray:self.book.bookmarks];
         [array removeObject:position];
         [self.book setBookmarks:array];
-        //[self.book.bookmarks removeObject:position];
         [self.bookmarkBarButtonItem setTitle:@"📑"];
     } else {
         NSMutableArray *array = [NSMutableArray arrayWithArray:self.book.bookmarks];
         [array addObject:position];
         [self.book setBookmarks:array];
-        //[self.book.bookmarks addObject:position];
         [self.bookmarkBarButtonItem setTitle:@"📕"];
     }
 }

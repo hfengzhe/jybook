@@ -166,6 +166,7 @@
 }
 
 - (void)setBookmarks:(NSMutableArray *)bookmarks {
+    _bookmarks = bookmarks;
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSArray *bms = [NSArray arrayWithArray:bookmarks];
     [user setObject:bms forKey:[NSString stringWithFormat:@"bookmark->%@", self.name]];
