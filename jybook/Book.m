@@ -20,6 +20,7 @@
 @end
 
 @implementation Book
+@synthesize bookmarks = _bookmarks;
 
 - (id) initWithName:(NSString *)name {
     self = [super init];
@@ -157,9 +158,17 @@
 
 - (NSMutableArray *) bookmarks {
     if (!_bookmarks) {
-        _bookmarks = [[NSMutableArray alloc] init];
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        NSArray *bms = [user objectForKey:[NSString stringWithFormat:@"bookmark->%@", self.name]];
+        _bookmarks = [NSMutableArray arrayWithArray:bms];
     }
     return _bookmarks;
+}
+
+- (void)setBookmarks:(NSMutableArray *)bookmarks {
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSArray *bms = [NSArray arrayWithArray:bookmarks];
+    [user setObject:bms forKey:[NSString stringWithFormat:@"bookmark->%@", self.name]];
 }
 
 - (NSString *) titleForChapter:(NSString *) chapter {

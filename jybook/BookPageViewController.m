@@ -103,10 +103,16 @@
 - (void)toggleBookmark {
     NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
     if ([self.book.bookmarks containsObject:position]) {
-        [self.book.bookmarks removeObject:position];
+        NSMutableArray *array = [NSMutableArray arrayWithArray:self.book.bookmarks];
+        [array removeObject:position];
+        [self.book setBookmarks:array];
+        //[self.book.bookmarks removeObject:position];
         [self.bookmarkBarButtonItem setTitle:@"📑"];
     } else {
-        [self.book.bookmarks addObject:position];
+        NSMutableArray *array = [NSMutableArray arrayWithArray:self.book.bookmarks];
+        [array addObject:position];
+        [self.book setBookmarks:array];
+        //[self.book.bookmarks addObject:position];
         [self.bookmarkBarButtonItem setTitle:@"📕"];
     }
 }
