@@ -31,6 +31,13 @@
     return _bookmarkBarButtonItem;
 }
 
+- (NSUInteger) jumpPage {
+    if (!_jumpPage) {
+        _jumpPage = 1;
+    }
+    return _jumpPage;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -47,21 +54,14 @@
     self.webview.scrollView.delaysContentTouches = NO;
     
     self.webview.scrollView.delegate = self;
+    self.webview.delegate = self;
     
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.nightmodeBarButtonItem, self.bookmarkBarButtonItem, nil];}
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.nightmodeBarButtonItem, self.bookmarkBarButtonItem, nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-- (void) viewWillAppear:(BOOL)animated  {
-    NSUInteger page = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
-    if (page != self.currentPage) {
-        self.webview.hidden = YES;
-        [self jumpToPage:self.currentPage];
-    }
 }
 
 - (void)switchToPrevChapter {
@@ -82,7 +82,8 @@
         self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
         NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
         [self.webview loadRequest:req];
-        self.webview.hidden = NO;    }
+        self.webview.hidden = NO;
+    }
 }
 
 - (void)switchNightMode {
@@ -97,7 +98,6 @@
         [self.webview stringByEvaluatingJavaScriptFromString:str];
         [self.nightmodeBarButtonItem setTitle:@"☀️"];
     }
-
 }
 
 - (void)toggleBookmark {
@@ -113,13 +113,11 @@
 
 - (void)jumpToPage:(NSUInteger) page {
     CGFloat offset = page * self.webview.scrollView.frame.size.width;
-    //NSLog(@"offset:%f", offset);
     NSString *pageScrollFunc = [NSString stringWithFormat:@"function pageScroll(xoffset) {window.scroll(xoffset, 0);}"];
     NSString *jump = [NSString stringWithFormat:@"pageScroll(%f)", offset];
     
     [self.webview stringByEvaluatingJavaScriptFromString:pageScrollFunc];
     [self.webview stringByEvaluatingJavaScriptFromString:jump];
-    self.webview.hidden = NO;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -136,8 +134,14 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"scrollview  dis scroll");
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    if (self.jumpPage != self.currentPage) {
+        [self jumpToPage:self.jumpPage];
+    }
+}
 
 @end

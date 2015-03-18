@@ -103,7 +103,7 @@
         NSString *path = [self.book contentPathForChapter:chapter];
         bpvc.url = [NSURL fileURLWithPath:path];
         bpvc.book = self.book;
-        bpvc.currentPage = page.integerValue;
+        bpvc.jumpPage = page.integerValue;
     }
 }
 

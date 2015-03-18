@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Book.h"
 
-@interface BookPageViewController : UIViewController <UIScrollViewDelegate>
+@interface BookPageViewController : UIViewController <UIScrollViewDelegate, UIWebViewDelegate>
 @property (nonatomic, strong) Book *book;
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic) NSUInteger chapterIndex;
 @property (nonatomic) NSUInteger currentPage;
+@property (nonatomic) NSUInteger jumpPage;
 
 @end
