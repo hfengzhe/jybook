@@ -9,7 +9,7 @@
 #import "BookPageViewController.h"
 
 @interface BookPageViewController ()
-
+@property (nonatomic) BOOL nightMode;
 @end
 
 @implementation BookPageViewController
@@ -64,9 +64,16 @@
 }
 
 - (void)switchNightMode {
-    NSLog(@"----switch night mode-----");
-    NSString *str = @"document.body.style.background='#FF0000;'";
-    [self.webview stringByEvaluatingJavaScriptFromString:str];
+    if (self.nightMode) {
+        self.nightMode = FALSE;
+        NSString *str = @"document.body.style.background='#FFFFFF';document.body.style.color='#000000'";
+        [self.webview stringByEvaluatingJavaScriptFromString:str];
+    } else {
+        self.nightMode = TRUE;
+        NSString *str = @"document.body.style.background='#080c10';document.body.style.color='#424952'";
+       [self.webview stringByEvaluatingJavaScriptFromString:str];
+    }
+
 }
 
 - (void)toggleBookmark {
