@@ -64,6 +64,7 @@
         NSString *path = [self.book contentPathForChapter:self.book.chapters[selectedChapter]];
         bpvc.url = [NSURL fileURLWithPath:path];
         bpvc.book = self.book;
+        bpvc.jumpPage = 2;
         
     } else if ([segue.identifier isEqualToString:@"showbookmark"]) {
         BookmarkViewController *bmvc = segue.destinationViewController;

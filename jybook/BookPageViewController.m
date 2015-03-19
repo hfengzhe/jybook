@@ -116,12 +116,10 @@
 }
 
 - (void)jumpToPage:(NSUInteger) page {
-    CGFloat offset = page * self.webview.scrollView.frame.size.width;
-    NSString *pageScrollFunc = [NSString stringWithFormat:@"function pageScroll(xoffset) {window.scroll(xoffset, 0);}"];
-    NSString *jump = [NSString stringWithFormat:@"pageScroll(%f)", offset];
-    
-    [self.webview stringByEvaluatingJavaScriptFromString:pageScrollFunc];
-    [self.webview stringByEvaluatingJavaScriptFromString:jump];
+    CGRect frame = self.webview.scrollView.frame;
+    frame.origin.x = frame.size.width * (page - 1);
+    frame.origin.y = 0;
+    [self.webview.scrollView scrollRectToVisible:frame animated:NO];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
