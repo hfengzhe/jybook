@@ -16,5 +16,6 @@
 @property (nonatomic) NSUInteger chapterIndex;
 @property (nonatomic) NSUInteger currentPage;
 @property (nonatomic) NSUInteger jumpPage;
+@property (nonatomic, readonly) NSUInteger startPage;
 
 @end

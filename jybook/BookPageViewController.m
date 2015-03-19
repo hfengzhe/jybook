@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UIBarButtonItem *bookmarkBarButtonItem;
 @property (nonatomic) BOOL goLastFlag;
 
+
 @end
 
 @implementation BookPageViewController
@@ -38,6 +39,10 @@
         _goLastFlag = FALSE;
     }
     return _goLastFlag;
+}
+
+- (NSUInteger)startPage {
+    return 2;
 }
 
 - (void)setGoLastFlag:(BOOL)goLastFlag {
@@ -140,7 +145,7 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
     if (translation.x > 0) {
-        if (self.currentPage == 1) {
+        if (self.currentPage == self.startPage) {
             [self switchToPrevChapter];
         }
     } else {
@@ -162,8 +167,8 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     if (self.goLastFlag) {
-        [self jumpToPage:self.webview.pageCount];
         self.goLastFlag = FALSE;
+        [self jumpToPage:self.webview.pageCount];
     } else if (self.jumpPage != self.currentPage) {
         [self jumpToPage:self.jumpPage];
     }
