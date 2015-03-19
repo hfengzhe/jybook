@@ -14,11 +14,25 @@
 @property (nonatomic, strong) UIBarButtonItem *bookmarkBarButtonItem;
 @property (nonatomic) BOOL goLastFlag;
 
-
 @end
 
 @implementation BookPageViewController
+@synthesize nightMode = _nightMode;
 @synthesize goLastFlag = _goLastFlag;
+
+- (BOOL)nightMode {
+    if (!_nightMode) {
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        _nightMode = [user boolForKey:@"nightMode"];
+    }
+    return _nightMode;
+}
+
+- (void)setNightMode:(BOOL)nightMode {
+    _nightMode = nightMode;
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user setBool:nightMode forKey:@"nightMode"];
+}
 
 - (UIBarButtonItem *)nightmodeBarButtonItem {
     if (!_nightmodeBarButtonItem) {
@@ -41,12 +55,12 @@
     return _goLastFlag;
 }
 
-- (NSUInteger)startPage {
-    return 2;
-}
-
 - (void)setGoLastFlag:(BOOL)goLastFlag {
     _goLastFlag = goLastFlag;
+}
+
+- (NSUInteger)startPage {
+    return 2;
 }
 
 - (NSUInteger) jumpPage {
@@ -105,18 +119,21 @@
     }
 }
 
-- (void)switchNightMode {
-    if (self.nightMode) {
-        self.nightMode = FALSE;
-        NSString *str = @"document.body.style.background='#FFFFFF';document.body.style.color='#000000'";
-        [self.webview stringByEvaluatingJavaScriptFromString:str];
-        [self.nightmodeBarButtonItem setTitle:@"🌙"];
-    } else {
-        self.nightMode = TRUE;
+- (void)syncNightMode:(BOOL) nightMode {
+    if (nightMode) {
         NSString *str = @"document.body.style.background='#080c10';document.body.style.color='#424952'";
         [self.webview stringByEvaluatingJavaScriptFromString:str];
         [self.nightmodeBarButtonItem setTitle:@"☀️"];
+    } else {
+        NSString *str = @"document.body.style.background='#FFFFFF';document.body.style.color='#000000'";
+        [self.webview stringByEvaluatingJavaScriptFromString:str];
+        [self.nightmodeBarButtonItem setTitle:@"🌙"];
     }
+}
+
+- (void)switchNightMode {
+    self.nightMode = ! self.nightMode;
+    [self syncNightMode:self.nightMode];
 }
 
 - (void)toggleBookmark {
@@ -166,6 +183,7 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self syncNightMode:self.nightMode];
     if (self.goLastFlag) {
         self.goLastFlag = FALSE;
         [self jumpToPage:self.webview.pageCount];
