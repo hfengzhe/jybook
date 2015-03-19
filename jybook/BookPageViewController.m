@@ -12,23 +12,36 @@
 @property (nonatomic) BOOL nightMode;
 @property (nonatomic, strong) UIBarButtonItem *nightmodeBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *bookmarkBarButtonItem;
+@property (nonatomic) BOOL goLastFlag;
 
 @end
 
 @implementation BookPageViewController
+@synthesize goLastFlag = _goLastFlag;
 
-- (UIBarButtonItem *) nightmodeBarButtonItem {
+- (UIBarButtonItem *)nightmodeBarButtonItem {
     if (!_nightmodeBarButtonItem) {
         _nightmodeBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🌙" style:UIBarButtonItemStyleDone target:self action:@selector(switchNightMode)];
     }
     return _nightmodeBarButtonItem;
 }
 
-- (UIBarButtonItem *) bookmarkBarButtonItem {
+- (UIBarButtonItem *)bookmarkBarButtonItem {
     if (!_bookmarkBarButtonItem) {
         _bookmarkBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"📑" style:UIBarButtonItemStyleDone target:self action:@selector(toggleBookmark)];
     }
     return _bookmarkBarButtonItem;
+}
+
+- (BOOL)goLastFlag {
+    if (!_goLastFlag) {
+        _goLastFlag = FALSE;
+    }
+    return _goLastFlag;
+}
+
+- (void)setGoLastFlag:(BOOL)goLastFlag {
+    _goLastFlag = goLastFlag;
 }
 
 - (NSUInteger) jumpPage {
@@ -72,6 +85,7 @@
         NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
         [self.webview loadRequest:req];
         self.webview.hidden = NO;
+        self.goLastFlag = TRUE;
     }
 }
 
@@ -120,6 +134,7 @@
     frame.origin.x = frame.size.width * (page - 1);
     frame.origin.y = 0;
     [self.webview.scrollView scrollRectToVisible:frame animated:NO];
+    self.currentPage = page;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -146,7 +161,10 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    if (self.jumpPage != self.currentPage) {
+    if (self.goLastFlag) {
+        [self jumpToPage:self.webview.pageCount];
+        self.goLastFlag = FALSE;
+    } else if (self.jumpPage != self.currentPage) {
         [self jumpToPage:self.jumpPage];
     }
 }
