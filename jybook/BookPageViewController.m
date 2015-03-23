@@ -112,6 +112,17 @@
         [self jumpToPage:self.currentPage - 1];
     }
     [self updatePageBookmarkStatus];
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    [animation setDuration:1.0f];
+    [animation setStartProgress:0.5];
+    [animation setEndProgress:1.0];
+    [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+    [animation setType:@"pageCurl"];
+    [animation setSubtype:kCATransitionFromLeft];
+    [animation setRemovedOnCompletion:NO];
+    [animation setFillMode:@"extended"];
+    [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
 }
 
 
@@ -123,7 +134,17 @@
         [self jumpToPage:self.currentPage + 1];
     }
     [self updatePageBookmarkStatus];
-}
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    [animation setDuration:1.0f];
+    [animation setStartProgress:0.5];
+    [animation setEndProgress:1.0];
+    [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+    [animation setType:@"pageCurl"];
+    [animation setSubtype:kCATransitionFromRight];
+    [animation setRemovedOnCompletion:NO];
+    [animation setFillMode:@"extended"];
+    [[self.webview layer] addAnimation:animation forKey:@"turnPage"];}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
