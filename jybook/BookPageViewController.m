@@ -89,10 +89,28 @@
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
     [swipeRight setDirection:UISwipeGestureRecognizerDirectionLeft];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPage:)];
+    
     [self.webview addGestureRecognizer:swipeLeft];
     [self.webview addGestureRecognizer:swipeRight];
+    [self.webview addGestureRecognizer:tap];
     
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.nightmodeBarButtonItem, self.bookmarkBarButtonItem, nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)updatePageBookmarkStatus {
@@ -144,7 +162,12 @@
     [animation setSubtype:kCATransitionFromRight];
     [animation setRemovedOnCompletion:NO];
     [animation setFillMode:@"extended"];
-    [[self.webview layer] addAnimation:animation forKey:@"turnPage"];}
+    [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
+}
+
+- (void)tapPage:(UITapGestureRecognizer *)recognizer {
+    NSLog(@"----tap--------");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
