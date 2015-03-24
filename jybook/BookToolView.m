@@ -19,6 +19,7 @@
     [prevChapterBtn addTarget:self action:@selector(prevChapterClick:) forControlEvents:UIControlEventTouchUpInside];
     if (![self.pageViewController canSwitchToPrevChapter]) {
         [prevChapterBtn setEnabled:NO];
+        [prevChapterBtn setTintColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0]];
     } else {
         [prevChapterBtn setEnabled:YES];
     }
@@ -42,6 +43,7 @@
     [nextChapterBtn addTarget:self action:@selector(nextChapterClick:) forControlEvents:UIControlEventTouchUpInside];
     if (![self.pageViewController canSwitchToNextChapter]) {
         [nextChapterBtn setEnabled:NO];
+        [nextChapterBtn setTintColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0]];
     } else {
         [nextChapterBtn setEnabled:YES];
     }

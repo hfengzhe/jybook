@@ -210,17 +210,21 @@
         [self jumpToPage:self.currentPage - 1];
     }
     [self updatePageBookmarkStatus];
-    CATransition *animation = [CATransition animation];
-    [animation setDelegate:self];
-    [animation setDuration:1.0f];
-    [animation setStartProgress:0.5];
-    [animation setEndProgress:1.0];
-    [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
-    [animation setType:@"pageCurl"];
-    [animation setSubtype:kCATransitionFromLeft];
-    [animation setRemovedOnCompletion:NO];
-    [animation setFillMode:@"extended"];
-    [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
+    if ((self.chapterIndex == 0) && (self.currentPage == self.startPage)) {
+        NSLog(@"You are in first page already");
+    } else {
+        CATransition *animation = [CATransition animation];
+        [animation setDelegate:self];
+        [animation setDuration:1.0f];
+        [animation setStartProgress:0.5];
+        [animation setEndProgress:1.0];
+        [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+        [animation setType:@"pageCurl"];
+        [animation setSubtype:kCATransitionFromLeft];
+        [animation setRemovedOnCompletion:NO];
+        [animation setFillMode:@"extended"];
+        [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
+    }
 }
 
 - (void)swipeRight:(UISwipeGestureRecognizer *)recognizer {
@@ -233,17 +237,21 @@
         [self jumpToPage:self.currentPage + 1];
     }
     [self updatePageBookmarkStatus];
-    CATransition *animation = [CATransition animation];
-    [animation setDelegate:self];
-    [animation setDuration:1.0f];
-    [animation setStartProgress:0.5];
-    [animation setEndProgress:1.0];
-    [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
-    [animation setType:@"pageCurl"];
-    [animation setSubtype:kCATransitionFromRight];
-    [animation setRemovedOnCompletion:NO];
-    [animation setFillMode:@"extended"];
-    [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
+    if ((self.chapterIndex == [self.book.chapters count] - 1) && (self.currentPage = self.webview.pageCount)) {
+        NSLog(@"You are in last page already");
+    } else {
+        CATransition *animation = [CATransition animation];
+        [animation setDelegate:self];
+        [animation setDuration:1.0f];
+        [animation setStartProgress:0.5];
+        [animation setEndProgress:1.0];
+        [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+        [animation setType:@"pageCurl"];
+        [animation setSubtype:kCATransitionFromRight];
+        [animation setRemovedOnCompletion:NO];
+        [animation setFillMode:@"extended"];
+        [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
+    }
 }
 
 - (void)hideBookToolView {
