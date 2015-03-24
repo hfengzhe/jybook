@@ -18,4 +18,12 @@
 @property (nonatomic) NSUInteger jumpPage;
 @property (nonatomic, readonly) NSUInteger startPage;
 
+- (void) toggleShowBookToolView;
+
+- (BOOL) canSwitchToPrevChapter;
+- (BOOL) canSwitchToNextChapter;
+
+- (void) switchToPrevChapter;
+- (void) switchToNextChapter;
+
 @end

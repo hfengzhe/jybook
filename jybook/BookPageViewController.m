@@ -59,6 +59,7 @@
         [self.view insertSubview:_bookToolView aboveSubview:self.webview];
         [_bookToolView setHidden:YES];
         self.showToolView = NO;
+        _bookToolView.pageViewController = self;
     }
     return _bookToolView;
 }
@@ -197,6 +198,7 @@
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
     if (self.currentPage == self.startPage) {
         [self switchToPrevChapter];
+        self.goLastFlag = TRUE;
     } else {
         [self jumpToPage:self.currentPage - 1];
     }
@@ -218,6 +220,7 @@
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
     if (self.currentPage == self.webview.pageCount) {
         [self switchToNextChapter];
+        self.jumpPage = self.startPage;
     } else {
         [self jumpToPage:self.currentPage + 1];
     }
@@ -235,7 +238,7 @@
     [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
 }
 
-- (void)tapPage:(UITapGestureRecognizer *)recognizer {
+- (void) toggleShowBookToolView {
     if (!self.showToolView) {
         [self.bookToolView setHidden:NO];
         self.showToolView = TRUE;
@@ -250,30 +253,42 @@
     }
 }
 
+- (void)tapPage:(UITapGestureRecognizer *)recognizer {
+    [self toggleShowBookToolView];
+}
+
 #pragma mark - Switch Page
 
+- (BOOL)canSwitchToPrevChapter {
+    return self.chapterIndex > 0;
+}
+
+- (BOOL) canSwitchToNextChapter {
+    return self.chapterIndex < [self.book.chapters count] - 1;
+}
+
 - (void)switchToPrevChapter {
-    if (self.chapterIndex > 0) {
-        self.webview.hidden = YES;
-        self.chapterIndex = self.chapterIndex - 1;
-        self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
-        NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
-        [self.webview loadRequest:req];
-        self.webview.hidden = NO;
-        self.goLastFlag = TRUE;
+    if (![self canSwitchToPrevChapter]) {
+        return;
     }
+    self.webview.hidden = YES;
+    self.chapterIndex = self.chapterIndex - 1;
+    self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
+    NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
+    [self.webview loadRequest:req];
+    self.webview.hidden = NO;
 }
 
 - (void)switchToNextChapter {
-    if (self.chapterIndex < [self.book.chapters count] - 1) {
-        self.webview.hidden = YES;
-        self.chapterIndex = self.chapterIndex + 1;
-        self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
-        NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
-        [self.webview loadRequest:req];
-        self.webview.hidden = NO;
-        self.jumpPage = self.startPage;
+    if (![self canSwitchToNextChapter]) {
+        return;
     }
+    self.webview.hidden = YES;
+    self.chapterIndex = self.chapterIndex + 1;
+    self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
+    NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
+    [self.webview loadRequest:req];
+    self.webview.hidden = NO;
 }
 
 - (void)jumpToPage:(NSUInteger) page {
