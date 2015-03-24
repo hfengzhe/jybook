@@ -139,7 +139,11 @@
 }
 
 - (BOOL)prefersStatusBarHidden {
-    return YES;
+    if (self.showToolView) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 - (void)updatePageBookmarkStatus {
@@ -235,9 +239,14 @@
     if (!self.showToolView) {
         [self.bookToolView setHidden:NO];
         self.showToolView = TRUE;
+        [self.navigationController setNavigationBarHidden:NO];
+        [self setNeedsStatusBarAppearanceUpdate];
+        
     } else {
         [self.bookToolView setHidden:TRUE];
         self.showToolView = FALSE;
+        [self.navigationController setNavigationBarHidden:YES];
+        [self setNeedsStatusBarAppearanceUpdate];
     }
 }
 
