@@ -20,6 +20,8 @@
 
 - (void) toggleShowBookToolView;
 
+- (void) toggleBookmark;
+
 - (BOOL) canSwitchToPrevChapter;
 - (BOOL) canSwitchToNextChapter;
 
