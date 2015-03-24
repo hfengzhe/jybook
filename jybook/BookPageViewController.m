@@ -7,12 +7,15 @@
 //
 
 #import "BookPageViewController.h"
+#import "BookToolView.h"
 
 @interface BookPageViewController ()
 @property (nonatomic) BOOL nightMode;
 @property (nonatomic, strong) UIBarButtonItem *nightmodeBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *bookmarkBarButtonItem;
+@property (nonatomic, strong) BookToolView  *bookToolView;
 @property (nonatomic) BOOL goLastFlag;
+@property (nonatomic) BOOL showToolView;
 
 @end
 
@@ -46,6 +49,16 @@
         _bookmarkBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"📑" style:UIBarButtonItemStyleDone target:self action:@selector(toggleBookmark)];
     }
     return _bookmarkBarButtonItem;
+}
+
+- (BookToolView *)bookToolView {
+    if (!_bookToolView) {
+        _bookToolView  = [[BookToolView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 60, self.view.frame.size.width, 60)];
+        [self.view insertSubview:_bookToolView aboveSubview:self.webview];
+        [_bookToolView setHidden:YES];
+        self.showToolView = NO;
+    }
+    return _bookToolView;
 }
 
 - (BOOL)goLastFlag {
@@ -172,7 +185,13 @@
 }
 
 - (void)tapPage:(UITapGestureRecognizer *)recognizer {
-    NSLog(@"----tap--------");
+    if (!self.showToolView) {
+        [self.bookToolView setHidden:NO];
+        self.showToolView = TRUE;
+    } else {
+        [self.bookToolView setHidden:TRUE];
+        self.showToolView = FALSE;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

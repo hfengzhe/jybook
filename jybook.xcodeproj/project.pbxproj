@@ -24,6 +24,7 @@
 		E98511CA1AB4419900F02181 /* BookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98511C91AB4419900F02181 /* BookPageViewController.m */; };
 		E98511FC1AB537EF00F02181 /* epub in Resources */ = {isa = PBXBuildFile; fileRef = E98511FB1AB537EF00F02181 /* epub */; };
 		E985120F1AB55D4B00F02181 /* cover in Resources */ = {isa = PBXBuildFile; fileRef = E985120E1AB55D4B00F02181 /* cover */; };
+		E99575041AC19D520094DA16 /* BookToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99575031AC19D520094DA16 /* BookToolView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		E98511C91AB4419900F02181 /* BookPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookPageViewController.m; sourceTree = "<group>"; };
 		E98511FB1AB537EF00F02181 /* epub */ = {isa = PBXFileReference; lastKnownFileType = folder; path = epub; sourceTree = "<group>"; };
 		E985120E1AB55D4B00F02181 /* cover */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cover; sourceTree = "<group>"; };
+		E99575021AC19D520094DA16 /* BookToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookToolView.h; sourceTree = "<group>"; };
+		E99575031AC19D520094DA16 /* BookToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookToolView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,8 @@
 				E98511C61AB438A400F02181 /* BookCatalogTableViewCell.m */,
 				E98511C81AB4419900F02181 /* BookPageViewController.h */,
 				E98511C91AB4419900F02181 /* BookPageViewController.m */,
+				E99575021AC19D520094DA16 /* BookToolView.h */,
+				E99575031AC19D520094DA16 /* BookToolView.m */,
 				E96F17DE1AB71FE50004A8C4 /* BookmarkViewController.h */,
 				E96F17DF1AB71FE50004A8C4 /* BookmarkViewController.m */,
 				E96F17E11AB724450004A8C4 /* BookmarkTableViewCell.h */,
@@ -329,6 +334,7 @@
 				E98511301AB1F2E900F02181 /* AppDelegate.m in Sources */,
 				E985112D1AB1F2E900F02181 /* main.m in Sources */,
 				E98511B61AB407EE00F02181 /* BookShelfViewController.m in Sources */,
+				E99575041AC19D520094DA16 /* BookToolView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
