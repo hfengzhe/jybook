@@ -23,6 +23,8 @@
 @synthesize nightMode = _nightMode;
 @synthesize goLastFlag = _goLastFlag;
 
+#pragma mark - Getter/Setter
+
 - (BOOL)nightMode {
     if (!_nightMode) {
         NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
@@ -83,6 +85,8 @@
     return _jumpPage;
 }
 
+#pragma mark -View
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -123,6 +127,17 @@
     [self.navigationController setNavigationBarHidden:NO];
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self syncNightMode:self.nightMode];
+    if (self.goLastFlag) {
+        self.goLastFlag = FALSE;
+        [self jumpToPage:self.webview.pageCount];
+    } else if (self.jumpPage != self.currentPage) {
+        [self jumpToPage:self.jumpPage];
+    }
+    [self updatePageBookmarkStatus];
+}
+
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
@@ -133,93 +148,6 @@
         [self.bookmarkBarButtonItem setTitle:@"📕"];
     } else {
         [self.bookmarkBarButtonItem setTitle:@"📑"];
-    }
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
-}
-
-
-- (void)swipeLeft:(UISwipeGestureRecognizer *)recognizer {
-    self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
-    if (self.currentPage == self.startPage) {
-        [self switchToPrevChapter];
-    } else {
-        [self jumpToPage:self.currentPage - 1];
-    }
-    [self updatePageBookmarkStatus];
-    CATransition *animation = [CATransition animation];
-    [animation setDelegate:self];
-    [animation setDuration:1.0f];
-    [animation setStartProgress:0.5];
-    [animation setEndProgress:1.0];
-    [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
-    [animation setType:@"pageCurl"];
-    [animation setSubtype:kCATransitionFromLeft];
-    [animation setRemovedOnCompletion:NO];
-    [animation setFillMode:@"extended"];
-    [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
-}
-
-
-- (void)swipeRight:(UISwipeGestureRecognizer *)recognizer {
-    self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
-    if (self.currentPage == self.webview.pageCount) {
-        [self switchToNextChapter];
-    } else {
-        [self jumpToPage:self.currentPage + 1];
-    }
-    [self updatePageBookmarkStatus];
-    CATransition *animation = [CATransition animation];
-    [animation setDelegate:self];
-    [animation setDuration:1.0f];
-    [animation setStartProgress:0.5];
-    [animation setEndProgress:1.0];
-    [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
-    [animation setType:@"pageCurl"];
-    [animation setSubtype:kCATransitionFromRight];
-    [animation setRemovedOnCompletion:NO];
-    [animation setFillMode:@"extended"];
-    [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
-}
-
-- (void)tapPage:(UITapGestureRecognizer *)recognizer {
-    if (!self.showToolView) {
-        [self.bookToolView setHidden:NO];
-        self.showToolView = TRUE;
-    } else {
-        [self.bookToolView setHidden:TRUE];
-        self.showToolView = FALSE;
-    }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)switchToPrevChapter {
-    if (self.chapterIndex > 0) {
-        self.webview.hidden = YES;
-        self.chapterIndex = self.chapterIndex - 1;
-        self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
-        NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
-        [self.webview loadRequest:req];
-        self.webview.hidden = NO;
-        self.goLastFlag = TRUE;
-    }
-}
-
-- (void)switchToNextChapter {
-    if (self.chapterIndex < [self.book.chapters count] - 1) {
-        self.webview.hidden = YES;
-        self.chapterIndex = self.chapterIndex + 1;
-        self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
-        NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
-        [self.webview loadRequest:req];
-        self.webview.hidden = NO;
-        self.jumpPage = self.startPage;
     }
 }
 
@@ -255,23 +183,96 @@
     }
 }
 
+#pragma mark - Gesture
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+- (void)swipeLeft:(UISwipeGestureRecognizer *)recognizer {
+    self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
+    if (self.currentPage == self.startPage) {
+        [self switchToPrevChapter];
+    } else {
+        [self jumpToPage:self.currentPage - 1];
+    }
+    [self updatePageBookmarkStatus];
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    [animation setDuration:1.0f];
+    [animation setStartProgress:0.5];
+    [animation setEndProgress:1.0];
+    [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+    [animation setType:@"pageCurl"];
+    [animation setSubtype:kCATransitionFromLeft];
+    [animation setRemovedOnCompletion:NO];
+    [animation setFillMode:@"extended"];
+    [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
+}
+
+- (void)swipeRight:(UISwipeGestureRecognizer *)recognizer {
+    self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
+    if (self.currentPage == self.webview.pageCount) {
+        [self switchToNextChapter];
+    } else {
+        [self jumpToPage:self.currentPage + 1];
+    }
+    [self updatePageBookmarkStatus];
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    [animation setDuration:1.0f];
+    [animation setStartProgress:0.5];
+    [animation setEndProgress:1.0];
+    [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+    [animation setType:@"pageCurl"];
+    [animation setSubtype:kCATransitionFromRight];
+    [animation setRemovedOnCompletion:NO];
+    [animation setFillMode:@"extended"];
+    [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
+}
+
+- (void)tapPage:(UITapGestureRecognizer *)recognizer {
+    if (!self.showToolView) {
+        [self.bookToolView setHidden:NO];
+        self.showToolView = TRUE;
+    } else {
+        [self.bookToolView setHidden:TRUE];
+        self.showToolView = FALSE;
+    }
+}
+
+#pragma mark - Switch Page
+
+- (void)switchToPrevChapter {
+    if (self.chapterIndex > 0) {
+        self.webview.hidden = YES;
+        self.chapterIndex = self.chapterIndex - 1;
+        self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
+        NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
+        [self.webview loadRequest:req];
+        self.webview.hidden = NO;
+        self.goLastFlag = TRUE;
+    }
+}
+
+- (void)switchToNextChapter {
+    if (self.chapterIndex < [self.book.chapters count] - 1) {
+        self.webview.hidden = YES;
+        self.chapterIndex = self.chapterIndex + 1;
+        self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
+        NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
+        [self.webview loadRequest:req];
+        self.webview.hidden = NO;
+        self.jumpPage = self.startPage;
+    }
+}
+
 - (void)jumpToPage:(NSUInteger) page {
     CGRect frame = self.webview.scrollView.frame;
     frame.origin.x = frame.size.width * (page - 1);
     frame.origin.y = 0;
     [self.webview.scrollView scrollRectToVisible:frame animated:NO];
     self.currentPage = page;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [self syncNightMode:self.nightMode];
-    if (self.goLastFlag) {
-        self.goLastFlag = FALSE;
-        [self jumpToPage:self.webview.pageCount];
-    } else if (self.jumpPage != self.currentPage) {
-        [self jumpToPage:self.jumpPage];
-    }
-    [self updatePageBookmarkStatus];
 }
 
 @end
