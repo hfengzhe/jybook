@@ -55,7 +55,7 @@
 
 - (BookToolView *)bookToolView {
     if (!_bookToolView) {
-        _bookToolView  = [[BookToolView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 60, self.view.frame.size.width, 60)];
+        _bookToolView  = [[BookToolView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 80, self.view.frame.size.width, 80)];
         [self.view insertSubview:_bookToolView aboveSubview:self.webview];
         [_bookToolView setHidden:YES];
         self.showToolView = NO;

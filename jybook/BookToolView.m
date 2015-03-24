@@ -14,19 +14,49 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    UIButton *prevChapterBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    [prevChapterBtn setTitle:@"prev" forState:UIControlStateNormal];
+    [self setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5]];
     
-    UIButton *nextChapterBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    [nextChapterBtn setTitle:@"next" forState:UIControlStateNormal];
+    UIButton *prevChapterBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+    [prevChapterBtn setTitle:@"上一章" forState:UIControlStateNormal];
+    [prevChapterBtn  setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [prevChapterBtn  setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+    [prevChapterBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     
-    UIButton *chapterListBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    [chapterListBtn setTitle:@"list" forState:UIControlStateNormal];
+    UIProgressView *progress = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    [progress setFrame:CGRectMake(100, 20, self.frame.size.width - 200, 40)];
+    [progress setProgress:0.5];
+    [progress setProgressTintColor:[UIColor redColor]];
     
-    UIButton *bookmarkBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    [bookmarkBtn setTitle:@"bookmark" forState:UIControlStateNormal];
+    UIButton *nextChapterBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 100, 0, 100, 40)];
+    [nextChapterBtn setTitle:@"下一章" forState:UIControlStateNormal];
+    [nextChapterBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    [nextChapterBtn setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
+    [nextChapterBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+    
+    UIButton *chapterListBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 40, 100, 40)];
+    [chapterListBtn setTitle:@"📚" forState:UIControlStateNormal];
+    [chapterListBtn  setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [chapterListBtn setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+    [chapterListBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+    
+    UIButton *fontBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 40, self.frame.size.width - 200, 40)];
+    [fontBtn setTitle:@"A" forState:UIControlStateNormal];
+    [fontBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    [fontBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+    
+    UIButton *bookmarkBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 100, self.frame.size.height - 40, 100, 40)];
+    [bookmarkBtn setTitle:@"📑" forState:UIControlStateNormal];
+    [bookmarkBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    [bookmarkBtn setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
+    [bookmarkBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     
     [self addSubview:prevChapterBtn];
+    [self addSubview:progress];
+    [self addSubview:nextChapterBtn];
+    
+    [self addSubview:chapterListBtn];
+    [self addSubview:fontBtn];
+    [self addSubview:bookmarkBtn];
 }
 
 

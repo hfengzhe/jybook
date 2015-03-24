@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BookPageViewController.h"
 
 @interface BookToolView : UIView
+@property (nonatomic, strong) BookPageViewController *pageViewController;
 
 @end
     
