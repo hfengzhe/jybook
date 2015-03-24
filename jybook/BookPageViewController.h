@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Book.h"
 
-@interface BookPageViewController : UIViewController <UIWebViewDelegate>
+@interface BookPageViewController : UIViewController <UIGestureRecognizerDelegate, UIWebViewDelegate>
 @property (nonatomic, strong) Book *book;
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 @property (nonatomic, strong) NSURL *url;

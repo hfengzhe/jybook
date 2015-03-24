@@ -90,10 +90,11 @@
     [swipeRight setDirection:UISwipeGestureRecognizerDirectionLeft];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPage:)];
+    tap.delegate = self;
     
+    [self.webview addGestureRecognizer:tap];
     [self.webview addGestureRecognizer:swipeLeft];
     [self.webview addGestureRecognizer:swipeRight];
-    [self.webview addGestureRecognizer:tap];
     
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.nightmodeBarButtonItem, self.bookmarkBarButtonItem, nil];
 }
@@ -121,6 +122,11 @@
         [self.bookmarkBarButtonItem setTitle:@"📑"];
     }
 }
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
 
 - (void)swipeLeft:(UISwipeGestureRecognizer *)recognizer {
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
