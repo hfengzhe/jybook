@@ -18,9 +18,9 @@
     [prevChapterBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [prevChapterBtn addTarget:self action:@selector(prevChapterClick:) forControlEvents:UIControlEventTouchUpInside];
     if (![self.pageViewController canSwitchToPrevChapter]) {
-        [prevChapterBtn setUserInteractionEnabled:FALSE];
+        [prevChapterBtn setEnabled:NO];
     } else {
-        [prevChapterBtn setUserInteractionEnabled:TRUE];
+        [prevChapterBtn setEnabled:YES];
     }
     [self addSubview:prevChapterBtn];
 }
@@ -41,9 +41,9 @@
     [nextChapterBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [nextChapterBtn addTarget:self action:@selector(nextChapterClick:) forControlEvents:UIControlEventTouchUpInside];
     if (![self.pageViewController canSwitchToNextChapter]) {
-        [nextChapterBtn setUserInteractionEnabled:FALSE];
+        [nextChapterBtn setEnabled:NO];
     } else {
-        [nextChapterBtn setUserInteractionEnabled:TRUE];
+        [nextChapterBtn setEnabled:YES];
     }
     [self addSubview:nextChapterBtn];
 }
@@ -69,11 +69,15 @@
 
 - (void)setupBookmarkBtn {
     UIButton *bookmarkBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 100, self.frame.size.height - 40, 100, 40)];
-    [bookmarkBtn setTitle:@"📑" forState:UIControlStateNormal];
     [bookmarkBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
     [bookmarkBtn setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
     [bookmarkBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [bookmarkBtn addTarget:self action:@selector(bookmarkClick:) forControlEvents:UIControlEventTouchUpInside];
+    if ([self.pageViewController isCurrentPositionInBookmark]) {
+        [bookmarkBtn setTitle:@"📕" forState:UIControlStateNormal];
+    } else {
+        [bookmarkBtn setTitle:@"📑" forState:UIControlStateNormal];
+    }
     [self addSubview:bookmarkBtn];
 }
 
@@ -90,32 +94,30 @@
     [self setupChapterListBtn];
     [self setupFontBtn];
     [self setupBookmarkBtn];
-    
-    [self setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5]];
 }
 
 - (void) prevChapterClick: (id)sender {
-    [self.pageViewController toggleShowBookToolView];
+    [self.pageViewController hideBookToolView];
     self.pageViewController.jumpPage = self.pageViewController.startPage;
     [self.pageViewController switchToPrevChapter];
 }
 
 - (void) nextChapterClick: (id)sender {
-    [self.pageViewController toggleShowBookToolView];
+    [self.pageViewController hideBookToolView];
     self.pageViewController.jumpPage = self.pageViewController.startPage;
     [self.pageViewController switchToNextChapter];
 }
 
 - (void) chapterListClick: (id)sender {
-    [self.pageViewController toggleShowBookToolView];
+    [self.pageViewController hideBookToolView];
 }
 
 - (void) fontClick: (id)sender {
-    [self.pageViewController toggleShowBookToolView];
+    [self.pageViewController hideBookToolView];
 }
 
 - (void) bookmarkClick: (id)sender {
-    [self.pageViewController toggleShowBookToolView];
+    [self.pageViewController hideBookToolView];
     [self.pageViewController toggleBookmark];
 }
 

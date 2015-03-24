@@ -60,6 +60,7 @@
         [_bookToolView setHidden:YES];
         self.showToolView = NO;
         _bookToolView.pageViewController = self;
+        _bookToolView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0];
     }
     return _bookToolView;
 }
@@ -147,6 +148,11 @@
     }
 }
 
+- (BOOL)isCurrentPositionInBookmark {
+    NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
+    return [self.book.bookmarks containsObject:position];
+}
+
 - (void)updatePageBookmarkStatus {
     NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
     if ([self.book.bookmarks containsObject:position]) {
@@ -195,6 +201,7 @@
 }
 
 - (void)swipeLeft:(UISwipeGestureRecognizer *)recognizer {
+    [self hideBookToolView];
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
     if (self.currentPage == self.startPage) {
         [self switchToPrevChapter];
@@ -217,6 +224,7 @@
 }
 
 - (void)swipeRight:(UISwipeGestureRecognizer *)recognizer {
+    [self hideBookToolView];
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
     if (self.currentPage == self.webview.pageCount) {
         [self switchToNextChapter];
@@ -238,23 +246,26 @@
     [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
 }
 
-- (void) toggleShowBookToolView {
-    if (!self.showToolView) {
-        [self.bookToolView setHidden:NO];
-        self.showToolView = TRUE;
-        [self.navigationController setNavigationBarHidden:NO];
-        [self setNeedsStatusBarAppearanceUpdate];
-        
-    } else {
-        [self.bookToolView setHidden:TRUE];
-        self.showToolView = FALSE;
-        [self.navigationController setNavigationBarHidden:YES];
-        [self setNeedsStatusBarAppearanceUpdate];
-    }
+- (void)hideBookToolView {
+    [self.bookToolView setHidden:TRUE];
+    self.showToolView = FALSE;
+    [self.navigationController setNavigationBarHidden:YES];
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (void)showBookToolView {
+    [self.bookToolView setHidden:NO];
+    self.showToolView = TRUE;
+    [self.navigationController setNavigationBarHidden:NO];
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)tapPage:(UITapGestureRecognizer *)recognizer {
-    [self toggleShowBookToolView];
+    if (!self.showToolView) {
+        [self showBookToolView];
+    } else {
+        [self hideBookToolView];
+    }
 }
 
 #pragma mark - Switch Page
