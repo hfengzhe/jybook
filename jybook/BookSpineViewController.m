@@ -35,6 +35,11 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
+
+    UIButton *dismissBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 40,self.view.frame.size.height / 2 - 20 , 40, 40)];
+    dismissBtn.backgroundColor = [UIColor redColor];
+    [dismissBtn addTarget:self action:@selector(dismissBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:dismissBtn];
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self setNeedsStatusBarAppearanceUpdate];
@@ -53,6 +58,12 @@
     self.index = seg.selectedSegmentIndex;
     [self.tableView reloadData];
 }
+
+- (void)dismissBtnClicked:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - tableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
