@@ -7,6 +7,7 @@
 //
 
 #import "BookToolView.h"
+#import "BookSpineViewController.h"
 
 @implementation BookToolView
 
@@ -111,6 +112,9 @@
 }
 
 - (void) chapterListClick: (id)sender {
+    BookSpineViewController *bsvc = [[BookSpineViewController alloc] init];
+    bsvc.book = self.pageViewController.book;
+    [self.pageViewController presentViewController:bsvc animated:YES completion:nil];
     [self.pageViewController hideBookToolView];
 }
 
