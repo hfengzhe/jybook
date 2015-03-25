@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9nC-ef-u2C">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -70,27 +69,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.50522647381320951" green="0.50887865631449947" blue="0.49429885029669751" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Catalog" id="feR-IQ-biU" customClass="BookCatalogTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Catalog" id="feR-IQ-biU">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="feR-IQ-biU" id="Ebj-sj-8za">
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lth-uD-t1y">
-                                            <rect key="frame" x="8" y="8" width="584" height="28"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Lth-uD-t1y" firstAttribute="leading" secondItem="Ebj-sj-8za" secondAttribute="leadingMargin" id="9lh-kb-64X"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Lth-uD-t1y" secondAttribute="bottom" constant="-0.5" id="HSI-EA-jOL"/>
-                                        <constraint firstItem="Lth-uD-t1y" firstAttribute="trailing" secondItem="Ebj-sj-8za" secondAttribute="trailingMargin" id="XF6-da-cvb"/>
-                                        <constraint firstItem="Lth-uD-t1y" firstAttribute="top" secondItem="Ebj-sj-8za" secondAttribute="topMargin" id="vhd-CD-kX6"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="chapterLabel" destination="Lth-uD-t1y" id="rXr-Ct-ca8"/>
                                     <segue destination="Mwf-Pb-X7X" kind="show" identifier="showchapter" id="3YQ-rw-Xoj"/>
                                 </connections>
                             </tableViewCell>

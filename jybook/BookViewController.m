@@ -7,9 +7,7 @@
 //
 
 #import "BookViewController.h"
-#import "BookCatalogTableViewCell.h"
 #import "BookPageViewController.h"
-#import "BookmarkViewController.h"
 
 @interface BookViewController ()
 
@@ -19,10 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
     self.navigationItem.title = self.book.name;
 }
 
@@ -46,9 +40,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BookCatalogTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Catalog" forIndexPath:indexPath];
-
-    [cell.chapterLabel setText:[self.book titleForChapter:self.book.chapters[indexPath.row]]];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Catalog" forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Catalog"];
+    }
+    cell.textLabel.text = [self.book titleForChapter:self.book.chapters[indexPath.row]];
     return cell;
 }
 
@@ -65,12 +61,7 @@
         bpvc.url = [NSURL fileURLWithPath:path];
         bpvc.book = self.book;
         bpvc.jumpPage = bpvc.startPage;
-        
-    } else if ([segue.identifier isEqualToString:@"showbookmark"]) {
-        BookmarkViewController *bmvc = segue.destinationViewController;
-        bmvc.book = self.book;
     }
 }
-
 
 @end
