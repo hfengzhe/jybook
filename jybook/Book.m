@@ -7,6 +7,7 @@
 //
 
 #import "Book.h"
+#import "BookConfig.h"
 #import "ZipArchive.h"
 #import "TBXML.h"
 
@@ -16,7 +17,7 @@
 @property (nonatomic, strong) NSArray *bookspine;
 @property (nonatomic, strong) NSDictionary *chapterTitleDict;
 @property (nonatomic, strong) NSDictionary *chapterFileDict;
-
+@property (nonatomic, strong) BookConfig *bookconfig;
 @end
 
 @implementation Book
@@ -26,6 +27,7 @@
     self = [super init];
     if (self) {
         self.name = name;
+        self.bookconfig = [[BookConfig alloc] init];
         self.epubpath = [[NSBundle mainBundle] pathForResource:self.name ofType:@"epub" inDirectory:@"epub"];
         NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         self.bookpath = [documentPath stringByAppendingPathComponent:self.name];
@@ -158,18 +160,14 @@
 
 - (NSMutableArray *) bookmarks {
     if (!_bookmarks) {
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        NSArray *bms = [user objectForKey:[NSString stringWithFormat:@"bookmark->%@", self.name]];
-        _bookmarks = [NSMutableArray arrayWithArray:bms];
+        _bookmarks = [NSMutableArray arrayWithArray:[self.bookconfig getBookmarksForBook:self.name]];
     }
     return _bookmarks;
 }
 
 - (void)setBookmarks:(NSMutableArray *)bookmarks {
     _bookmarks = bookmarks;
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    NSArray *bms = [NSArray arrayWithArray:bookmarks];
-    [user setObject:bms forKey:[NSString stringWithFormat:@"bookmark->%@", self.name]];
+    [self.bookconfig setBookmarks:[NSArray arrayWithArray:bookmarks] ForBook:self.name];
 }
 
 - (NSString *) titleForChapter:(NSString *) chapter {

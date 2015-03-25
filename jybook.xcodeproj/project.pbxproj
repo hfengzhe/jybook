@@ -26,6 +26,8 @@
 		E985120F1AB55D4B00F02181 /* cover in Resources */ = {isa = PBXBuildFile; fileRef = E985120E1AB55D4B00F02181 /* cover */; };
 		E99575041AC19D520094DA16 /* BookToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99575031AC19D520094DA16 /* BookToolView.m */; };
 		E99575071AC2D6B40094DA16 /* BookSpineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99575061AC2D6B40094DA16 /* BookSpineViewController.m */; };
+		E995750A1AC2F0540094DA16 /* BookFontView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99575091AC2F0540094DA16 /* BookFontView.m */; };
+		E995750D1AC2F1F80094DA16 /* BookConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E995750C1AC2F1F80094DA16 /* BookConfig.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,10 @@
 		E99575031AC19D520094DA16 /* BookToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookToolView.m; sourceTree = "<group>"; };
 		E99575051AC2D6B40094DA16 /* BookSpineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookSpineViewController.h; sourceTree = "<group>"; };
 		E99575061AC2D6B40094DA16 /* BookSpineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookSpineViewController.m; sourceTree = "<group>"; };
+		E99575081AC2F0540094DA16 /* BookFontView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookFontView.h; sourceTree = "<group>"; };
+		E99575091AC2F0540094DA16 /* BookFontView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookFontView.m; sourceTree = "<group>"; };
+		E995750B1AC2F1F80094DA16 /* BookConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookConfig.h; sourceTree = "<group>"; };
+		E995750C1AC2F1F80094DA16 /* BookConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookConfig.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,12 +150,16 @@
 				E98511C91AB4419900F02181 /* BookPageViewController.m */,
 				E99575051AC2D6B40094DA16 /* BookSpineViewController.h */,
 				E99575061AC2D6B40094DA16 /* BookSpineViewController.m */,
+				E99575081AC2F0540094DA16 /* BookFontView.h */,
+				E99575091AC2F0540094DA16 /* BookFontView.m */,
 				E99575021AC19D520094DA16 /* BookToolView.h */,
 				E99575031AC19D520094DA16 /* BookToolView.m */,
 				E96F17DE1AB71FE50004A8C4 /* BookmarkViewController.h */,
 				E96F17DF1AB71FE50004A8C4 /* BookmarkViewController.m */,
 				E96F17E11AB724450004A8C4 /* BookmarkTableViewCell.h */,
 				E96F17E21AB724450004A8C4 /* BookmarkTableViewCell.m */,
+				E995750B1AC2F1F80094DA16 /* BookConfig.h */,
+				E995750C1AC2F1F80094DA16 /* BookConfig.m */,
 			);
 			path = jybook;
 			sourceTree = "<group>";
@@ -331,7 +341,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E96F17E31AB724450004A8C4 /* BookmarkTableViewCell.m in Sources */,
+				E995750D1AC2F1F80094DA16 /* BookConfig.m in Sources */,
 				E96F17E01AB71FE50004A8C4 /* BookmarkViewController.m in Sources */,
+				E995750A1AC2F0540094DA16 /* BookFontView.m in Sources */,
 				E98511CA1AB4419900F02181 /* BookPageViewController.m in Sources */,
 				E98511C41AB437C700F02181 /* BookViewController.m in Sources */,
 				E98511BC1AB4197B00F02181 /* Book.m in Sources */,
