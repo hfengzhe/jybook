@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Book.h"
+#import "BookFontView.h"
 
 @interface BookPageViewController : UIViewController <UIGestureRecognizerDelegate, UIWebViewDelegate>
 @property (nonatomic, strong) Book *book;
@@ -19,6 +20,7 @@
 @property (nonatomic, readonly) NSUInteger startPage;
 
 - (void) hideBookToolView;
+- (void) showBookFontView;
 
 - (void) toggleBookmark;
 

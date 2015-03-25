@@ -10,12 +10,18 @@
 
 @implementation BookFontView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)setupBrightnessProgress {
+    UIProgressView *progress = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    [progress setProgress:0.5];
+    [progress setProgressTintColor:[UIColor redColor]];
+    [self addSubview:progress];
 }
-*/
+
+- (void)drawRect:(CGRect)rect {
+    [self setupBrightnessProgress];
+}
+
+
+
 
 @end

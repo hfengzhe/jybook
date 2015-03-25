@@ -8,14 +8,18 @@
 
 #import "BookPageViewController.h"
 #import "BookToolView.h"
+#import "BookFontView.h"
 
 @interface BookPageViewController ()
 @property (nonatomic) BOOL nightMode;
 @property (nonatomic, strong) UIBarButtonItem *nightmodeBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *bookmarkBarButtonItem;
-@property (nonatomic, strong) BookToolView  *bookToolView;
+@property (nonatomic, strong) BookToolView *bookToolView;
+@property (nonatomic, strong) BookFontView *bookFontView;
+
 @property (nonatomic) BOOL goLastFlag;
 @property (nonatomic) BOOL showToolView;
+@property (nonatomic) BOOL showFontView;
 
 @end
 
@@ -63,6 +67,40 @@
         _bookToolView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0];
     }
     return _bookToolView;
+}
+
+- (BookFontView *)bookFontView {
+    if (!_bookFontView) {
+        _bookFontView  = [[BookFontView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 200, self.view.frame.size.width, 200)];
+        [self.view insertSubview:_bookFontView aboveSubview:self.webview];
+        [_bookFontView setHidden:YES];
+        _bookFontView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0];
+    }
+    return _bookFontView;
+}
+
+- (void)hideBookToolView {
+    [self.bookToolView setHidden:TRUE];
+    self.showToolView = FALSE;
+    [self.navigationController setNavigationBarHidden:YES];
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (void)showBookToolView {
+    [self.bookToolView setHidden:NO];
+    self.showToolView = TRUE;
+    [self.navigationController setNavigationBarHidden:NO];
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (void)showBookFontView {
+    [self.bookFontView setHidden:NO];
+    self.showFontView = TRUE;
+}
+
+- (void)hideBookFontView {
+    [self.bookFontView setHidden:YES];
+    self.showFontView = FALSE;
 }
 
 - (BOOL)goLastFlag {
@@ -254,25 +292,12 @@
     }
 }
 
-- (void)hideBookToolView {
-    [self.bookToolView setHidden:TRUE];
-    self.showToolView = FALSE;
-    [self.navigationController setNavigationBarHidden:YES];
-    [self setNeedsStatusBarAppearanceUpdate];
-}
-
-- (void)showBookToolView {
-    [self.bookToolView setHidden:NO];
-    self.showToolView = TRUE;
-    [self.navigationController setNavigationBarHidden:NO];
-    [self setNeedsStatusBarAppearanceUpdate];
-}
-
 - (void)tapPage:(UITapGestureRecognizer *)recognizer {
-    if (!self.showToolView) {
+    if (!self.showToolView && !self.showFontView) {
         [self showBookToolView];
     } else {
         [self hideBookToolView];
+        [self hideBookFontView];
     }
 }
 

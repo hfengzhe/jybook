@@ -8,6 +8,11 @@
 
 #import "BookToolView.h"
 #import "BookSpineViewController.h"
+#import "BookFontView.h"
+
+@interface BookToolView ()
+@property (nonatomic, strong) BookFontView *bookFontView;
+@end
 
 @implementation BookToolView
 
@@ -118,6 +123,7 @@
 }
 
 - (void) fontClick: (id)sender {
+    [self.pageViewController showBookFontView];
     [self.pageViewController hideBookToolView];
 }
 
@@ -125,6 +131,5 @@
     [self.pageViewController hideBookToolView];
     [self.pageViewController toggleBookmark];
 }
-
 
 @end

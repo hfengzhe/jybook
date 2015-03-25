@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BookPageViewController.h"
 
 @interface BookFontView : UIView
 
