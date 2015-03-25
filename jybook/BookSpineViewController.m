@@ -64,9 +64,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.index) {
-        return [self.book.bookmarks count];
+        return [self.bpvc.book.bookmarks count];
     } else {
-        return [self.book.chapters count];
+        return [self.bpvc.book.chapters count];
     }
 }
 
@@ -76,9 +76,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"spineCell"];
     }
     if (self.index) {
-        cell.textLabel.text = [self.book bookmarkTitleForPosition:self.book.bookmarks[indexPath.row]];
+        cell.textLabel.text = [self.bpvc.book bookmarkTitleForPosition:self.bpvc.book.bookmarks[indexPath.row]];
     } else {
-        cell.textLabel.text = [self.book titleForChapter:self.book.chapters[indexPath.row]];
+        cell.textLabel.text = [self.bpvc.book titleForChapter:self.bpvc.book.chapters[indexPath.row]];
     }
     return cell;
 }
@@ -89,9 +89,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.index) {
-        NSLog(@"---goto bookmark----");
+        NSString *position = self.bpvc.book.bookmarks[indexPath.row];
+        NSArray *array = [position componentsSeparatedByString:@":"];
+        if ([array count] != 2) {
+            NSLog(@"invalid bookmark position:%@", position);
+        }
+        NSString *chapter = [array objectAtIndex:0];
+        NSString *page = [array objectAtIndex:1];
+        
+        self.bpvc.jumpPage = page.integerValue;
+        [self.bpvc switchToChapter:[self.bpvc.book.chapters indexOfObject:chapter]];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
     } else {
-        NSLog(@"----goto chapter-----");
+        self.bpvc.jumpPage = self.bpvc.startPage;
+        [self.bpvc switchToChapter:indexPath.row];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -105,9 +118,9 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSMutableArray *array = [NSMutableArray arrayWithArray:self.book.bookmarks];
+        NSMutableArray *array = [NSMutableArray arrayWithArray:self.bpvc.book.bookmarks];
         [array removeObjectAtIndex:indexPath.row];
-        [self.book setBookmarks:array];
+        [self.bpvc.book setBookmarks:array];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }

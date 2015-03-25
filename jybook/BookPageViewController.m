@@ -286,28 +286,27 @@
     return self.chapterIndex < [self.book.chapters count] - 1;
 }
 
-- (void)switchToPrevChapter {
-    if (![self canSwitchToPrevChapter]) {
-        return;
-    }
+- (void)switchToChapter:(NSInteger) chapterIndex {
     self.webview.hidden = YES;
-    self.chapterIndex = self.chapterIndex - 1;
+    self.chapterIndex = chapterIndex;
     self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
     NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
     [self.webview loadRequest:req];
     self.webview.hidden = NO;
 }
 
+- (void)switchToPrevChapter {
+    if (![self canSwitchToPrevChapter]) {
+        return;
+    }
+    [self switchToChapter:self.chapterIndex - 1];
+}
+
 - (void)switchToNextChapter {
     if (![self canSwitchToNextChapter]) {
         return;
     }
-    self.webview.hidden = YES;
-    self.chapterIndex = self.chapterIndex + 1;
-    self.url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
-    NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
-    [self.webview loadRequest:req];
-    self.webview.hidden = NO;
+    [self switchToChapter:self.chapterIndex + 1];
 }
 
 - (void)jumpToPage:(NSUInteger) page {

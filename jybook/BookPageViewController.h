@@ -27,6 +27,7 @@
 - (BOOL) canSwitchToPrevChapter;
 - (BOOL) canSwitchToNextChapter;
 
+- (void) switchToChapter:(NSInteger) chapterIndex;
 - (void) switchToPrevChapter;
 - (void) switchToNextChapter;
 

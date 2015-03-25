@@ -86,7 +86,6 @@
 
 
 - (void)drawRect:(CGRect)rect {
-    
     for (UIView *view in self.subviews) {
         [view removeFromSuperview];
     }
@@ -113,7 +112,7 @@
 
 - (void) chapterListClick: (id)sender {
     BookSpineViewController *bsvc = [[BookSpineViewController alloc] init];
-    bsvc.book = self.pageViewController.book;
+    bsvc.bpvc = self.pageViewController;
     [self.pageViewController presentViewController:bsvc animated:YES completion:nil];
     [self.pageViewController hideBookToolView];
 }

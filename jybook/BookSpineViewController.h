@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Book.h"
+#import "BookPageViewController.h"
 
 @interface BookSpineViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) Book *book;
+@property (nonatomic, strong) BookPageViewController *bpvc;
 @end
