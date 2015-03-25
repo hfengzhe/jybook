@@ -10,5 +10,6 @@
 #import "BookPageViewController.h"
 
 @interface BookFontView : UIView
+@property (nonatomic, weak) BookPageViewController * pageViewController;
 
 @end

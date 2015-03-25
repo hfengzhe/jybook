@@ -18,8 +18,6 @@
 @property (nonatomic, strong) BookFontView *bookFontView;
 
 @property (nonatomic) BOOL goLastFlag;
-@property (nonatomic) BOOL showToolView;
-@property (nonatomic) BOOL showFontView;
 
 @end
 
@@ -62,7 +60,6 @@
         _bookToolView  = [[BookToolView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 80, self.view.frame.size.width, 80)];
         [self.view insertSubview:_bookToolView aboveSubview:self.webview];
         [_bookToolView setHidden:YES];
-        self.showToolView = NO;
         _bookToolView.pageViewController = self;
         _bookToolView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0];
     }
@@ -74,6 +71,7 @@
         _bookFontView  = [[BookFontView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 200, self.view.frame.size.width, 200)];
         [self.view insertSubview:_bookFontView aboveSubview:self.webview];
         [_bookFontView setHidden:YES];
+        _bookFontView.pageViewController = self;
         _bookFontView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0];
     }
     return _bookFontView;
@@ -81,26 +79,22 @@
 
 - (void)hideBookToolView {
     [self.bookToolView setHidden:TRUE];
-    self.showToolView = FALSE;
     [self.navigationController setNavigationBarHidden:YES];
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)showBookToolView {
     [self.bookToolView setHidden:NO];
-    self.showToolView = TRUE;
     [self.navigationController setNavigationBarHidden:NO];
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)showBookFontView {
     [self.bookFontView setHidden:NO];
-    self.showFontView = TRUE;
 }
 
 - (void)hideBookFontView {
     [self.bookFontView setHidden:YES];
-    self.showFontView = FALSE;
 }
 
 - (BOOL)goLastFlag {
@@ -179,11 +173,7 @@
 }
 
 - (BOOL)prefersStatusBarHidden {
-    if (self.showToolView) {
-        return NO;
-    } else {
-        return YES;
-    }
+    return [self.bookToolView isHidden];
 }
 
 - (BOOL)isCurrentPositionInBookmark {
@@ -240,6 +230,7 @@
 
 - (void)swipeLeft:(UISwipeGestureRecognizer *)recognizer {
     [self hideBookToolView];
+    [self hideBookFontView];
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
     if (self.currentPage == self.startPage) {
         [self switchToPrevChapter];
@@ -267,6 +258,7 @@
 
 - (void)swipeRight:(UISwipeGestureRecognizer *)recognizer {
     [self hideBookToolView];
+    [self hideBookFontView];
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
     if (self.currentPage == self.webview.pageCount) {
         [self switchToNextChapter];
@@ -293,7 +285,7 @@
 }
 
 - (void)tapPage:(UITapGestureRecognizer *)recognizer {
-    if (!self.showToolView && !self.showFontView) {
+    if ([self.bookToolView isHidden] && [self.bookFontView isHidden]) {
         [self showBookToolView];
     } else {
         [self hideBookToolView];

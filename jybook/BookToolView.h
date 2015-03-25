@@ -10,7 +10,7 @@
 #import "BookPageViewController.h"
 
 @interface BookToolView : UIView
-@property (nonatomic, strong) BookPageViewController *pageViewController;
+@property (nonatomic, weak) BookPageViewController *pageViewController;
 
 @end
     

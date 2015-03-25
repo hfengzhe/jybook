@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Book.h"
-#import "BookFontView.h"
 
 @interface BookPageViewController : UIViewController <UIGestureRecognizerDelegate, UIWebViewDelegate>
 @property (nonatomic, strong) Book *book;
