@@ -8,7 +8,7 @@
 
 #import "BookShelfViewController.h"
 #import "Book.h"
-#import "BookViewController.h"
+#import "BookPageViewController.h"
 
 @interface BookShelfViewController ()
 @property (nonatomic, strong) NSArray *books;
@@ -28,9 +28,6 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     // Do any additional setup after loading the view.
@@ -40,16 +37,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -76,15 +63,10 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark <UICollectionViewDelegate>
 
-
-// Uncomment this method to specify if the specified item should be highlighted during tracking
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
 	return YES;
 }
 
-
-
-// Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
@@ -92,8 +74,6 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"showbook" sender:self];
 }
-
-
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
@@ -103,9 +83,10 @@ static NSString * const reuseIdentifier = @"Cell";
         NSString *name = self.books[selectedIndexPath.row];
         Book *selectedBook = [[Book alloc] initWithName:name];
         
-        BookViewController *bvc = segue.destinationViewController;
-        bvc.book = selectedBook;
-
+        BookPageViewController *bpvc = segue.destinationViewController;
+        bpvc.book = selectedBook;
+        bpvc.chapterIndex = 0;
+        bpvc.jumpPage = bpvc.startPage;
     }
 }
 

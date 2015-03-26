@@ -12,7 +12,6 @@
 @interface BookPageViewController : UIViewController <UIGestureRecognizerDelegate, UIWebViewDelegate>
 @property (nonatomic, strong) Book *book;
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
-@property (nonatomic, strong) NSURL *url;
 @property (nonatomic) NSUInteger chapterIndex;
 @property (nonatomic) NSUInteger currentPage;
 @property (nonatomic) NSUInteger jumpPage;
