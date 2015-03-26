@@ -84,11 +84,38 @@
     }
 }
 
+- (void)setupLineSpacingBtn {
+    NSValue *rect1 =  [NSValue valueWithCGRect:CGRectMake(20, 150, 80, 40)];
+    NSValue *rect2 = [NSValue valueWithCGRect:CGRectMake(150, 150, 80, 40)];
+    NSValue *rect3 = [NSValue valueWithCGRect:CGRectMake(280, 150, 80, 40)];
+    
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:rect1,rect2,rect3, nil] forKeys: [NSArray arrayWithObjects:@"一",@"二",@"三", nil]];
+    for (NSString *title in dict) {
+        UIButton *btn = [[UIButton alloc] initWithFrame:[[dict objectForKey:title] CGRectValue]];
+        [btn setTitle:title forState:UIControlStateNormal];
+        [btn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+        [btn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+        
+        [[btn layer] setCornerRadius:8.0f];
+        [[btn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
+        [[btn layer] setBorderWidth:1.0f];
+        
+        [btn setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.6] forState:UIControlStateHighlighted];
+        
+        [btn addTarget:self action:@selector(lineSpacingTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(lineSpacingTouchDown:) forControlEvents:UIControlEventTouchDown];
+        
+        [self addSubview:btn];
+    }
+}
+
 - (void)drawRect:(CGRect)rect {
     [self setupBrightnessProgress];
     [self setupFontSizeBtn];
     [self setupNightModeBtn];
     [self setupColorBtn];
+    [self setupLineSpacingBtn];
 }
 
 #pragma mark -Action 
@@ -121,6 +148,29 @@
 - (void)colorTouchUpInside:(id)sender {
     if ([sender isKindOfClass:[UIButton class]]) {
         NSLog(@"--color---");
+    }
+}
+
+- (void)lineSpacingTouchUpInside:(id)sender {
+    if ([sender isKindOfClass:[UIButton class]]) {
+        UIButton *btn = (UIButton *)sender;
+        [[btn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
+        NSString *title = [btn currentTitle];
+        if ([title isEqualToString:@"一"]) {
+            NSLog(@"一");
+        } else if ([title isEqualToString:@"二"]) {
+            NSLog(@"二");
+        } else if ([title isEqualToString:@"三"]) {
+            NSLog(@"三");
+        }
+    }
+}
+
+- (void)lineSpacingTouchDown:(id)sender {
+    if ([sender isKindOfClass:[UIButton class]]) {
+        UIButton *btn = (UIButton *)sender;
+        [[btn layer] setBorderColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.8].CGColor];
+        
     }
 }
 
