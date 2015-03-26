@@ -94,7 +94,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.bookconfig = [[BookConfig alloc] init];
+    self.bookconfig = [BookConfig sharedConfig];
 
     NSURL *url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];

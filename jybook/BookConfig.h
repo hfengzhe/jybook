@@ -17,6 +17,8 @@
 @property (nonatomic) NSUInteger lineSpacing;
 @property (nonatomic) CGFloat brightness;
 
++ (id) sharedConfig;
+
 - (NSArray *) getBookmarksForBook:(NSString *)bookname;
 - (void) setBookmarks:(NSArray *)bookmarks ForBook:(NSString *)bookname;
 

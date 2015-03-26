@@ -7,6 +7,9 @@
 //
 
 #import "BookConfig.h"
+@interface BookConfig()
+@property (nonatomic, strong) NSUserDefaults *user;
+@end
 
 @implementation BookConfig
 
@@ -16,94 +19,96 @@
 @synthesize lineSpacing = _lineSpacing;
 @synthesize brightness  = _brightness;
 
++ (id)sharedConfig {
+    static BookConfig *sharedConfig = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedConfig = [[self alloc] init];
+    });
+    return sharedConfig;
+}
+
+- (id)init {
+    if (self == [super init]) {
+        self.user = [NSUserDefaults standardUserDefaults];
+    }
+    return self;
+}
+
 - (BOOL)nightMode {
     if (!_nightMode) {
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        _nightMode = [user boolForKey:@"nightMode"];
+        _nightMode = [self.user boolForKey:@"nightMode"];
     }
     return _nightMode;
 }
 
 - (void)setNightMode:(BOOL)nightMode {
     _nightMode = nightMode;
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user setBool:nightMode forKey:@"nightMode"];
+    [self.user setBool:nightMode forKey:@"nightMode"];
 }
 
 - (NSString *)backgroundColor {
     if (!_backgroundColor) {
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        _backgroundColor = [user objectForKey:@"backgroundColor"];
+        _backgroundColor = [self.user objectForKey:@"backgroundColor"];
     }
     return _backgroundColor;
 }
 
 - (void)setBackgroundColor:(NSString *)backgroundColor {
     _backgroundColor = backgroundColor;
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user setObject:backgroundColor forKey:@"backgroundColor"];
+    [self.user setObject:backgroundColor forKey:@"backgroundColor"];
 }
 
 - (NSUInteger)fontSize {
     if (!_fontSize) {
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        _fontSize = [user integerForKey:@"fontSize"];
+        _fontSize = [self.user integerForKey:@"fontSize"];
     }
     return _fontSize;
 }
 
 - (void)setFontSize:(NSUInteger)fontSize {
     _fontSize = fontSize;
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user setInteger:fontSize forKey:@"fontSize"];
+    [self.user setInteger:fontSize forKey:@"fontSize"];
 }
 
 - (NSUInteger)lineSpacing {
     if (!_lineSpacing) {
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        _lineSpacing = [user integerForKey:@"lineSpacing"];
+        _lineSpacing = [self.user integerForKey:@"lineSpacing"];
     }
     return _lineSpacing;
 }
 
 - (void)setLineSpacing:(NSUInteger)lineSpacing{
     _lineSpacing = lineSpacing;
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user setInteger:lineSpacing forKey:@"lineSpacing"];
+    [self.user setInteger:lineSpacing forKey:@"lineSpacing"];
 }
 
 - (CGFloat)brightness {
     if (!_brightness) {
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        _brightness = [user doubleForKey:@"brightness"];
+        _brightness = [self.user doubleForKey:@"brightness"];
     }
     return _brightness;
 }
 
 - (void)setBrightness:(CGFloat)brightness {
     _brightness = brightness;
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user setDouble:brightness forKey:@"brightness"];
+    [self.user setDouble:brightness forKey:@"brightness"];
 }
 
 - (NSArray *)getBookmarksForBook:(NSString *)bookname {
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    return [user objectForKey:[NSString stringWithFormat:@"bookmark->%@", bookname]];
+    return [self.user objectForKey:[NSString stringWithFormat:@"bookmark->%@", bookname]];
 }
 
 - (void)setBookmarks:(NSArray *)bookmarks ForBook:(NSString *)bookname {
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user setObject:bookmarks forKey:[NSString stringWithFormat:@"bookmark->%@", bookname]];
+    [self.user setObject:bookmarks forKey:[NSString stringWithFormat:@"bookmark->%@", bookname]];
 }
 
 - (NSString *)getLastPositionForBook: (NSString *)bookname {
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    return [user objectForKey:[NSString stringWithFormat:@"lastPos->%@", bookname]];
+    return [self.user objectForKey:[NSString stringWithFormat:@"lastPos->%@", bookname]];
 }
 
 - (void)setLastPosition:(NSString *)position ForBook:(NSString *)bookname {
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user setObject:position forKey:[NSString stringWithFormat:@"lastPos->%@", bookname]];
+    [self.user setObject:position forKey:[NSString stringWithFormat:@"lastPos->%@", bookname]];
 }
 
 @end

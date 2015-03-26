@@ -27,7 +27,7 @@
     self = [super init];
     if (self) {
         self.name = name;
-        self.bookconfig = [[BookConfig alloc] init];
+        self.bookconfig = [BookConfig sharedConfig];
         self.epubpath = [[NSBundle mainBundle] pathForResource:self.name ofType:@"epub" inDirectory:@"epub"];
         NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         self.bookpath = [documentPath stringByAppendingPathComponent:self.name];
