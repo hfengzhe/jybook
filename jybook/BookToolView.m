@@ -68,7 +68,7 @@
 
 - (void)setupFontBtn {
     UIButton *fontBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 40, self.frame.size.width - 200, 40)];
-    [fontBtn setTitle:@"A" forState:UIControlStateNormal];
+    [fontBtn setTitle:@"Aa" forState:UIControlStateNormal];
     [fontBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [fontBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [fontBtn addTarget:self action:@selector(fontClick:) forControlEvents:UIControlEventTouchUpInside];

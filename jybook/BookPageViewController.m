@@ -61,7 +61,7 @@
         [self.view insertSubview:_bookToolView aboveSubview:self.webview];
         [_bookToolView setHidden:YES];
         _bookToolView.pageViewController = self;
-        _bookToolView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0];
+        _bookToolView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.95];
     }
     return _bookToolView;
 }
@@ -72,7 +72,7 @@
         [self.view insertSubview:_bookFontView aboveSubview:self.webview];
         [_bookFontView setHidden:YES];
         _bookFontView.pageViewController = self;
-        _bookFontView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0];
+        _bookFontView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.95];
     }
     return _bookFontView;
 }
