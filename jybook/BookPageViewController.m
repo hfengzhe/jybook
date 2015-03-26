@@ -9,51 +9,21 @@
 #import "BookPageViewController.h"
 #import "BookToolView.h"
 #import "BookFontView.h"
+#import "BookConfig.h"
 
 @interface BookPageViewController ()
-@property (nonatomic) BOOL nightMode;
-@property (nonatomic, strong) UIBarButtonItem *nightmodeBarButtonItem;
-@property (nonatomic, strong) UIBarButtonItem *bookmarkBarButtonItem;
 @property (nonatomic, strong) BookToolView *bookToolView;
 @property (nonatomic, strong) BookFontView *bookFontView;
+@property (nonatomic, strong) BookConfig *bookconfig;
 
 @property (nonatomic) BOOL goLastFlag;
 
 @end
 
 @implementation BookPageViewController
-@synthesize nightMode = _nightMode;
 @synthesize goLastFlag = _goLastFlag;
 
 #pragma mark - Getter/Setter
-
-- (BOOL)nightMode {
-    if (!_nightMode) {
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        _nightMode = [user boolForKey:@"nightMode"];
-    }
-    return _nightMode;
-}
-
-- (void)setNightMode:(BOOL)nightMode {
-    _nightMode = nightMode;
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user setBool:nightMode forKey:@"nightMode"];
-}
-
-- (UIBarButtonItem *)nightmodeBarButtonItem {
-    if (!_nightmodeBarButtonItem) {
-        _nightmodeBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🌙" style:UIBarButtonItemStyleDone target:self action:@selector(switchNightMode)];
-    }
-    return _nightmodeBarButtonItem;
-}
-
-- (UIBarButtonItem *)bookmarkBarButtonItem {
-    if (!_bookmarkBarButtonItem) {
-        _bookmarkBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"📑" style:UIBarButtonItemStyleDone target:self action:@selector(toggleBookmark)];
-    }
-    return _bookmarkBarButtonItem;
-}
 
 - (BookToolView *)bookToolView {
     if (!_bookToolView) {
@@ -124,6 +94,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.bookconfig = [[BookConfig alloc] init];
 
     NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
     [self.webview loadRequest:req];
@@ -146,8 +117,6 @@
     [self.webview addGestureRecognizer:tap];
     [self.webview addGestureRecognizer:swipeLeft];
     [self.webview addGestureRecognizer:swipeRight];
-    
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.nightmodeBarButtonItem, self.bookmarkBarButtonItem, nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -162,14 +131,13 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [self syncNightMode:self.nightMode];
+    [self syncNightMode:self.bookconfig.nightMode];
     if (self.goLastFlag) {
         self.goLastFlag = FALSE;
         [self jumpToPage:self.webview.pageCount];
     } else if (self.jumpPage != self.currentPage) {
         [self jumpToPage:self.jumpPage];
     }
-    [self updatePageBookmarkStatus];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -181,30 +149,19 @@
     return [self.book.bookmarks containsObject:position];
 }
 
-- (void)updatePageBookmarkStatus {
-    NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
-    if ([self.book.bookmarks containsObject:position]) {
-        [self.bookmarkBarButtonItem setTitle:@"📕"];
-    } else {
-        [self.bookmarkBarButtonItem setTitle:@"📑"];
-    }
-}
-
 - (void)syncNightMode:(BOOL) nightMode {
     if (nightMode) {
         NSString *str = @"document.body.style.background='#080c10';document.body.style.color='#424952'";
         [self.webview stringByEvaluatingJavaScriptFromString:str];
-        [self.nightmodeBarButtonItem setTitle:@"☀️"];
     } else {
         NSString *str = @"document.body.style.background='#FFFFFF';document.body.style.color='#000000'";
         [self.webview stringByEvaluatingJavaScriptFromString:str];
-        [self.nightmodeBarButtonItem setTitle:@"🌙"];
     }
 }
 
 - (void)switchNightMode {
-    self.nightMode = ! self.nightMode;
-    [self syncNightMode:self.nightMode];
+    self.bookconfig.nightMode = ! self.bookconfig.nightMode;
+    [self syncNightMode:self.bookconfig.nightMode];
 }
 
 - (void)toggleBookmark {
@@ -213,12 +170,10 @@
         NSMutableArray *array = [NSMutableArray arrayWithArray:self.book.bookmarks];
         [array removeObject:position];
         [self.book setBookmarks:array];
-        [self.bookmarkBarButtonItem setTitle:@"📑"];
     } else {
         NSMutableArray *array = [NSMutableArray arrayWithArray:self.book.bookmarks];
         [array addObject:position];
         [self.book setBookmarks:array];
-        [self.bookmarkBarButtonItem setTitle:@"📕"];
     }
 }
 
@@ -238,7 +193,6 @@
     } else {
         [self jumpToPage:self.currentPage - 1];
     }
-    [self updatePageBookmarkStatus];
     if ((self.chapterIndex == 0) && (self.currentPage == self.startPage)) {
         NSLog(@"You are in first page already");
     } else {
@@ -266,7 +220,6 @@
     } else {
         [self jumpToPage:self.currentPage + 1];
     }
-    [self updatePageBookmarkStatus];
     if ((self.chapterIndex == [self.book.chapters count] - 1) && (self.currentPage = self.webview.pageCount)) {
         NSLog(@"You are in last page already");
     } else {
