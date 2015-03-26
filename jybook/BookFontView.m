@@ -49,18 +49,49 @@
     [nightModeBtn setTitle:@"🌙" forState:UIControlStateNormal];
     [nightModeBtn  setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [nightModeBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [[nightModeBtn layer] setCornerRadius:8.0f];
+    [[nightModeBtn layer] setCornerRadius:20.0f];
     [[nightModeBtn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
     [[nightModeBtn layer] setBorderWidth:1.0f];
     [nightModeBtn addTarget:self action:@selector(nightModeClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:nightModeBtn];
 }
 
+- (void)setupColorBtn {
+    UIColor *color1 = [UIColor colorWithRed:0.1 green:0.8 blue:0.3 alpha:0.4];
+    UIColor *color2 = [UIColor colorWithRed:0.2 green:0.7 blue:0.7 alpha:0.4];
+    UIColor *color3 = [UIColor colorWithRed:0.3 green:0.6 blue:0.3 alpha:0.4];
+    UIColor *color4 = [UIColor colorWithRed:0.4 green:0.5 blue:0.2 alpha:0.4];
+    UIColor *color5 = [UIColor colorWithRed:0.5 green:0.4 blue:0.8 alpha:0.4];
+    UIColor *color6 = [UIColor colorWithRed:0.6 green:0.3 blue:0.1 alpha:0.4];
+    NSArray *colors = [NSArray arrayWithObjects:color1,color2,color3,color4,color5,color6,nil];
+    
+    NSValue *rect1 = [NSValue valueWithCGRect:CGRectMake(20, 110, 30, 30)];
+    NSValue *rect2 = [NSValue valueWithCGRect:CGRectMake(80, 110, 30, 30)];
+    NSValue *rect3 = [NSValue valueWithCGRect:CGRectMake(140, 110, 30, 30)];
+    NSValue *rect4 = [NSValue valueWithCGRect:CGRectMake(200, 110, 30, 30)];
+    NSValue *rect5 = [NSValue valueWithCGRect:CGRectMake(260, 110, 30, 30)];
+    NSValue *rect6 = [NSValue valueWithCGRect:CGRectMake(320, 110, 30, 30)];
+    NSArray *rects = [NSArray arrayWithObjects:rect1,rect2,rect3,rect4,rect5,rect6,nil];
+    
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjects:rects forKeys:colors];
+    for (UIColor *color in dict) {
+        UIButton *btn = [[UIButton alloc] initWithFrame:[[dict objectForKey:color] CGRectValue]];
+        [[btn layer] setCornerRadius:10.0f];
+        [[btn layer] setBorderColor:[UIColor colorWithRed:0.9 green:0.5 blue:0.1 alpha:0.8].CGColor];
+        [btn setBackgroundColor:color];
+        [btn addTarget:self action:@selector(colorTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btn];
+    }
+}
+
 - (void)drawRect:(CGRect)rect {
     [self setupBrightnessProgress];
     [self setupFontSizeBtn];
     [self setupNightModeBtn];
+    [self setupColorBtn];
 }
+
+#pragma mark -Action 
 
 - (void)fontSizeTouchUpInside:(id)sender {
     if ([sender isKindOfClass:[UIButton class]]) {
@@ -84,7 +115,13 @@
 }
 
 - (void)nightModeClick:(id)sender {
-         
+    NSLog(@"---night----");
 }
-     
+
+- (void)colorTouchUpInside:(id)sender {
+    if ([sender isKindOfClass:[UIButton class]]) {
+        NSLog(@"--color---");
+    }
+}
+
 @end
