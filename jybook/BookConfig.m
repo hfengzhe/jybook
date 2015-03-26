@@ -9,6 +9,7 @@
 #import "BookConfig.h"
 
 @implementation BookConfig
+
 @synthesize nightMode = _nightMode;
 @synthesize backgroundColor = _backgroundColor;
 @synthesize fontSize = _fontSize;
@@ -93,6 +94,16 @@
 - (void)setBookmarks:(NSArray *)bookmarks ForBook:(NSString *)bookname {
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     [user setObject:bookmarks forKey:[NSString stringWithFormat:@"bookmark->%@", bookname]];
+}
+
+- (NSString *)getLastPositionForBook: (NSString *)bookname {
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    return [user objectForKey:[NSString stringWithFormat:@"lastPos->%@", bookname]];
+}
+
+- (void)setLastPosition:(NSString *)position ForBook:(NSString *)bookname {
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user setObject:position forKey:[NSString stringWithFormat:@"lastPos->%@", bookname]];
 }
 
 @end

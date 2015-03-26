@@ -20,4 +20,7 @@
 - (NSArray *) getBookmarksForBook:(NSString *)bookname;
 - (void) setBookmarks:(NSArray *)bookmarks ForBook:(NSString *)bookname;
 
+- (NSString *) getLastPositionForBook: (NSString *)bookname;
+- (void) setLastPosition:(NSString *)position ForBook:(NSString *)bookname;
+
 @end

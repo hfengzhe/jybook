@@ -8,10 +8,12 @@
 
 #import "BookShelfViewController.h"
 #import "Book.h"
+#import "BookConfig.h"
 #import "BookPageViewController.h"
 
 @interface BookShelfViewController ()
 @property (nonatomic, strong) NSArray *books;
+@property (nonatomic, strong) BookConfig *bookconfig;
 @end
 
 @implementation BookShelfViewController
@@ -27,7 +29,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.bookconfig = [[BookConfig alloc] init];
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     // Do any additional setup after loading the view.
@@ -85,8 +87,22 @@ static NSString * const reuseIdentifier = @"Cell";
         
         BookPageViewController *bpvc = segue.destinationViewController;
         bpvc.book = selectedBook;
-        bpvc.chapterIndex = 0;
-        bpvc.jumpPage = bpvc.startPage;
+        
+        NSString *position = [self.bookconfig getLastPositionForBook:selectedBook.name];
+        if (position) {
+            NSArray *array = [position componentsSeparatedByString:@":"];
+            if ([array count] != 2) {
+                NSLog(@"invalid book position:%@", position);
+            }
+            NSString *chapter = [array objectAtIndex:0];
+            NSString *page = [array objectAtIndex:1];
+            
+            bpvc.chapterIndex = [selectedBook.chapters indexOfObject:chapter];
+            bpvc.jumpPage = page.integerValue;
+        } else {
+            bpvc.chapterIndex = 0;
+            bpvc.jumpPage = bpvc.startPage;
+        }
     }
 }
 

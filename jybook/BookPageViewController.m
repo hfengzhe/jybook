@@ -264,6 +264,8 @@
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [self.webview loadRequest:req];
     self.webview.hidden = NO;
+    NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
+    [self.bookconfig setLastPosition:position ForBook:self.book.name];
 }
 
 - (void)switchToPrevChapter {
@@ -286,6 +288,8 @@
     frame.origin.y = 0;
     [self.webview.scrollView scrollRectToVisible:frame animated:NO];
     self.currentPage = page;
+    NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
+    [self.bookconfig setLastPosition:position ForBook:self.book.name];
 }
 
 @end
