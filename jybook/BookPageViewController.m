@@ -236,9 +236,11 @@
     [self hideBookFontView];
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
     if (self.currentPage == self.webview.pageCount) {
-        [self switchToNextChapter];
-        self.jumpPage = self.startPage;
-        self.currentPage = self.jumpPage;
+        if ([self canSwitchToNextChapter]) {
+            [self switchToNextChapter];
+            self.jumpPage = self.startPage;
+            self.currentPage = self.jumpPage;
+        }
     } else {
         [self jumpToPage:self.currentPage + 1];
     }
