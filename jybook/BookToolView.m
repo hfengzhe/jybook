@@ -12,24 +12,47 @@
 
 @interface BookToolView ()
 @property (nonatomic, strong) BookFontView *bookFontView;
+@property (nonatomic, strong) UIButton *prevChapterBtn;
+@property (nonatomic, strong) UIButton *nextChapterBtn;
+@property (nonatomic, strong) UIButton *chapterListBtn;
+@property (nonatomic, strong) UIButton *fontBtn;
+@property (nonatomic, strong) UIButton *bookmarkBtn;
 @end
 
 @implementation BookToolView
 
-- (void)setupPrevChapterBtn {
-    UIButton *prevChapterBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-    [prevChapterBtn setTitle:@"上一章" forState:UIControlStateNormal];
-    [prevChapterBtn  setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [prevChapterBtn  setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
-    [prevChapterBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [prevChapterBtn addTarget:self action:@selector(prevChapterClick:) forControlEvents:UIControlEventTouchUpInside];
-    if (![self.pageViewController canSwitchToPrevChapter]) {
-        [prevChapterBtn setEnabled:NO];
-        [prevChapterBtn setTintColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0]];
+- (void) setButton:(UIButton *)button Title:(NSString *)title Frame:(CGRect)frame Align:(NSString *)align {
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setFrame:frame];
+    if ([align isEqualToString:@"left"]) {
+        [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+        [button setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+    } else if ([align isEqualToString:@"right"]) {
+        [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+        [button setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
     } else {
-        [prevChapterBtn setEnabled:YES];
+        [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     }
-    [self addSubview:prevChapterBtn];
+    [button addTarget:self action:@selector(btnTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(btnTouchDown:) forControlEvents:UIControlEventTouchDown];
+}
+
+- (UIButton *)prevChapterBtn {
+    if (!_prevChapterBtn) {
+        _prevChapterBtn = [[UIButton alloc] init];
+        CGRect frame = CGRectMake(0, 0, 100, 40);
+        [self setButton:_prevChapterBtn Title:@"上一章" Frame:frame Align:@"left"];
+    }
+    return _prevChapterBtn;
+}
+
+- (UIButton *)nextChapterBtn {
+    if (!_nextChapterBtn) {
+        _nextChapterBtn = [[UIButton alloc] init];
+        CGRect frame = CGRectMake(self.frame.size.width - 100, 0, 100, 40);
+        [self setButton:_nextChapterBtn Title:@"下一章" Frame:frame Align:@"right"];
+    }
+    return _nextChapterBtn;
 }
 
 - (void)setupProgress {
@@ -40,96 +63,79 @@
     [self addSubview:progress];
 }
 
-- (void)setupNextChapterBtn {
-    UIButton *nextChapterBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 100, 0, 100, 40)];
-    [nextChapterBtn setTitle:@"下一章" forState:UIControlStateNormal];
-    [nextChapterBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-    [nextChapterBtn setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
-    [nextChapterBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [nextChapterBtn addTarget:self action:@selector(nextChapterClick:) forControlEvents:UIControlEventTouchUpInside];
-    if (![self.pageViewController canSwitchToNextChapter]) {
-        [nextChapterBtn setEnabled:NO];
-        [nextChapterBtn setTintColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0]];
-    } else {
-        [nextChapterBtn setEnabled:YES];
+- (UIButton *)chapterListBtn {
+    if (!_chapterListBtn) {
+        _chapterListBtn = [[UIButton alloc] init];
+        CGRect frame = CGRectMake(0, 40, 100, 40);
+        [self setButton:_chapterListBtn Title:@"📚"  Frame:frame Align:@"left"];
     }
-    [self addSubview:nextChapterBtn];
+    return _chapterListBtn;
 }
 
-- (void)setupChapterListBtn {
-    UIButton *chapterListBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 40, 100, 40)];
-    [chapterListBtn setTitle:@"📚" forState:UIControlStateNormal];
-    [chapterListBtn  setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [chapterListBtn setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
-    [chapterListBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [chapterListBtn addTarget:self action:@selector(chapterListClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:chapterListBtn];
-}
-
-- (void)setupFontBtn {
-    UIButton *fontBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 40, self.frame.size.width - 200, 40)];
-    [fontBtn setTitle:@"Aa" forState:UIControlStateNormal];
-    [fontBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    [fontBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [fontBtn addTarget:self action:@selector(fontClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:fontBtn];
-}
-
-- (void)setupBookmarkBtn {
-    UIButton *bookmarkBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 100, self.frame.size.height - 40, 100, 40)];
-    [bookmarkBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-    [bookmarkBtn setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
-    [bookmarkBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [bookmarkBtn addTarget:self action:@selector(bookmarkClick:) forControlEvents:UIControlEventTouchUpInside];
-    if ([self.pageViewController isCurrentPositionInBookmark]) {
-        [bookmarkBtn setTitle:@"📕" forState:UIControlStateNormal];
-    } else {
-        [bookmarkBtn setTitle:@"📑" forState:UIControlStateNormal];
+- (UIButton *)fontBtn {
+    if (!_fontBtn) {
+        _fontBtn = [[UIButton alloc] init];
+        CGRect frame = CGRectMake(100, 40, self.frame.size.width - 200, 40);
+        [self setButton:_fontBtn Title:@"Aa" Frame:frame Align:@"center"];
     }
-    [self addSubview:bookmarkBtn];
+    return _fontBtn;
 }
 
+- (UIButton *)bookmarkBtn {
+    if (!_bookmarkBtn) {
+        _bookmarkBtn = [[UIButton alloc] init];
+        CGRect frame = CGRectMake(self.frame.size.width - 100, self.frame.size.height - 40, 100, 40);
+        [self setButton:_bookmarkBtn Title:@"📑" Frame:frame Align:@"right"];
+    }
+    return _bookmarkBtn;
+}
 
 - (void)drawRect:(CGRect)rect {
     for (UIView *view in self.subviews) {
         [view removeFromSuperview];
     }
-    [self setupPrevChapterBtn];
+    [self addSubview:self.prevChapterBtn];
     [self setupProgress];
-    [self setupNextChapterBtn];
-    
-    [self setupChapterListBtn];
-    [self setupFontBtn];
-    [self setupBookmarkBtn];
+    [self addSubview:self.nextChapterBtn];
+    [self addSubview:self.chapterListBtn];
+    [self addSubview:self.fontBtn];
+    [self addSubview:self.bookmarkBtn];
+    [self addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
 }
 
-- (void) prevChapterClick: (id)sender {
-    [self.pageViewController hideBookToolView];
-    self.pageViewController.jumpPage = self.pageViewController.startPage;
-    [self.pageViewController switchToPrevChapter];
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"hidden"]) {
+        NSLog(@"----observer hidden------%@", change);
+    }
 }
 
-- (void) nextChapterClick: (id)sender {
-    [self.pageViewController hideBookToolView];
-    self.pageViewController.jumpPage = self.pageViewController.startPage;
-    [self.pageViewController switchToNextChapter];
+#pragma mark -Action
+
+- (void)btnTouchUpInside: (id)sender {
+    if ([sender isKindOfClass:[UIButton class]]) {
+        UIButton *btn = (UIButton *)sender;
+        NSString *title = [btn currentTitle];
+        if ([title isEqualToString:@"上一章"]) {
+            self.pageViewController.jumpPage = self.pageViewController.startPage;
+            [self.pageViewController switchToPrevChapter];
+        } else if ([title isEqualToString:@"下一章"]) {
+            self.pageViewController.jumpPage = self.pageViewController.startPage;
+            [self.pageViewController switchToNextChapter];
+        } else if ([title isEqualToString:@"Aa"]) {
+            [self.pageViewController showBookFontView];
+        } else if ([title isEqualToString:@"📚"]) {
+            BookSpineViewController *bsvc = [[BookSpineViewController alloc] init];
+            bsvc.bpvc = self.pageViewController;
+            [self.pageViewController presentViewController:bsvc animated:YES completion:nil];
+        } else if ([title isEqualToString:@"📑"]) {
+            [self.pageViewController toggleBookmark];
+        }
+        [self.pageViewController hideBookToolView];
+    }
 }
 
-- (void) chapterListClick: (id)sender {
-    BookSpineViewController *bsvc = [[BookSpineViewController alloc] init];
-    bsvc.bpvc = self.pageViewController;
-    [self.pageViewController presentViewController:bsvc animated:YES completion:nil];
-    [self.pageViewController hideBookToolView];
-}
-
-- (void) fontClick: (id)sender {
-    [self.pageViewController showBookFontView];
-    [self.pageViewController hideBookToolView];
-}
-
-- (void) bookmarkClick: (id)sender {
-    [self.pageViewController hideBookToolView];
-    [self.pageViewController toggleBookmark];
+- (void)btnTouchDown: (id)sender {
+    NSLog(@"---touch down---");
 }
 
 @end
