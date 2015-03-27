@@ -103,9 +103,37 @@
     [self addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+- (void)updateBtnStatus {
+    if ([self.pageViewController canSwitchToPrevChapter]) {
+        [self.prevChapterBtn setEnabled:YES];
+        [self.prevChapterBtn setTitleColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.9] forState:UIControlStateNormal];
+    } else {
+        [self.prevChapterBtn setEnabled:NO];
+        [self.prevChapterBtn setTitleColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.4] forState:UIControlStateNormal];
+    }
+    if ([self.pageViewController canSwitchToNextChapter]) {
+        [self.nextChapterBtn setEnabled:YES];
+        [self.nextChapterBtn setTitleColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.9] forState:UIControlStateNormal];
+    } else {
+        [self.nextChapterBtn setEnabled:NO];
+        [self.nextChapterBtn setTitleColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.4] forState:UIControlStateNormal];
+    }
+    NSString *position = [NSString stringWithFormat:@"%@:%lul", self.pageViewController.book.chapters[self.pageViewController.chapterIndex], self.pageViewController.currentPage];
+    if ([self.pageViewController.book.bookmarks containsObject:position]) {
+        [self.bookmarkBtn setTitle:@"📕" forState:UIControlStateNormal];
+    } else {
+        [self.bookmarkBtn setTitle:@"📑" forState:UIControlStateNormal];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"hidden"]) {
-        NSLog(@"----observer hidden------%@", change);
+        if ([object isKindOfClass:[UIView class]]) {
+            UIView *view = (UIView *) object;
+            if (!view.hidden) {
+                [self updateBtnStatus];
+            }
+        }
     }
 }
 
@@ -129,13 +157,18 @@
             [self.pageViewController presentViewController:bsvc animated:YES completion:nil];
         } else if ([title isEqualToString:@"📑"]) {
             [self.pageViewController toggleBookmark];
+        } else if ([title isEqualToString:@"📕"]) {
+            [self.pageViewController toggleBookmark]; 
         }
         [self.pageViewController hideBookToolView];
     }
 }
 
 - (void)btnTouchDown: (id)sender {
-    NSLog(@"---touch down---");
+    if ([sender isKindOfClass:[UIButton class]]) {
+        UIButton *btn = (UIButton *)sender;
+        btn.titleLabel.textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.4];
+    }
 }
 
 @end
