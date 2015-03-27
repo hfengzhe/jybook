@@ -39,7 +39,8 @@
 
 - (BookFontView *)bookFontView {
     if (!_bookFontView) {
-        _bookFontView  = [[BookFontView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 200, self.view.frame.size.width, 200)];
+        _bookFontView  = [[BookFontView alloc] init];
+        [_bookFontView setFrame:CGRectMake(0, self.view.frame.size.height - 200, self.view.frame.size.width, 200)];
         [self.view insertSubview:_bookFontView aboveSubview:self.webview];
         [_bookFontView setHidden:YES];
         _bookFontView.pageViewController = self;

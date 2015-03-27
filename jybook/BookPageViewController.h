@@ -20,6 +20,8 @@
 - (void) hideBookToolView;
 - (void) showBookFontView;
 
+- (void)switchNightMode;
+
 - (void) toggleBookmark;
 
 - (BOOL) isCurrentPositionInBookmark;

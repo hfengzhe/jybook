@@ -7,6 +7,12 @@
 //
 
 #import "BookFontView.h"
+#import "BookConfig.h"
+
+@interface BookFontView()
+@property (nonatomic, strong) BookConfig *bookconfig;
+@property (nonatomic, strong) UIButton *nightModeBtn;
+@end
 
 @implementation BookFontView
 
@@ -44,16 +50,18 @@
     }
 }
 
-- (void)setupNightModeBtn {
-    UIButton *nightModeBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 60, 50, 40, 40)];
-    [nightModeBtn setTitle:@"🌙" forState:UIControlStateNormal];
-    [nightModeBtn  setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    [nightModeBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [[nightModeBtn layer] setCornerRadius:20.0f];
-    [[nightModeBtn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
-    [[nightModeBtn layer] setBorderWidth:1.0f];
-    [nightModeBtn addTarget:self action:@selector(nightModeClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:nightModeBtn];
+- (UIButton *)nightModeBtn {
+    if (!_nightModeBtn) {
+        _nightModeBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 60, 50, 40, 40)];
+        [_nightModeBtn setTitle:@"🌙" forState:UIControlStateNormal];
+        [_nightModeBtn  setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+        [_nightModeBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+        [[_nightModeBtn layer] setCornerRadius:20.0f];
+        [[_nightModeBtn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
+        [[_nightModeBtn layer] setBorderWidth:1.0f];
+        [_nightModeBtn addTarget:self action:@selector(nightModeClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _nightModeBtn;
 }
 
 - (void)setupColorBtn {
@@ -110,10 +118,17 @@
     }
 }
 
+- (id)init {
+    if (self == [super init]) {
+        self.bookconfig = [BookConfig sharedConfig];
+    }
+    return self;
+}
+
 - (void)drawRect:(CGRect)rect {
     [self setupBrightnessProgress];
     [self setupFontSizeBtn];
-    [self setupNightModeBtn];
+    [self addSubview:self.nightModeBtn];
     [self setupColorBtn];
     [self setupLineSpacingBtn];
 }
@@ -142,7 +157,12 @@
 }
 
 - (void)nightModeClick:(id)sender {
-    NSLog(@"---night----");
+    [self.pageViewController switchNightMode];
+    if (self.bookconfig.nightMode) {
+        [self.nightModeBtn setTitle:@"☀️" forState:UIControlStateNormal];
+    } else {
+        [self.nightModeBtn setTitle:@"🌙" forState:UIControlStateNormal];
+    }
 }
 
 - (void)colorTouchUpInside:(id)sender {
