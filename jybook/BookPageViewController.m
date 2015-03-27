@@ -238,10 +238,11 @@
     if (self.currentPage == self.webview.pageCount) {
         [self switchToNextChapter];
         self.jumpPage = self.startPage;
+        self.currentPage = self.jumpPage;
     } else {
         [self jumpToPage:self.currentPage + 1];
     }
-    if ((self.chapterIndex == [self.book.chapters count] - 1) && (self.currentPage = self.webview.pageCount)) {
+    if ((self.chapterIndex == [self.book.chapters count] - 1) && (self.currentPage == self.webview.pageCount)) {
         [self switchShowTip:@"已到最后一页"];
     } else {
         CATransition *animation = [CATransition animation];
