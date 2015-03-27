@@ -196,7 +196,11 @@
         [self jumpToPage:self.currentPage - 1];
     }
     if ((self.chapterIndex == 0) && (self.currentPage == self.startPage)) {
-        NSLog(@"You are in first page already");
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 50, self.view.frame.size.height / 2 - 20, 100, 40)];
+        [label setText:@"已到第一页"];
+        [label setBackgroundColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.4]];
+        [label setTintColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8] ];
+        [self.view insertSubview:label aboveSubview:self.webview];
     } else {
         CATransition *animation = [CATransition animation];
         [animation setDelegate:self];
