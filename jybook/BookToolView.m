@@ -90,6 +90,17 @@
     return _bookmarkBtn;
 }
 
+- (id)init {
+    if (self == [super init]) {
+        [self addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [self removeObserver:self forKeyPath:@"hidden"];
+}
+
 - (void)drawRect:(CGRect)rect {
     for (UIView *view in self.subviews) {
         [view removeFromSuperview];
@@ -100,7 +111,7 @@
     [self addSubview:self.chapterListBtn];
     [self addSubview:self.fontBtn];
     [self addSubview:self.bookmarkBtn];
-    [self addObserver:self forKeyPath:@"hidden" options:0 context:NULL];
+ 
 }
 
 - (void)updateBtnStatus {
