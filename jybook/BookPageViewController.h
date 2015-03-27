@@ -22,7 +22,7 @@
 
 - (void)switchNightMode;
 
-- (void)setPageBackground:(UIColor *)color;
+- (void)setPageBackground:(NSString *)color;
 
 - (void) toggleBookmark;
 

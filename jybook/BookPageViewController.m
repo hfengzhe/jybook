@@ -135,7 +135,14 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [self syncNightMode:self.bookconfig.nightMode];
+    if (self.bookconfig.nightMode) {
+        [self syncNightMode:YES];
+    } else if (self.bookconfig.backgroundColor) {
+        [self setPageBackground:self.bookconfig.backgroundColor];
+    } else {
+        [self syncNightMode:NO];
+    }
+ 
     if (self.goLastFlag) {
         self.goLastFlag = FALSE;
         [self jumpToPage:self.webview.pageCount];
@@ -166,25 +173,16 @@
 - (void)switchNightMode {
     self.bookconfig.nightMode = ! self.bookconfig.nightMode;
     [self syncNightMode:self.bookconfig.nightMode];
+    self.bookconfig.backgroundColor = nil;
 }
 
-- (NSString *)hexStringFromColor:(UIColor *)color
-{
-    const CGFloat *components = CGColorGetComponents(color.CGColor);
-    
-    CGFloat r = components[0];
-    CGFloat g = components[1];
-    CGFloat b = components[2];
-    
-    return [NSString stringWithFormat:@"%02lX%02lX%02lX",
-            lroundf(r * 255),
-            lroundf(g * 255),
-            lroundf(b * 255)];
-}
 
-- (void)setPageBackground:(UIColor *)color {
-    NSString *str = [NSString stringWithFormat:@"document.body.style.background='#%@';", [self hexStringFromColor:color]];
-    [self.webview stringByEvaluatingJavaScriptFromString:str];}
+- (void)setPageBackground:(NSString *)color {
+    NSString *str = [NSString stringWithFormat:@"document.body.style.background='%@';", color];
+    [self.webview stringByEvaluatingJavaScriptFromString:str];
+    self.bookconfig.backgroundColor = color;
+    self.bookconfig.nightMode = FALSE;
+}
 
 - (void)toggleBookmark {
     NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
