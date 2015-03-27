@@ -67,7 +67,7 @@
 - (void)setupColorBtn {
     UIColor *color1 = [UIColor colorWithRed:0.1 green:0.8 blue:0.3 alpha:0.4];
     UIColor *color2 = [UIColor colorWithRed:0.2 green:0.7 blue:0.7 alpha:0.4];
-    UIColor *color3 = [UIColor colorWithRed:0.3 green:0.6 blue:0.3 alpha:0.4];
+    UIColor *color3 = [UIColor colorWithRed:0.8 green:0.6 blue:0.3 alpha:0.4];
     UIColor *color4 = [UIColor colorWithRed:0.4 green:0.5 blue:0.2 alpha:0.4];
     UIColor *color5 = [UIColor colorWithRed:0.5 green:0.4 blue:0.8 alpha:0.4];
     UIColor *color6 = [UIColor colorWithRed:0.6 green:0.3 blue:0.1 alpha:0.4];
@@ -167,7 +167,8 @@
 
 - (void)colorTouchUpInside:(id)sender {
     if ([sender isKindOfClass:[UIButton class]]) {
-        NSLog(@"--color---");
+        UIButton *btn = (UIButton *)sender;
+        [self.pageViewController setPageBackground:btn.backgroundColor];
     }
 }
 

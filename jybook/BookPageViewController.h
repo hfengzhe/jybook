@@ -22,6 +22,8 @@
 
 - (void)switchNightMode;
 
+- (void)setPageBackground:(UIColor *)color;
+
 - (void) toggleBookmark;
 
 - (BOOL) isCurrentPositionInBookmark;

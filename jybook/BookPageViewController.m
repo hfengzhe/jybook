@@ -168,6 +168,24 @@
     [self syncNightMode:self.bookconfig.nightMode];
 }
 
+- (NSString *)hexStringFromColor:(UIColor *)color
+{
+    const CGFloat *components = CGColorGetComponents(color.CGColor);
+    
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    
+    return [NSString stringWithFormat:@"%02lX%02lX%02lX",
+            lroundf(r * 255),
+            lroundf(g * 255),
+            lroundf(b * 255)];
+}
+
+- (void)setPageBackground:(UIColor *)color {
+    NSString *str = [NSString stringWithFormat:@"document.body.style.background='#%@';", [self hexStringFromColor:color]];
+    [self.webview stringByEvaluatingJavaScriptFromString:str];}
+
 - (void)toggleBookmark {
     NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
     if ([self.book.bookmarks containsObject:position]) {
