@@ -95,7 +95,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.bookconfig = [BookConfig sharedConfig];
-
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     NSURL *url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [self.webview loadRequest:req];
