@@ -185,6 +185,24 @@
     return YES;
 }
 
+- (void) switchShowTip:(NSString *)text {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 60, self.view.frame.size.height / 2 - 20, 120, 40)];
+    [label setText:text];
+    [label setFont:[UIFont systemFontOfSize:12]];
+    [label setBackgroundColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.9]];
+    [label setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1.0]];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [[label layer] setCornerRadius:8.0f];
+    [[label layer] setMasksToBounds:YES];
+    [self.view insertSubview:label aboveSubview:self.webview];
+    
+    [UIView animateWithDuration:1.0f delay:0.8f options:UIViewAnimationOptionCurveLinear animations:^{
+        label.alpha = 0.0;
+    }completion:^(BOOL finished) {
+        [label removeFromSuperview];
+    }];
+}
+
 - (void)swipeLeft:(UISwipeGestureRecognizer *)recognizer {
     [self hideBookToolView];
     [self hideBookFontView];
@@ -196,21 +214,7 @@
         [self jumpToPage:self.currentPage - 1];
     }
     if ((self.chapterIndex == 0) && (self.currentPage == self.startPage)) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 60, self.view.frame.size.height / 2 - 20, 120, 40)];
-        [label setText:@"已到第一页"];
-        [label setFont:[UIFont systemFontOfSize:12]];
-        [label setBackgroundColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.9]];
-        [label setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1.0]];
-        [label setTextAlignment:NSTextAlignmentCenter];
-        [[label layer] setCornerRadius:8.0f];
-        [[label layer] setMasksToBounds:YES];
-        [self.view insertSubview:label aboveSubview:self.webview];
-        
-        [UIView animateWithDuration:1.0f delay:0.8f options:UIViewAnimationOptionCurveLinear animations:^{
-            label.alpha = 0.0;
-        }completion:^(BOOL finished) {
-            [label removeFromSuperview];
-        }];
+        [self switchShowTip:@"已到第一页"];
    
     } else {
         CATransition *animation = [CATransition animation];
@@ -238,7 +242,7 @@
         [self jumpToPage:self.currentPage + 1];
     }
     if ((self.chapterIndex == [self.book.chapters count] - 1) && (self.currentPage = self.webview.pageCount)) {
-        NSLog(@"You are in last page already");
+        [self switchShowTip:@"已到最后一页"];
     } else {
         CATransition *animation = [CATransition animation];
         [animation setDelegate:self];
