@@ -65,12 +65,12 @@
 }
 
 - (void)setupColorBtn {
-    UIColor *color1 = [UIColor colorWithRed:0.71 green:0.71 blue:0.71 alpha:1.0];
-    UIColor *color2 = [UIColor colorWithRed:0.69 green:0.65 blue:0.58 alpha:1.0];
-    UIColor *color3 = [UIColor colorWithRed:0.64 green:0.55 blue:0.36 alpha:1.0];
-    UIColor *color4 = [UIColor colorWithRed:0.44 green:0.63 blue:0.44 alpha:1.0];
-    UIColor *color5 = [UIColor colorWithRed:0.12 green:0.2 blue:0.3 alpha:1.0];
-    UIColor *color6 = [UIColor colorWithRed:0.26 green:0.2 blue:0.18 alpha:1.0];
+    UIColor *color1 = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.0];
+    UIColor *color2 = [UIColor colorWithRed:0.7 green:0.6 blue:0.6 alpha:1.0];
+    UIColor *color3 = [UIColor colorWithRed:0.6 green:0.6 blue:0.4 alpha:1.0];
+    UIColor *color4 = [UIColor colorWithRed:0.4 green:0.6 blue:0.4 alpha:1.0];
+    UIColor *color5 = [UIColor colorWithRed:0.1 green:0.2 blue:0.3 alpha:1.0];
+    UIColor *color6 = [UIColor colorWithRed:0.3 green:0.2 blue:0.2 alpha:1.0];
     NSArray *colors = [NSArray arrayWithObjects:color1,color2,color3,color4,color5,color6,nil];
     
     NSValue *rect1 = [NSValue valueWithCGRect:CGRectMake(20, 110, 30, 30)];

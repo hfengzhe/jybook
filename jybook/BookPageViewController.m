@@ -54,7 +54,10 @@
 - (BookSliderInfoView *)bookSlierInfoView {
     if (!_bookSlierInfoView) {
         _bookSlierInfoView = [[BookSliderInfoView alloc] init];
-        [_bookSlierInfoView setFrame:CGRectMake(self.view.frame.size.width / 2 - 100, self.view.frame.size.height /2 - 80, 200, 100)];
+        [_bookSlierInfoView setFrame:CGRectMake(self.view.frame.size.width / 2 - 100, self.view.frame.size.height - 200, 200, 100)];
+        [[_bookSlierInfoView layer] setCornerRadius:16.0f];
+        [[_bookSlierInfoView layer] setMasksToBounds:TRUE];
+        
         [self.view insertSubview:_bookSlierInfoView aboveSubview:self.webview];
         [_bookSlierInfoView setHidden:YES];
         _bookSlierInfoView.pageViewController = self;
@@ -187,7 +190,7 @@
 
 - (void)syncNightMode:(BOOL) nightMode {
     if (nightMode) {
-        NSString *str = @"document.body.style.background='#080c10';document.body.style.color='#424952'";
+        NSString *str = @"document.body.style.background='#0C0C0C';document.body.style.color='#464646'";
         [self.webview stringByEvaluatingJavaScriptFromString:str];
     } else {
         NSString *str = @"document.body.style.background='#FFFFFF';document.body.style.color='#000000'";
