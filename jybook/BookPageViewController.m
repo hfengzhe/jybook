@@ -25,7 +25,7 @@
 @implementation BookPageViewController
 @synthesize goLastFlag = _goLastFlag;
 
-#pragma mark - Getter/Setter
+#pragma mark - Sub view getter
 
 - (BookToolView *)bookToolView {
     if (!_bookToolView) {
@@ -63,6 +63,8 @@
     return _bookSlierInfoView;
 }
 
+#pragma mark -Sub view show/hide
+
 - (void)hideBookToolView {
     [self.bookToolView setHidden:TRUE];
     [self.bookSlierInfoView setHidden:TRUE];
@@ -85,8 +87,11 @@
 }
 
 - (void)showBookSliderInfoView {
+    [self.bookSlierInfoView.titleLabel setText:[self.book titleForChapter:self.book.chapters[self.chapterIndex]]];
     [self.bookSlierInfoView setHidden:NO];
 }
+
+#pragma mark - Getter/Setter
 
 - (BOOL)goLastFlag {
     if (!_goLastFlag) {

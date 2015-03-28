@@ -11,5 +11,6 @@
 
 @interface BookSliderInfoView : UIView
 @property (nonatomic, strong) BookPageViewController *pageViewController;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @end
