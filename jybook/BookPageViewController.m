@@ -98,6 +98,7 @@
     // Do any additional setup after loading the view.
     self.bookconfig = [BookConfig sharedConfig];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.9];
     
     NSURL *url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
@@ -146,7 +147,7 @@
     if (self.goLastFlag) {
         self.goLastFlag = FALSE;
         [self jumpToPage:self.webview.pageCount];
-    } else if (self.jumpPage != self.currentPage) {
+    } else {
         [self jumpToPage:self.jumpPage];
     }
 }
