@@ -56,12 +56,34 @@
 }
 
 - (void)setupProgress {
-    UIProgressView *progress = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-    [progress setFrame:CGRectMake(100, 20, self.frame.size.width - 200, 40)];
-    [progress setProgress:0.5];
-    [progress setProgressTintColor:[UIColor redColor]];
-    [self addSubview:progress];
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(100, 12, self.frame.size.width - 200, 16)];
+    [slider setValue:0.5];
+    [slider setTintColor:[UIColor colorWithRed:0.9 green:0.1 blue:0.1 alpha:0.9]];
+    [slider setBackgroundColor:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.4]];
+    [slider setThumbImage:[BookToolView sliderCircle] forState:UIControlStateNormal];
+    [self addSubview:slider];
 }
+
++ (UIImage *)sliderCircle {
+    static UIImage *Circle = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(16.0f, 16.0f), YES, 0.0f);
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        CGContextSaveGState(ctx);
+        
+        CGRect rect = CGRectMake(0, 0, 16, 16);
+        CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
+        CGContextFillEllipseInRect(ctx, rect);
+        
+        CGContextRestoreGState(ctx);
+        Circle = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+    });
+    return Circle;
+}
+
 
 - (UIButton *)chapterListBtn {
     if (!_chapterListBtn) {
