@@ -57,10 +57,16 @@
 
 - (void)setupProgress {
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(100, 12, self.frame.size.width - 200, 16)];
-    [slider setValue:0.5];
     [slider setTintColor:[UIColor colorWithRed:0.9 green:0.1 blue:0.1 alpha:0.9]];
     [slider setBackgroundColor:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.4]];
     [slider setThumbImage:[BookToolView sliderCircle] forState:UIControlStateNormal];
+
+    //[slider setValue:self.pageViewController.currentPage];
+    //[slider setMinimumValue:self.pageViewController.startPage];
+    //[slider setMaximumValue:self.pageViewController.webview.pageCount];
+    
+    [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [slider addTarget:self action:@selector(sliderDragUp:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:slider];
 }
 
@@ -72,9 +78,15 @@
         CGContextRef ctx = UIGraphicsGetCurrentContext();
         CGContextSaveGState(ctx);
         
-        CGRect rect = CGRectMake(0, 0, 16, 16);
-        CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
-        CGContextFillEllipseInRect(ctx, rect);
+        CGRect bounds = CGRectMake(0, 0, 16, 16);
+        CGPoint center = CGPointMake(bounds.size.width / 2, bounds.size.height / 2);
+        CGContextSaveGState(ctx);
+        
+        CGContextSetLineWidth(ctx, 2);
+        CGContextSetRGBStrokeColor(ctx, 0.9, 0.1, 0.1, 1.0);
+        CGContextAddArc(ctx, center.x, center.y, 7, 0.0, M_PI*2, YES);
+        CGContextStrokePath(ctx);
+        CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
         
         CGContextRestoreGState(ctx);
         Circle = UIGraphicsGetImageFromCurrentImageContext();
@@ -201,6 +213,19 @@
     if ([sender isKindOfClass:[UIButton class]]) {
         UIButton *btn = (UIButton *)sender;
         btn.titleLabel.textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.4];
+    }
+}
+
+- (void)sliderValueChanged: (id)sender {
+    if ([sender isKindOfClass:[UISlider class]]) {
+        [self.pageViewController showBookSliderInfoView];
+    }
+}
+
+- (void)sliderDragUp: (id)sender {
+    if ([sender isKindOfClass:[UISlider class]]) {
+        UISlider *slider = (UISlider *)sender;
+        NSLog(@"----slider drag up--------:%f", slider.value);
     }
 }
 

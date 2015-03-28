@@ -19,6 +19,7 @@
 
 - (void) hideBookToolView;
 - (void) showBookFontView;
+- (void) showBookSliderInfoView;
 
 - (void)switchNightMode;
 

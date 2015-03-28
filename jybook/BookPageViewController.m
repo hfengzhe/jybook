@@ -9,11 +9,13 @@
 #import "BookPageViewController.h"
 #import "BookToolView.h"
 #import "BookFontView.h"
+#import "BookSliderInfoView.h"
 #import "BookConfig.h"
 
 @interface BookPageViewController ()
 @property (nonatomic, strong) BookToolView *bookToolView;
 @property (nonatomic, strong) BookFontView *bookFontView;
+@property (nonatomic, strong) BookSliderInfoView *bookSlierInfoView;
 @property (nonatomic, strong) BookConfig *bookconfig;
 
 @property (nonatomic) BOOL goLastFlag;
@@ -49,8 +51,21 @@
     return _bookFontView;
 }
 
+- (BookSliderInfoView *)bookSlierInfoView {
+    if (!_bookSlierInfoView) {
+        _bookSlierInfoView = [[BookSliderInfoView alloc] init];
+        [_bookSlierInfoView setFrame:CGRectMake(self.view.frame.size.width / 2 - 100, self.view.frame.size.height /2 - 80, 200, 100)];
+        [self.view insertSubview:_bookSlierInfoView aboveSubview:self.webview];
+        [_bookSlierInfoView setHidden:YES];
+        _bookSlierInfoView.pageViewController = self;
+        _bookSlierInfoView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.95];
+    }
+    return _bookSlierInfoView;
+}
+
 - (void)hideBookToolView {
     [self.bookToolView setHidden:TRUE];
+    [self.bookSlierInfoView setHidden:TRUE];
     [self.navigationController setNavigationBarHidden:YES];
     [self setNeedsStatusBarAppearanceUpdate];
 }
@@ -67,6 +82,10 @@
 
 - (void)hideBookFontView {
     [self.bookFontView setHidden:YES];
+}
+
+- (void)showBookSliderInfoView {
+    [self.bookSlierInfoView setHidden:NO];
 }
 
 - (BOOL)goLastFlag {
