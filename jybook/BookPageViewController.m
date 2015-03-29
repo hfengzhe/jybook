@@ -22,6 +22,9 @@
 
 @end
 
+#define MAX_FONT_SIZE   36
+#define MIN_FONT_SIZE   6
+
 @implementation BookPageViewController
 @synthesize goLastFlag = _goLastFlag;
 
@@ -188,6 +191,8 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self syncNightMode:self.bookconfig.nightMode];
+    [[UIScreen mainScreen] setBrightness:self.bookconfig.brightness];
+    [self setPageFontSize:self.bookconfig.fontSize];
  
     if (self.goLastFlag) {
         self.goLastFlag = FALSE;
@@ -204,6 +209,35 @@
 - (BOOL)isCurrentPositionInBookmark {
     NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
     return [self.book.bookmarks containsObject:position];
+}
+
+#pragma mark -Font size
+
+- (BOOL)canIncreaseFontSize {
+    return self.bookconfig.fontSize < MAX_FONT_SIZE;
+}
+
+- (BOOL)canDecreaseFontSize {
+    return self.bookconfig.fontSize > MIN_FONT_SIZE;
+}
+
+- (void) increaseFontSize {
+    if ([self canIncreaseFontSize]) {
+        self.bookconfig.fontSize = self.bookconfig.fontSize + 2;
+        [self setPageFontSize:self.bookconfig.fontSize];
+    }
+}
+
+- (void) decreaseFontSize {
+    if ([self canDecreaseFontSize]) {
+        self.bookconfig.fontSize = self.bookconfig.fontSize - 2;
+        [self setPageFontSize:self.bookconfig.fontSize];
+    }
+}
+
+- (void) setPageFontSize: (NSUInteger) fontSize {
+    NSString *jsString = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust = '%lu%%'", (unsigned long)fontSize * 100 / 12];
+    [self.webview stringByEvaluatingJavaScriptFromString:jsString];
 }
 
 - (void)syncNightMode:(BOOL) nightMode {

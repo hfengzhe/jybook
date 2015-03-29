@@ -61,6 +61,7 @@
 
 - (NSUInteger)fontSize {
     if (!_fontSize) {
+        [self.user setInteger:12 forKey:@"fontSize"];
         _fontSize = [self.user integerForKey:@"fontSize"];
     }
     return _fontSize;
@@ -85,6 +86,7 @@
 
 - (CGFloat)brightness {
     if (!_brightness) {
+        [self.user setDouble:0.7 forKey:@"birighness"];
         _brightness = [self.user doubleForKey:@"brightness"];
     }
     return _brightness;

@@ -173,16 +173,18 @@
             [self.pageViewController switchToNextChapter];
         } else if ([title isEqualToString:@"Aa"]) {
             [self.pageViewController showBookFontView];
+            [self.pageViewController hideBookToolView];
         } else if ([title isEqualToString:@"📚"]) {
             BookSpineViewController *bsvc = [[BookSpineViewController alloc] init];
             bsvc.bpvc = self.pageViewController;
             [self.pageViewController presentViewController:bsvc animated:YES completion:nil];
+            [self.pageViewController hideBookToolView];
         } else if ([title isEqualToString:@"📑"]) {
             [self.pageViewController toggleBookmark];
         } else if ([title isEqualToString:@"📕"]) {
             [self.pageViewController toggleBookmark]; 
         }
-        [self.pageViewController hideBookToolView];
+        [self updateBtnStatus];
     }
 }
 

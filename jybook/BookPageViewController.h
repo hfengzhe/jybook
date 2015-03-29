@@ -22,6 +22,11 @@
 - (void) showBookSliderInfoView;
 + (UIImage *) sliderCircle;
 
+- (BOOL) canIncreaseFontSize;
+- (BOOL) canDecreaseFontSize;
+- (void) increaseFontSize;
+- (void) decreaseFontSize;
+
 - (void) switchNightMode;
 
 - (void) setPageBackground:(NSString *)color;

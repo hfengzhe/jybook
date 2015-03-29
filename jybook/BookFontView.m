@@ -141,6 +141,7 @@
     if ([sender isKindOfClass:[UISlider class]]) {
         UISlider *slider = (UISlider *)sender;
         [[UIScreen mainScreen] setBrightness:slider.value];
+        [self.bookconfig setBrightness:slider.value];
     }
 }
 
@@ -150,9 +151,9 @@
         [[btn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
         NSString *title = [btn currentTitle];
         if ([title isEqualToString:@"A-"]) {
-            NSLog(@"A-");
+            [self.pageViewController decreaseFontSize];
         } else if ([title isEqualToString:@"A+"]) {
-            NSLog(@"A+");
+            [self.pageViewController increaseFontSize];
         }
     }
 }
