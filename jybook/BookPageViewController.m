@@ -187,13 +187,7 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    if (self.bookconfig.nightMode) {
-        [self syncNightMode:YES];
-    } else if (self.bookconfig.backgroundColor) {
-        [self setPageBackground:self.bookconfig.backgroundColor];
-    } else {
-        [self syncNightMode:NO];
-    }
+    [self syncNightMode:self.bookconfig.nightMode];
  
     if (self.goLastFlag) {
         self.goLastFlag = FALSE;
@@ -217,15 +211,19 @@
         NSString *str = @"document.body.style.background='#0C0C0C';document.body.style.color='#464646'";
         [self.webview stringByEvaluatingJavaScriptFromString:str];
     } else {
-        NSString *str = @"document.body.style.background='#FFFFFF';document.body.style.color='#000000'";
-        [self.webview stringByEvaluatingJavaScriptFromString:str];
+        if (self.bookconfig.backgroundColor) {
+            NSString *str = [NSString stringWithFormat:@"document.body.style.background='%@';", self.bookconfig.backgroundColor];
+            [self.webview stringByEvaluatingJavaScriptFromString:str];
+        } else {
+            NSString *str = @"document.body.style.background='#FFFFFF';document.body.style.color='#000000'";
+            [self.webview stringByEvaluatingJavaScriptFromString:str];
+        }
     }
 }
 
 - (void)switchNightMode {
     self.bookconfig.nightMode = ! self.bookconfig.nightMode;
     [self syncNightMode:self.bookconfig.nightMode];
-    self.bookconfig.backgroundColor = nil;
 }
 
 
