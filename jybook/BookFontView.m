@@ -18,6 +18,7 @@
 
 - (void)setupBrightnessProgress {
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(20, 10, self.frame.size.width - 40, 30)];
+    [slider setValue:[UIScreen mainScreen].brightness];
     [slider setTintColor:[UIColor colorWithRed:0.9 green:0.1 blue:0.1 alpha:0.9]];
     [slider setBackgroundColor:[UIColor clearColor]];
     [slider setThumbImage:[[self.pageViewController class] sliderCircle] forState:UIControlStateNormal];
