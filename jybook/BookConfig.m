@@ -61,7 +61,7 @@
 
 - (NSUInteger)fontSize {
     if (!_fontSize) {
-        [self.user setInteger:12 forKey:@"fontSize"];
+        [self.user setInteger:120 forKey:@"fontSize"];
         _fontSize = [self.user integerForKey:@"fontSize"];
     }
     return _fontSize;

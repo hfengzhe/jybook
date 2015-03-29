@@ -22,8 +22,8 @@
 
 @end
 
-#define MAX_FONT_SIZE   36
-#define MIN_FONT_SIZE   6
+#define MAX_FONT_SIZE   500
+#define MIN_FONT_SIZE   20
 
 @implementation BookPageViewController
 @synthesize goLastFlag = _goLastFlag;
@@ -223,20 +223,20 @@
 
 - (void) increaseFontSize {
     if ([self canIncreaseFontSize]) {
-        self.bookconfig.fontSize = self.bookconfig.fontSize + 2;
+        self.bookconfig.fontSize = self.bookconfig.fontSize + 20;
         [self setPageFontSize:self.bookconfig.fontSize];
     }
 }
 
 - (void) decreaseFontSize {
     if ([self canDecreaseFontSize]) {
-        self.bookconfig.fontSize = self.bookconfig.fontSize - 2;
+        self.bookconfig.fontSize = self.bookconfig.fontSize - 20;
         [self setPageFontSize:self.bookconfig.fontSize];
     }
 }
 
 - (void) setPageFontSize: (NSUInteger) fontSize {
-    NSString *jsString = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust = '%lu%%'", (unsigned long)fontSize * 100 / 12];
+    NSString *jsString = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust = '%lu%%'", (unsigned long)fontSize];
     [self.webview stringByEvaluatingJavaScriptFromString:jsString];
 }
 

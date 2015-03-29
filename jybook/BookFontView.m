@@ -23,7 +23,7 @@
     [slider setBackgroundColor:[UIColor clearColor]];
     [slider setThumbImage:[[self.pageViewController class] sliderCircle] forState:UIControlStateNormal];
     
-    [slider addTarget:self action:@selector(sliderDragUp:) forControlEvents:UIControlEventTouchUpInside];
+    [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self addSubview:slider];
 }
 
@@ -138,7 +138,7 @@
 
 #pragma mark -Action 
 
-- (void)sliderDragUp: (id)sender {
+- (void)sliderValueChanged: (id)sender {
     if ([sender isKindOfClass:[UISlider class]]) {
         UISlider *slider = (UISlider *)sender;
         [[UIScreen mainScreen] setBrightness:slider.value];
