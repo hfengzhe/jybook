@@ -17,11 +17,13 @@
 @implementation BookFontView
 
 - (void)setupBrightnessProgress {
-    UIProgressView *progress = [[UIProgressView alloc] initWithFrame:CGRectMake(20, 20, self.frame.size.width - 40, 40)];
-    [progress setProgress:0.5];
-    [progress setProgressTintColor:[UIColor redColor]];
-    [progress setContentMode:UIViewContentModeCenter];
-    [self addSubview:progress];
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(20, 10, self.frame.size.width - 40, 30)];
+    [slider setTintColor:[UIColor colorWithRed:0.9 green:0.1 blue:0.1 alpha:0.9]];
+    [slider setBackgroundColor:[UIColor clearColor]];
+    [slider setThumbImage:[[self.pageViewController class] sliderCircle] forState:UIControlStateNormal];
+    
+    [slider addTarget:self action:@selector(sliderDragUp:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:slider];
 }
 
 - (void)setupFontSizeBtn {
@@ -134,6 +136,13 @@
 }
 
 #pragma mark -Action 
+
+- (void)sliderDragUp: (id)sender {
+    if ([sender isKindOfClass:[UISlider class]]) {
+        UISlider *slider = (UISlider *)sender;
+        [[UIScreen mainScreen] setBrightness:slider.value];
+    }
+}
 
 - (void)fontSizeTouchUpInside:(id)sender {
     if ([sender isKindOfClass:[UIButton class]]) {
