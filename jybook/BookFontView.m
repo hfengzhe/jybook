@@ -75,12 +75,12 @@
     UIColor *color6 = [UIColor colorWithRed:0.3 green:0.2 blue:0.2 alpha:1.0];
     NSArray *colors = [NSArray arrayWithObjects:color1,color2,color3,color4,color5,color6,nil];
     
-    NSValue *rect1 = [NSValue valueWithCGRect:CGRectMake(20, 110, 30, 30)];
-    NSValue *rect2 = [NSValue valueWithCGRect:CGRectMake(80, 110, 30, 30)];
-    NSValue *rect3 = [NSValue valueWithCGRect:CGRectMake(140, 110, 30, 30)];
-    NSValue *rect4 = [NSValue valueWithCGRect:CGRectMake(200, 110, 30, 30)];
-    NSValue *rect5 = [NSValue valueWithCGRect:CGRectMake(260, 110, 30, 30)];
-    NSValue *rect6 = [NSValue valueWithCGRect:CGRectMake(320, 110, 30, 30)];
+    NSValue *rect1 = [NSValue valueWithCGRect:CGRectMake(20, 105, 30, 30)];
+    NSValue *rect2 = [NSValue valueWithCGRect:CGRectMake(80, 105, 30, 30)];
+    NSValue *rect3 = [NSValue valueWithCGRect:CGRectMake(140, 105, 30, 30)];
+    NSValue *rect4 = [NSValue valueWithCGRect:CGRectMake(200, 105, 30, 30)];
+    NSValue *rect5 = [NSValue valueWithCGRect:CGRectMake(260, 105, 30, 30)];
+    NSValue *rect6 = [NSValue valueWithCGRect:CGRectMake(320, 105, 30, 30)];
     NSArray *rects = [NSArray arrayWithObjects:rect1,rect2,rect3,rect4,rect5,rect6,nil];
     
     NSDictionary *dict = [[NSDictionary alloc] initWithObjects:rects forKeys:colors];
