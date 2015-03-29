@@ -20,10 +20,11 @@
 - (void) hideBookToolView;
 - (void) showBookFontView;
 - (void) showBookSliderInfoView;
++ (UIImage *) sliderCircle;
 
-- (void)switchNightMode;
+- (void) switchNightMode;
 
-- (void)setPageBackground:(NSString *)color;
+- (void) setPageBackground:(NSString *)color;
 
 - (void) toggleBookmark;
 

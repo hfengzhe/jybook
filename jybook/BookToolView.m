@@ -24,6 +24,7 @@
 - (void) setButton:(UIButton *)button Title:(NSString *)title Frame:(CGRect)frame Align:(NSString *)align {
     [button setTitle:title forState:UIControlStateNormal];
     [button setFrame:frame];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:12]];
     if ([align isEqualToString:@"left"]) {
         [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
         [button setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
@@ -40,7 +41,7 @@
 - (UIButton *)prevChapterBtn {
     if (!_prevChapterBtn) {
         _prevChapterBtn = [[UIButton alloc] init];
-        CGRect frame = CGRectMake(0, 0, 100, 40);
+        CGRect frame = CGRectMake(0, 0, 60, 40);
         [self setButton:_prevChapterBtn Title:@"上一章" Frame:frame Align:@"left"];
     }
     return _prevChapterBtn;
@@ -49,17 +50,17 @@
 - (UIButton *)nextChapterBtn {
     if (!_nextChapterBtn) {
         _nextChapterBtn = [[UIButton alloc] init];
-        CGRect frame = CGRectMake(self.frame.size.width - 100, 0, 100, 40);
+        CGRect frame = CGRectMake(self.frame.size.width - 60, 0, 60, 40);
         [self setButton:_nextChapterBtn Title:@"下一章" Frame:frame Align:@"right"];
     }
     return _nextChapterBtn;
 }
 
 - (void)setupProgress {
-    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(100, 12, self.frame.size.width - 200, 16)];
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(60, 12, self.frame.size.width - 120, 16)];
     [slider setTintColor:[UIColor colorWithRed:0.9 green:0.1 blue:0.1 alpha:0.9]];
-    [slider setBackgroundColor:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.4]];
-    [slider setThumbImage:[BookToolView sliderCircle] forState:UIControlStateNormal];
+    [slider setBackgroundColor:[UIColor clearColor]];
+    [slider setThumbImage:[[self.pageViewController class] sliderCircle] forState:UIControlStateNormal];
 
     //[slider setValue:self.pageViewController.currentPage];
     //[slider setMinimumValue:self.pageViewController.startPage];
@@ -70,38 +71,12 @@
     [self addSubview:slider];
 }
 
-+ (UIImage *)sliderCircle {
-    static UIImage *Circle = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(16.0f, 16.0f), YES, 0.0f);
-        CGContextRef ctx = UIGraphicsGetCurrentContext();
-        CGContextSaveGState(ctx);
-        
-        CGRect bounds = CGRectMake(0, 0, 16, 16);
-        CGPoint center = CGPointMake(bounds.size.width / 2, bounds.size.height / 2);
-        CGContextSaveGState(ctx);
-        
-        CGContextSetLineWidth(ctx, 2);
-        CGContextSetRGBStrokeColor(ctx, 0.9, 0.1, 0.1, 1.0);
-        CGContextAddArc(ctx, center.x, center.y, 7, 0.0, M_PI*2, YES);
-        CGContextStrokePath(ctx);
-        CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
-        
-        CGContextRestoreGState(ctx);
-        Circle = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-    });
-    return Circle;
-}
-
-
 - (UIButton *)chapterListBtn {
     if (!_chapterListBtn) {
         _chapterListBtn = [[UIButton alloc] init];
         CGRect frame = CGRectMake(0, 40, 100, 40);
         [self setButton:_chapterListBtn Title:@"📚"  Frame:frame Align:@"left"];
+        [_chapterListBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
     }
     return _chapterListBtn;
 }
@@ -111,6 +86,7 @@
         _fontBtn = [[UIButton alloc] init];
         CGRect frame = CGRectMake(100, 40, self.frame.size.width - 200, 40);
         [self setButton:_fontBtn Title:@"Aa" Frame:frame Align:@"center"];
+        [_fontBtn.titleLabel setFont:[UIFont systemFontOfSize:20]];
     }
     return _fontBtn;
 }
@@ -120,6 +96,7 @@
         _bookmarkBtn = [[UIButton alloc] init];
         CGRect frame = CGRectMake(self.frame.size.width - 100, self.frame.size.height - 40, 100, 40);
         [self setButton:_bookmarkBtn Title:@"📑" Frame:frame Align:@"right"];
+        [_bookmarkBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
     }
     return _bookmarkBtn;
 }
@@ -154,14 +131,14 @@
         [self.prevChapterBtn setTitleColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.9] forState:UIControlStateNormal];
     } else {
         [self.prevChapterBtn setEnabled:NO];
-        [self.prevChapterBtn setTitleColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.4] forState:UIControlStateNormal];
+        [self.prevChapterBtn setTitleColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.9] forState:UIControlStateNormal];
     }
     if ([self.pageViewController canSwitchToNextChapter]) {
         [self.nextChapterBtn setEnabled:YES];
         [self.nextChapterBtn setTitleColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.9] forState:UIControlStateNormal];
     } else {
         [self.nextChapterBtn setEnabled:NO];
-        [self.nextChapterBtn setTitleColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.4] forState:UIControlStateNormal];
+        [self.nextChapterBtn setTitleColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.9] forState:UIControlStateNormal];
     }
     NSString *position = [NSString stringWithFormat:@"%@:%lul", self.pageViewController.book.chapters[self.pageViewController.chapterIndex], self.pageViewController.currentPage];
     if ([self.pageViewController.book.bookmarks containsObject:position]) {
