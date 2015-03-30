@@ -15,9 +15,11 @@
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 100, self.frame.size.height/2 - 20, 200, 40)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - 100, 0, 200, 100)];
         [_titleLabel setTextColor:[UIColor whiteColor]];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _titleLabel.numberOfLines = 0;
     }
     return _titleLabel;
 }

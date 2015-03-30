@@ -92,7 +92,7 @@
 }
 
 - (void)showBookSliderInfoView {
-    [self.bookSlierInfoView.titleLabel setText:[self.book titleForChapter:self.book.chapters[self.chapterIndex]]];
+    [self.bookSlierInfoView.titleLabel setText:[NSString stringWithFormat:@"%@\n%@", [self.book titleForChapter:self.book.chapters[self.chapterIndex]], self.progress]];
     [self.bookSlierInfoView setHidden:NO];
 }
 
