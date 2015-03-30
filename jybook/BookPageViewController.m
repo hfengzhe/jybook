@@ -289,32 +289,51 @@
     }];
 }
 
+- (void)turnPageLeftAnimation {
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    [animation setDuration:1.0f];
+    [animation setStartProgress:0.5];
+    [animation setEndProgress:1.0];
+    [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+    [animation setType:@"pageCurl"];
+    [animation setSubtype:kCATransitionFromLeft];
+    [animation setRemovedOnCompletion:NO];
+    [animation setFillMode:@"extended"];
+    [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
+}
+
 - (void)swipeLeft:(UISwipeGestureRecognizer *)recognizer {
     [self hideBookToolView];
     [self hideBookFontView];
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
     if (self.currentPage == self.startPage) {
-        self.progress = [NSString stringWithFormat:@"%d/%d", 1, 1];
-        [self switchToPrevChapter];
+        if (self.chapterIndex == 0) {
+            [self switchShowTip:@"已到第一页"];
+            
+        } else {
+            self.progress = [NSString stringWithFormat:@"%d/%d", 1, 1];
+            [self switchToPrevChapter];
+            [self turnPageLeftAnimation];
+        }
     } else {
         [self jumpToPage:self.currentPage - 1];
+        [self turnPageLeftAnimation];
     }
-    if ((self.chapterIndex == 0) && (self.currentPage == self.startPage)) {
-        [self switchShowTip:@"已到第一页"];
-   
-    } else {
-        CATransition *animation = [CATransition animation];
-        [animation setDelegate:self];
-        [animation setDuration:1.0f];
-        [animation setStartProgress:0.5];
-        [animation setEndProgress:1.0];
-        [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
-        [animation setType:@"pageCurl"];
-        [animation setSubtype:kCATransitionFromLeft];
-        [animation setRemovedOnCompletion:NO];
-        [animation setFillMode:@"extended"];
-        [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
-    }
+}
+
+- (void)turnPageRightAnimation {
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    [animation setDuration:1.0f];
+    [animation setStartProgress:0.5];
+    [animation setEndProgress:1.0];
+    [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
+    [animation setType:@"pageCurl"];
+    [animation setSubtype:kCATransitionFromRight];
+    [animation setRemovedOnCompletion:NO];
+    [animation setFillMode:@"extended"];
+    [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
 }
 
 - (void)swipeRight:(UISwipeGestureRecognizer *)recognizer {
@@ -322,28 +341,19 @@
     [self hideBookFontView];
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
     if (self.currentPage == self.webview.pageCount) {
-        if ([self canSwitchToNextChapter]) {
-            [self switchToNextChapter];
-            self.progress = nil;
-            self.currentPage = self.startPage;
+        if (self.chapterIndex == [self.book.chapters count] - 1) {
+            [self switchShowTip:@"已到最后一页"];
+        } else {
+            if ([self canSwitchToNextChapter]) {
+                [self switchToNextChapter];
+                self.progress = nil;
+                self.currentPage = self.startPage;
+                [self turnPageRightAnimation];
+            }
         }
     } else {
         [self jumpToPage:self.currentPage + 1];
-    }
-    if ((self.chapterIndex == [self.book.chapters count] - 1) && (self.currentPage == self.webview.pageCount)) {
-        [self switchShowTip:@"已到最后一页"];
-    } else {
-        CATransition *animation = [CATransition animation];
-        [animation setDelegate:self];
-        [animation setDuration:1.0f];
-        [animation setStartProgress:0.5];
-        [animation setEndProgress:1.0];
-        [animation setTimingFunction:UIViewAnimationCurveEaseInOut];
-        [animation setType:@"pageCurl"];
-        [animation setSubtype:kCATransitionFromRight];
-        [animation setRemovedOnCompletion:NO];
-        [animation setFillMode:@"extended"];
-        [[self.webview layer] addAnimation:animation forKey:@"turnPage"];
+        [self turnPageRightAnimation];
     }
 }
 
