@@ -18,15 +18,14 @@
 @property (nonatomic, strong) BookSliderInfoView *bookSlierInfoView;
 @property (nonatomic, strong) BookConfig *bookconfig;
 
-@property (nonatomic) BOOL goLastFlag;
-
+@property (nonatomic, readonly) NSUInteger startPage;
+@property (nonatomic) NSUInteger currentPage;
 @end
 
 #define MAX_FONT_SIZE   500
 #define MIN_FONT_SIZE   20
 
 @implementation BookPageViewController
-@synthesize goLastFlag = _goLastFlag;
 
 #pragma mark - Sub view getter
 
@@ -123,26 +122,8 @@
 
 #pragma mark - Getter/Setter
 
-- (BOOL)goLastFlag {
-    if (!_goLastFlag) {
-        _goLastFlag = FALSE;
-    }
-    return _goLastFlag;
-}
-
-- (void)setGoLastFlag:(BOOL)goLastFlag {
-    _goLastFlag = goLastFlag;
-}
-
 - (NSUInteger)startPage {
     return 2;
-}
-
-- (NSUInteger) jumpPage {
-    if (!_jumpPage) {
-        _jumpPage = 1;
-    }
-    return _jumpPage;
 }
 
 #pragma mark -View
@@ -193,22 +174,26 @@
     [self syncNightMode:self.bookconfig.nightMode];
     [[UIScreen mainScreen] setBrightness:self.bookconfig.brightness];
     [self setPageFontSize:self.bookconfig.fontSize];
- 
-    if (self.goLastFlag) {
-        self.goLastFlag = FALSE;
-        [self jumpToPage:self.webview.pageCount];
+    if (self.progress) {
+        NSArray *array = [self.progress componentsSeparatedByString:@"/"];
+        if ([array count] == 2) {
+            NSString *page = [array objectAtIndex:0];
+            NSString *total = [array objectAtIndex:1];
+            if ([page isEqualToString:total]) {
+                [self jumpToPage:[self.webview pageCount]];
+            } else {
+                NSUInteger jump = page.integerValue * [self.webview pageCount] / total.integerValue + 0.5 ;
+                [self jumpToPage:jump];
+            }
+        }
     } else {
-        [self jumpToPage:self.jumpPage];
+        [self jumpToPage:self.startPage];
+        self.progress = [NSString stringWithFormat:@"%lu/%lu", self.startPage, [self.webview pageCount]];
     }
 }
 
 - (BOOL)prefersStatusBarHidden {
     return [self.bookToolView isHidden];
-}
-
-- (BOOL)isCurrentPositionInBookmark {
-    NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
-    return [self.book.bookmarks containsObject:position];
 }
 
 #pragma mark -Font size
@@ -269,7 +254,7 @@
 }
 
 - (void)toggleBookmark {
-    NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
+    NSString *position = [NSString stringWithFormat:@"%@:%lu/%lu", self.book.chapters[self.chapterIndex], self.currentPage, (unsigned long)[self.webview pageCount]];
     if ([self.book.bookmarks containsObject:position]) {
         NSMutableArray *array = [NSMutableArray arrayWithArray:self.book.bookmarks];
         [array removeObject:position];
@@ -310,8 +295,8 @@
     [self hideBookFontView];
     self.currentPage = self.webview.scrollView.contentOffset.x / self.webview.scrollView.frame.size.width + 1;
     if (self.currentPage == self.startPage) {
+        self.progress = [NSString stringWithFormat:@"%d/%d", 1, 1];
         [self switchToPrevChapter];
-        self.goLastFlag = TRUE;
     } else {
         [self jumpToPage:self.currentPage - 1];
     }
@@ -340,8 +325,8 @@
     if (self.currentPage == self.webview.pageCount) {
         if ([self canSwitchToNextChapter]) {
             [self switchToNextChapter];
-            self.jumpPage = self.startPage;
-            self.currentPage = self.jumpPage;
+            self.progress = [NSString stringWithFormat:@"%lu/%lu", self.startPage, [self.webview pageCount]];
+            self.currentPage = self.startPage;
         }
     } else {
         [self jumpToPage:self.currentPage + 1];
@@ -389,8 +374,6 @@
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [self.webview loadRequest:req];
     self.webview.hidden = NO;
-    NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
-    [self.bookconfig setLastPosition:position ForBook:self.book.name];
 }
 
 - (void)switchToPrevChapter {
@@ -413,7 +396,7 @@
     frame.origin.y = 0;
     [self.webview.scrollView scrollRectToVisible:frame animated:NO];
     self.currentPage = page;
-    NSString *position = [NSString stringWithFormat:@"%@:%lul", self.book.chapters[self.chapterIndex], self.currentPage];
+    NSString *position = [NSString stringWithFormat:@"%@:%lu/%lu", self.book.chapters[self.chapterIndex], self.currentPage, [self.webview pageCount]];
     [self.bookconfig setLastPosition:position ForBook:self.book.name];
 }
 

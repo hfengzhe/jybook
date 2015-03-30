@@ -89,19 +89,19 @@ static NSString * const reuseIdentifier = @"Cell";
         bpvc.book = selectedBook;
         
         NSString *position = [self.bookconfig getLastPositionForBook:selectedBook.name];
+       
         if (position) {
             NSArray *array = [position componentsSeparatedByString:@":"];
             if ([array count] != 2) {
                 NSLog(@"invalid book position:%@", position);
             }
             NSString *chapter = [array objectAtIndex:0];
-            NSString *page = [array objectAtIndex:1];
-            
+            NSString *progress = [array objectAtIndex:1];
             bpvc.chapterIndex = [selectedBook.chapters indexOfObject:chapter];
-            bpvc.jumpPage = page.integerValue;
+            bpvc.progress = progress;
         } else {
             bpvc.chapterIndex = 0;
-            bpvc.jumpPage = bpvc.startPage;
+            bpvc.progress = nil;
         }
     }
 }

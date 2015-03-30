@@ -61,10 +61,6 @@
     [slider setTintColor:[UIColor colorWithRed:0.9 green:0.1 blue:0.1 alpha:0.9]];
     [slider setBackgroundColor:[UIColor clearColor]];
     [slider setThumbImage:[[self.pageViewController class] sliderCircle] forState:UIControlStateNormal];
-
-    //[slider setValue:self.pageViewController.currentPage];
-    //[slider setMinimumValue:self.pageViewController.startPage];
-    //[slider setMaximumValue:self.pageViewController.webview.pageCount];
     
     [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [slider addTarget:self action:@selector(sliderDragUp:) forControlEvents:UIControlEventTouchUpInside];
@@ -140,7 +136,7 @@
         [self.nextChapterBtn setEnabled:NO];
         [self.nextChapterBtn setTitleColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.9] forState:UIControlStateNormal];
     }
-    NSString *position = [NSString stringWithFormat:@"%@:%lul", self.pageViewController.book.chapters[self.pageViewController.chapterIndex], self.pageViewController.currentPage];
+    NSString *position = [NSString stringWithFormat:@"%@:%@", self.pageViewController.book.chapters[self.pageViewController.chapterIndex], self.pageViewController.progress];
     if ([self.pageViewController.book.bookmarks containsObject:position]) {
         [self.bookmarkBtn setTitle:@"📕" forState:UIControlStateNormal];
     } else {
@@ -166,10 +162,10 @@
         UIButton *btn = (UIButton *)sender;
         NSString *title = [btn currentTitle];
         if ([title isEqualToString:@"上一章"]) {
-            self.pageViewController.jumpPage = self.pageViewController.startPage;
+            self.pageViewController.progress = nil;
             [self.pageViewController switchToPrevChapter];
         } else if ([title isEqualToString:@"下一章"]) {
-            self.pageViewController.jumpPage = self.pageViewController.startPage;
+            self.pageViewController.progress = nil;
             [self.pageViewController switchToNextChapter];
         } else if ([title isEqualToString:@"Aa"]) {
             [self.pageViewController showBookFontView];

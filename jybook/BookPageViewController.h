@@ -12,10 +12,9 @@
 @interface BookPageViewController : UIViewController <UIGestureRecognizerDelegate, UIWebViewDelegate>
 @property (nonatomic, strong) Book *book;
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
+
 @property (nonatomic) NSUInteger chapterIndex;
-@property (nonatomic) NSUInteger currentPage;
-@property (nonatomic) NSUInteger jumpPage;
-@property (nonatomic, readonly) NSUInteger startPage;
+@property (nonatomic, strong) NSString* progress;
 
 - (void) hideBookToolView;
 - (void) showBookFontView;
@@ -32,8 +31,6 @@
 - (void) setPageBackground:(NSString *)color;
 
 - (void) toggleBookmark;
-
-- (BOOL) isCurrentPositionInBookmark;
 
 - (BOOL) canSwitchToPrevChapter;
 - (BOOL) canSwitchToNextChapter;

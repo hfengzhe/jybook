@@ -106,14 +106,12 @@
             NSLog(@"invalid bookmark position:%@", position);
         }
         NSString *chapter = [array objectAtIndex:0];
-        NSString *page = [array objectAtIndex:1];
-        
-        self.bpvc.jumpPage = page.integerValue;
+        self.bpvc.progress = [array objectAtIndex:1];
         [self.bpvc switchToChapter:[self.bpvc.book.chapters indexOfObject:chapter]];
         [self dismissViewControllerAnimated:YES completion:nil];
         
     } else {
-        self.bpvc.jumpPage = self.bpvc.startPage;
+        self.bpvc.progress = nil;
         [self.bpvc switchToChapter:indexPath.row];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
