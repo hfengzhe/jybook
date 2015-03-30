@@ -188,7 +188,6 @@
         }
     } else {
         [self jumpToPage:self.startPage];
-        self.progress = [NSString stringWithFormat:@"%lu/%lu", self.startPage, [self.webview pageCount]];
     }
 }
 
@@ -254,7 +253,7 @@
 }
 
 - (void)toggleBookmark {
-    NSString *position = [NSString stringWithFormat:@"%@:%lu/%lu", self.book.chapters[self.chapterIndex], self.currentPage, (unsigned long)[self.webview pageCount]];
+    NSString *position = [NSString stringWithFormat:@"%@:%@", self.book.chapters[self.chapterIndex], self.progress];
     if ([self.book.bookmarks containsObject:position]) {
         NSMutableArray *array = [NSMutableArray arrayWithArray:self.book.bookmarks];
         [array removeObject:position];
@@ -325,7 +324,7 @@
     if (self.currentPage == self.webview.pageCount) {
         if ([self canSwitchToNextChapter]) {
             [self switchToNextChapter];
-            self.progress = [NSString stringWithFormat:@"%lu/%lu", self.startPage, [self.webview pageCount]];
+            self.progress = nil;
             self.currentPage = self.startPage;
         }
     } else {
@@ -396,7 +395,8 @@
     frame.origin.y = 0;
     [self.webview.scrollView scrollRectToVisible:frame animated:NO];
     self.currentPage = page;
-    NSString *position = [NSString stringWithFormat:@"%@:%lu/%lu", self.book.chapters[self.chapterIndex], self.currentPage, [self.webview pageCount]];
+    self.progress = [NSString stringWithFormat:@"%lu/%lu", self.currentPage, [self.webview pageCount]];
+    NSString *position = [NSString stringWithFormat:@"%@:%@", self.book.chapters[self.chapterIndex], self.progress];
     [self.bookconfig setLastPosition:position ForBook:self.book.name];
 }
 
