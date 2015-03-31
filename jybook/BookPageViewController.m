@@ -182,7 +182,7 @@
             if ([page isEqualToString:total]) {
                 [self jumpToPage:[self.webview pageCount]];
             } else {
-                NSUInteger jump = page.integerValue * [self.webview pageCount] / total.integerValue + 0.5 ;
+                NSUInteger jump = (page.integerValue - self.startPage) * ([self.webview pageCount] - self.startPage)/ (total.integerValue - self.startPage) + self.startPage + 0.5 ;
                 [self jumpToPage:jump];
             }
         }
