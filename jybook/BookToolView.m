@@ -14,6 +14,7 @@
 @property (nonatomic, strong) BookFontView *bookFontView;
 @property (nonatomic, strong) UIButton *prevChapterBtn;
 @property (nonatomic, strong) UIButton *nextChapterBtn;
+@property (nonatomic, strong) UISlider *progressSlider;
 @property (nonatomic, strong) UIButton *chapterListBtn;
 @property (nonatomic, strong) UIButton *fontBtn;
 @property (nonatomic, strong) UIButton *bookmarkBtn;
@@ -56,15 +57,27 @@
     return _nextChapterBtn;
 }
 
-- (void)setupProgress {
-    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(60, 12, self.frame.size.width - 120, 16)];
-    [slider setTintColor:[UIColor colorWithRed:0.9 green:0.1 blue:0.1 alpha:0.9]];
-    [slider setBackgroundColor:[UIColor clearColor]];
-    [slider setThumbImage:[[self.pageViewController class] sliderCircle] forState:UIControlStateNormal];
-    
-    [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [slider addTarget:self action:@selector(sliderDragUp:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:slider];
+- (UISlider *)progressSlider {
+    if (!_progressSlider) {
+         _progressSlider = [[UISlider alloc] initWithFrame:CGRectMake(60, 12, self.frame.size.width - 120, 16)];
+        
+        NSArray *array = [self.pageViewController.progress componentsSeparatedByString:@"/"];
+        if ([array count] == 2) {
+            NSString *page = [array objectAtIndex:0];
+            NSString *total = [array objectAtIndex:1];
+            [_progressSlider setMinimumValue:0];
+            [_progressSlider setMaximumValue:total.integerValue - self.pageViewController.startPage];
+            [_progressSlider setValue:page.integerValue - self.pageViewController.startPage];
+        }
+        
+        [_progressSlider setTintColor:[UIColor colorWithRed:0.9 green:0.1 blue:0.1 alpha:0.9]];
+        [_progressSlider setBackgroundColor:[UIColor clearColor]];
+        [_progressSlider setThumbImage:[[self.pageViewController class] sliderCircle] forState:UIControlStateNormal];
+        
+        [_progressSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+        [_progressSlider addTarget:self action:@selector(sliderDragUp:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _progressSlider;
 }
 
 - (UIButton *)chapterListBtn {
@@ -113,7 +126,7 @@
         [view removeFromSuperview];
     }
     [self addSubview:self.prevChapterBtn];
-    [self setupProgress];
+    [self addSubview:self.progressSlider];
     [self addSubview:self.nextChapterBtn];
     [self addSubview:self.chapterListBtn];
     [self addSubview:self.fontBtn];
@@ -121,7 +134,7 @@
  
 }
 
-- (void)updateBtnStatus {
+- (void)updateToolViewStatus {
     if ([self.pageViewController canSwitchToPrevChapter]) {
         [self.prevChapterBtn setEnabled:YES];
         [self.prevChapterBtn setTitleColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.9] forState:UIControlStateNormal];
@@ -142,6 +155,13 @@
     } else {
         [self.bookmarkBtn setTitle:@"📑" forState:UIControlStateNormal];
     }
+    NSArray *array = [self.pageViewController.progress componentsSeparatedByString:@"/"];
+    if ([array count] == 2) {
+        NSString *page = [array objectAtIndex:0];
+        NSString *total = [array objectAtIndex:1];
+        [self.progressSlider setMaximumValue:total.integerValue - self.pageViewController.startPage];
+        [self.progressSlider setValue:page.integerValue - self.pageViewController.startPage];
+    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -149,7 +169,7 @@
         if ([object isKindOfClass:[UIView class]]) {
             UIView *view = (UIView *) object;
             if (!view.hidden) {
-                [self updateBtnStatus];
+                [self updateToolViewStatus];
             }
         }
     }
@@ -180,7 +200,7 @@
         } else if ([title isEqualToString:@"📕"]) {
             [self.pageViewController toggleBookmark]; 
         }
-        [self updateBtnStatus];
+        [self updateToolViewStatus];
     }
 }
 
@@ -193,14 +213,24 @@
 
 - (void)sliderValueChanged: (id)sender {
     if ([sender isKindOfClass:[UISlider class]]) {
-        [self.pageViewController showBookSliderInfoView];
+        UISlider *slider = (UISlider *)sender;
+        NSUInteger page = slider.value;
+        NSString *progress = [NSString stringWithFormat:@"%lu/%lu", page, [self.pageViewController.webview pageCount] - self.pageViewController.startPage];
+        [self.pageViewController showBookSliderInfoView:progress];
     }
 }
 
 - (void)sliderDragUp: (id)sender {
     if ([sender isKindOfClass:[UISlider class]]) {
         UISlider *slider = (UISlider *)sender;
-        NSLog(@"----slider drag up--------:%f", slider.value);
+        //NSLog(@"----slider drag up--------:%f", slider.value);
+        NSUInteger page = slider.value;
+        NSString *progress = [NSString stringWithFormat:@"%lu/%lu", page + self.pageViewController.startPage, [self.pageViewController.webview pageCount]];
+        if (![progress isEqualToString:self.pageViewController.progress]) {
+            self.pageViewController.progress = progress;
+            [self.pageViewController.webview reload];
+        }
+        slider.value = page;
     }
 }
 

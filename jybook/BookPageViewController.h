@@ -15,10 +15,11 @@
 
 @property (nonatomic) NSUInteger chapterIndex;
 @property (nonatomic, strong) NSString* progress;
+@property (nonatomic, readonly) NSUInteger startPage;
 
 - (void) hideBookToolView;
 - (void) showBookFontView;
-- (void) showBookSliderInfoView;
+- (void) showBookSliderInfoView:(NSString *)progress;
 + (UIImage *) sliderCircle;
 
 - (BOOL) canIncreaseFontSize;

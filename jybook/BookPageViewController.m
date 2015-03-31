@@ -18,7 +18,7 @@
 @property (nonatomic, strong) BookSliderInfoView *bookSlierInfoView;
 @property (nonatomic, strong) BookConfig *bookconfig;
 
-@property (nonatomic, readonly) NSUInteger startPage;
+
 @property (nonatomic) NSUInteger currentPage;
 @end
 
@@ -91,8 +91,8 @@
     [self.bookFontView setHidden:YES];
 }
 
-- (void)showBookSliderInfoView {
-    [self.bookSlierInfoView.titleLabel setText:[NSString stringWithFormat:@"%@\n%@", [self.book titleForChapter:self.book.chapters[self.chapterIndex]], self.progress]];
+- (void)showBookSliderInfoView:(NSString *)progress {
+    [self.bookSlierInfoView.titleLabel setText:[NSString stringWithFormat:@"%@\n%@", [self.book titleForChapter:self.book.chapters[self.chapterIndex]], progress]];
     [self.bookSlierInfoView setHidden:NO];
 }
 
