@@ -22,8 +22,8 @@
 @property (nonatomic) NSUInteger currentPage;
 @end
 
-#define MAX_FONT_SIZE   500
-#define MIN_FONT_SIZE   20
+#define MAX_FONT_SIZE   200
+#define MIN_FONT_SIZE   50
 
 @implementation BookPageViewController
 
@@ -206,17 +206,21 @@
 }
 
 - (void) increaseFontSize {
+    self.progress = [NSString stringWithFormat:@"%lu/%lu", self.currentPage, [self.webview pageCount]];
     if ([self canIncreaseFontSize]) {
         self.bookconfig.fontSize = self.bookconfig.fontSize + 20;
         [self setPageFontSize:self.bookconfig.fontSize];
     }
+    [self.webview reload];
 }
 
 - (void) decreaseFontSize {
+    self.progress = [NSString stringWithFormat:@"%lu/%lu", self.currentPage, [self.webview pageCount]];
     if ([self canDecreaseFontSize]) {
         self.bookconfig.fontSize = self.bookconfig.fontSize - 20;
         [self setPageFontSize:self.bookconfig.fontSize];
     }
+    [self.webview reload];
 }
 
 - (void) setPageFontSize: (NSUInteger) fontSize {
