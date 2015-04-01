@@ -199,11 +199,11 @@
 - (void)setLineHeight:(NSUInteger) lineHeight {
     NSString *str = nil;
     if (lineHeight == 3) {
-        str = @"document.body.style.lineHeight='45px';";
+        str = @"document.body.style.lineHeight='2';";
     } else if (lineHeight == 2) {
-        str = @"document.body.style.lineHeight='30px';";
+        str = @"document.body.style.lineHeight='1.5';";
     } else {
-        str = @"document.body.style.lineHeight='15px';";
+        str = @"document.body.style.lineHeight='1';";
     }
     [self.webview stringByEvaluatingJavaScriptFromString:str];
 }
@@ -224,7 +224,6 @@
         self.bookconfig.fontSize = self.bookconfig.fontSize + 20;
         [self setPageFontSize:self.bookconfig.fontSize];
     }
-    [self.webview reload];
 }
 
 - (void) decreaseFontSize {
@@ -233,7 +232,6 @@
         self.bookconfig.fontSize = self.bookconfig.fontSize - 20;
         [self setPageFontSize:self.bookconfig.fontSize];
     }
-    [self.webview reload];
 }
 
 - (void) setPageFontSize: (NSUInteger) fontSize {

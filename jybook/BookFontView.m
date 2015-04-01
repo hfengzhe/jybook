@@ -11,6 +11,8 @@
 
 @interface BookFontView()
 @property (nonatomic, strong) BookConfig *bookconfig;
+@property (nonatomic, strong) UIButton *decreaseFontBtn;
+@property (nonatomic, strong) UIButton *increaseFontBtn;
 @property (nonatomic, strong) UIButton *nightModeBtn;
 @end
 
@@ -27,30 +29,37 @@
     [self addSubview:slider];
 }
 
-- (void)setupFontSizeBtn {
-    NSValue *minusRect =  [NSValue valueWithCGRect:CGRectMake(20, 50, 100, 40)];
-    NSValue *plusRect = [NSValue valueWithCGRect:CGRectMake(150, 50, 100, 40)];
-    NSDictionary *dict = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:minusRect, plusRect, nil] forKeys:[NSArray arrayWithObjects:@"A-", @"A+", nil]];
+- (void)initFontBtn:(UIButton *)fontSizeBtn{
+    [fontSizeBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    [fontSizeBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     
-    for (NSString *title in dict) {
-        UIButton *fontSizeBtn = [[UIButton alloc] initWithFrame:[[dict objectForKey:title] CGRectValue]];
-        
-        [fontSizeBtn setTitle:title forState:UIControlStateNormal];
-        [fontSizeBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-        [fontSizeBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-        
-        [[fontSizeBtn layer] setCornerRadius:8.0f];
-        [[fontSizeBtn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
-        [[fontSizeBtn layer] setBorderWidth:1.0f];
-        
-        [fontSizeBtn setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8] forState:UIControlStateNormal];
-        [fontSizeBtn setTitleColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.6] forState:UIControlStateHighlighted];
-        
-        [fontSizeBtn addTarget:self action:@selector(fontSizeTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-        [fontSizeBtn addTarget:self action:@selector(fontSizeTouchDown:) forControlEvents:UIControlEventTouchDown];
-        
-        [self addSubview:fontSizeBtn];
+    [[fontSizeBtn layer] setCornerRadius:8.0f];
+    [[fontSizeBtn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
+    [[fontSizeBtn layer] setBorderWidth:1.0f];
+    
+    [fontSizeBtn setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8] forState:UIControlStateNormal];
+    [fontSizeBtn setTitleColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.6] forState:UIControlStateHighlighted];
+    
+    [fontSizeBtn addTarget:self action:@selector(fontSizeTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    [fontSizeBtn addTarget:self action:@selector(fontSizeTouchDown:) forControlEvents:UIControlEventTouchDown];
+}
+
+- (UIButton *)increaseFontBtn {
+    if (!_increaseFontBtn) {
+        _increaseFontBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, 50, 100, 40)];
+        [_increaseFontBtn setTitle:@"A+" forState:UIControlStateNormal];
+        [self initFontBtn:_increaseFontBtn];
     }
+    return _increaseFontBtn;
+}
+
+- (UIButton *)decreaseFontBtn {
+    if (!_decreaseFontBtn) {
+        _decreaseFontBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 50, 100, 40)];
+        [_decreaseFontBtn setTitle:@"A-" forState:UIControlStateNormal];
+        [self initFontBtn:_decreaseFontBtn];
+    }
+    return _decreaseFontBtn;
 }
 
 - (UIButton *)nightModeBtn {
@@ -112,7 +121,7 @@
         [[btn layer] setBorderWidth:1.0f];
         
         [btn setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.6] forState:UIControlStateHighlighted];
+        [btn setTitleColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1.0] forState:UIControlStateHighlighted];
         
         [btn addTarget:self action:@selector(lineSpacingTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
         [btn addTarget:self action:@selector(lineSpacingTouchDown:) forControlEvents:UIControlEventTouchDown];
@@ -130,10 +139,38 @@
 
 - (void)drawRect:(CGRect)rect {
     [self setupBrightnessProgress];
-    [self setupFontSizeBtn];
+    [self addSubview:self.decreaseFontBtn];
+    [self addSubview:self.increaseFontBtn];
     [self addSubview:self.nightModeBtn];
     [self setupColorBtn];
     [self setupLineSpacingBtn];
+}
+
+#pragma mark -Update view status
+
+- (void)enableBtn:(UIButton *)btn {
+    [btn setEnabled:YES];
+    [btn setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8] forState:UIControlStateNormal];
+    [[btn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
+}
+
+- (void)disableBtn:(UIButton *)btn {
+    [btn setEnabled:NO];
+    [btn setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.3] forState:UIControlStateNormal];
+    [[btn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.3].CGColor];
+}
+
+- (void)updateFontViewStatus {
+    if ([self.pageViewController canIncreaseFontSize]) {
+        [self enableBtn:self.increaseFontBtn];
+    } else {
+        [self disableBtn:self.increaseFontBtn];
+    }
+    if ([self.pageViewController canDecreaseFontSize]) {
+        [self enableBtn:self.decreaseFontBtn];
+    } else {
+        [self disableBtn:self.decreaseFontBtn];
+    }
 }
 
 #pragma mark -Action 
@@ -156,6 +193,7 @@
         } else if ([title isEqualToString:@"A+"]) {
             [self.pageViewController increaseFontSize];
         }
+        [self updateFontViewStatus];
     }
 }
 
