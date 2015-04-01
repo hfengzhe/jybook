@@ -29,26 +29,25 @@
     [self addSubview:slider];
 }
 
-- (void)initFontBtn:(UIButton *)fontSizeBtn{
-    [fontSizeBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    [fontSizeBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+- (void)initBtnStyle:(UIButton *)Btn{
+    [Btn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    [Btn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     
-    [[fontSizeBtn layer] setCornerRadius:8.0f];
-    [[fontSizeBtn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
-    [[fontSizeBtn layer] setBorderWidth:1.0f];
+    [[Btn layer] setCornerRadius:8.0f];
+    [[Btn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
+    [[Btn layer] setBorderWidth:1.0f];
     
-    [fontSizeBtn setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8] forState:UIControlStateNormal];
-    [fontSizeBtn setTitleColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.6] forState:UIControlStateHighlighted];
-    
-    [fontSizeBtn addTarget:self action:@selector(fontSizeTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-    [fontSizeBtn addTarget:self action:@selector(fontSizeTouchDown:) forControlEvents:UIControlEventTouchDown];
+    [Btn setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8] forState:UIControlStateNormal];
+    [Btn setTitleColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0] forState:UIControlStateHighlighted];
 }
 
 - (UIButton *)increaseFontBtn {
     if (!_increaseFontBtn) {
         _increaseFontBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, 50, 100, 40)];
         [_increaseFontBtn setTitle:@"A+" forState:UIControlStateNormal];
-        [self initFontBtn:_increaseFontBtn];
+        [self initBtnStyle:_increaseFontBtn];
+        [_increaseFontBtn addTarget:self action:@selector(fontSizeTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        [_increaseFontBtn addTarget:self action:@selector(fontSizeTouchDown:) forControlEvents:UIControlEventTouchDown];
     }
     return _increaseFontBtn;
 }
@@ -57,7 +56,9 @@
     if (!_decreaseFontBtn) {
         _decreaseFontBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 50, 100, 40)];
         [_decreaseFontBtn setTitle:@"A-" forState:UIControlStateNormal];
-        [self initFontBtn:_decreaseFontBtn];
+        [self initBtnStyle:_decreaseFontBtn];
+        [_decreaseFontBtn addTarget:self action:@selector(fontSizeTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        [_decreaseFontBtn addTarget:self action:@selector(fontSizeTouchDown:) forControlEvents:UIControlEventTouchDown];
     }
     return _decreaseFontBtn;
 }
@@ -120,8 +121,9 @@
         [[btn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
         [[btn layer] setBorderWidth:1.0f];
         
-        [btn setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1.0] forState:UIControlStateHighlighted];
+        //[btn setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8] forState:UIControlStateNormal];
+        //[btn setTitleColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1.0] forState:UIControlStateHighlighted];
+        //[btn setTitleColor:[UIColor colorWithRed:1.0 green:0 blue:0 alpha:0.8] forState:UIControlStateSelected];
         
         [btn addTarget:self action:@selector(lineSpacingTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
         [btn addTarget:self action:@selector(lineSpacingTouchDown:) forControlEvents:UIControlEventTouchDown];
@@ -254,7 +256,6 @@
     if ([sender isKindOfClass:[UIButton class]]) {
         UIButton *btn = (UIButton *)sender;
         [[btn layer] setBorderColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.8].CGColor];
-        
     }
 }
 
