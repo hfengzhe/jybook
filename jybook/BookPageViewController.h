@@ -28,10 +28,10 @@
 - (void) decreaseFontSize;
 
 - (void) switchNightMode;
-
 - (void) setPageBackground:(NSString *)color;
-
 - (void) toggleBookmark;
+
+- (void) setLineHeight:(NSUInteger) lineHeight;
 
 - (BOOL) canSwitchToPrevChapter;
 - (BOOL) canSwitchToNextChapter;

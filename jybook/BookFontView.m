@@ -203,11 +203,11 @@
         [[btn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
         NSString *title = [btn currentTitle];
         if ([title isEqualToString:@"一"]) {
-            NSLog(@"一");
+            [self.pageViewController setLineHeight:1];
         } else if ([title isEqualToString:@"二"]) {
-            NSLog(@"二");
+            [self.pageViewController setLineHeight:2];
         } else if ([title isEqualToString:@"三"]) {
-            NSLog(@"三");
+            [self.pageViewController setLineHeight:3];
         }
     }
 }

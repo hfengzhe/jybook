@@ -27,7 +27,7 @@
 
 @implementation BookPageViewController
 
-#pragma mark - Sub view getter
+#pragma mark -Sub view getter
 
 - (BookToolView *)bookToolView {
     if (!_bookToolView) {
@@ -120,7 +120,7 @@
     return Circle;
 }
 
-#pragma mark - Getter/Setter
+#pragma mark -Getter/Setter
 
 - (NSUInteger)startPage {
     return 2;
@@ -195,6 +195,19 @@
     return [self.bookToolView isHidden];
 }
 
+#pragma mark -Line spacing
+- (void)setLineHeight:(NSUInteger) lineHeight {
+    NSString *str = nil;
+    if (lineHeight == 3) {
+        str = @"document.body.style.lineHeight='45px';";
+    } else if (lineHeight == 2) {
+        str = @"document.body.style.lineHeight='30px';";
+    } else {
+        str = @"document.body.style.lineHeight='15px';";
+    }
+    [self.webview stringByEvaluatingJavaScriptFromString:str];
+}
+
 #pragma mark -Font size
 
 - (BOOL)canIncreaseFontSize {
@@ -227,6 +240,8 @@
     NSString *jsString = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust = '%lu%%'", (unsigned long)fontSize];
     [self.webview stringByEvaluatingJavaScriptFromString:jsString];
 }
+
+#pragma mark -Background
 
 - (void)syncNightMode:(BOOL) nightMode {
     if (nightMode) {
@@ -269,7 +284,7 @@
     }
 }
 
-#pragma mark - Gesture
+#pragma mark -Gesture
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
@@ -370,7 +385,7 @@
     }
 }
 
-#pragma mark - Switch Page
+#pragma mark -Switch Page
 
 - (BOOL)canSwitchToPrevChapter {
     return self.chapterIndex > 0;
