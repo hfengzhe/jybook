@@ -15,7 +15,7 @@
 @interface BookPageViewController ()
 @property (nonatomic, strong) BookToolView *bookToolView;
 @property (nonatomic, strong) BookFontView *bookFontView;
-@property (nonatomic, strong) BookSliderInfoView *bookSlierInfoView;
+@property (nonatomic, strong) BookSliderInfoView *bookSliderInfoView;
 @property (nonatomic, strong) BookConfig *bookconfig;
 
 
@@ -54,31 +54,38 @@
 }
 
 - (BookSliderInfoView *)bookSlierInfoView {
-    if (!_bookSlierInfoView) {
-        _bookSlierInfoView = [[BookSliderInfoView alloc] init];
-        [_bookSlierInfoView setFrame:CGRectMake(self.view.frame.size.width / 2 - 100, self.view.frame.size.height - 200, 200, 100)];
-        [[_bookSlierInfoView layer] setCornerRadius:16.0f];
-        [[_bookSlierInfoView layer] setMasksToBounds:TRUE];
+    if (!_bookSliderInfoView) {
+        _bookSliderInfoView = [[BookSliderInfoView alloc] init];
+        [_bookSliderInfoView setFrame:CGRectMake(self.view.frame.size.width / 2 - 100, self.view.frame.size.height - 200, 200, 100)];
+        [[_bookSliderInfoView layer] setCornerRadius:16.0f];
+        [[_bookSliderInfoView layer] setMasksToBounds:TRUE];
         
-        [self.view insertSubview:_bookSlierInfoView aboveSubview:self.webview];
-        [_bookSlierInfoView setHidden:YES];
-        _bookSlierInfoView.pageViewController = self;
-        _bookSlierInfoView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.95];
+        [self.view insertSubview:_bookSliderInfoView aboveSubview:self.webview];
+        [_bookSliderInfoView setHidden:YES];
+        _bookSliderInfoView.pageViewController = self;
+        _bookSliderInfoView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.95];
     }
-    return _bookSlierInfoView;
+    return _bookSliderInfoView;
 }
 
 #pragma mark -Sub view show/hide
 
 - (void)hideBookToolView {
-    [self.bookToolView setHidden:TRUE];
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        [self.bookToolView setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 80)];
+    } completion:^(BOOL finished) {
+        [self.bookToolView setHidden:TRUE];
+        [self.navigationController setNavigationBarHidden:YES];
+        [self setNeedsStatusBarAppearanceUpdate];
+    }];
     [self.bookSlierInfoView setHidden:TRUE];
-    [self.navigationController setNavigationBarHidden:YES];
-    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)showBookToolView {
     [self.bookToolView setHidden:NO];
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+         [self.bookToolView setFrame:CGRectMake(0, self.view.frame.size.height - 80, self.view.frame.size.width, 80)];
+    } completion:^(BOOL finished) {}];
     [self.navigationController setNavigationBarHidden:NO];
     [self setNeedsStatusBarAppearanceUpdate];
 }
