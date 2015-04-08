@@ -20,12 +20,6 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
-- (NSArray *)books {
-    if (_books == nil) {
-        _books = [NSArray arrayWithObjects:@"连城诀", @"鹿鼎记", @"射雕英雄传", @"神雕侠侣", @"书剑恩仇录", @"天龙八部", @"侠客行", @"笑傲江湖", @"雪山飞狐", @"倚天屠龙记", @"飞狐外传", @"碧血剑", @"越女剑", @"白马啸西风", @"鸳鸯刀",nil];
-    }
-    return _books;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,6 +28,19 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     // Do any additional setup after loading the view.
+    NSArray *book1 = [NSArray arrayWithObjects:@"飞狐外传", @"笑傲江湖", nil];
+    NSArray *book2 = [NSArray arrayWithObjects:@"雪山飞狐", @"书剑恩仇录", nil];
+    NSArray *book3 = [NSArray arrayWithObjects:@"连城诀", @"神雕侠侣", nil];
+    NSArray *book4 = [NSArray arrayWithObjects:@"天龙八部", @"侠客行", nil];
+    NSArray *book5 = [NSArray arrayWithObjects:@"射雕英雄传", @"倚天屠龙记", nil];
+    NSArray *book6 = [NSArray arrayWithObjects:@"白马啸西风", @"碧血剑", nil];
+    NSArray *book7 = [NSArray arrayWithObjects:@"鹿鼎记", @"鸳鸯刀", nil];
+    NSArray *book8 = [NSArray arrayWithObjects:@"越女剑", nil];
+    self.books = [NSArray arrayWithObjects:book1,book2,book3,book4,book5,book6,book7,book8, nil];
+    
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+    [layout setSectionInset:UIEdgeInsetsMake(20, 20, 0, 20)];
+    [self.collectionView setBackgroundColor:[UIColor colorWithRed:0.7 green:0.5 blue:0.1 alpha:0.3]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,23 +51,23 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 2;
+    return [self.books count];
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.books count];
+    return [self.books[section] count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 
     // Configure the cell
-    NSString *imgpath = [[NSBundle mainBundle] pathForResource:self.books[indexPath.row] ofType:@"jpg" inDirectory:@"cover"];
+    NSString *imgpath = [[NSBundle mainBundle] pathForResource:self.books[indexPath.section][indexPath.row] ofType:@"jpg" inDirectory:@"cover"];
     UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgpath]];
-    [image setFrame:CGRectMake(10, 10, 125, 180)];
+    [image setFrame:CGRectMake(0, 0, 150, 200)];
     [cell.contentView addSubview:image];
-
+    
     return cell;
 }
 
@@ -68,7 +75,7 @@ static NSString * const reuseIdentifier = @"Cell";
     UICollectionReusableView *resuableView = nil;
     if (kind == UICollectionElementKindSectionFooter) {
         resuableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"footer" forIndexPath:indexPath];
-        resuableView.backgroundColor = [UIColor redColor];
+        resuableView.backgroundColor = [UIColor colorWithRed:0.9 green:0.5 blue:0.2 alpha:0.9];
     }
     return resuableView;
 }
@@ -93,7 +100,7 @@ static NSString * const reuseIdentifier = @"Cell";
     if ([segue.identifier isEqualToString:@"showbook"]) {
 
         NSIndexPath *selectedIndexPath = [[self.collectionView indexPathsForSelectedItems] objectAtIndex:0];
-        NSString *name = self.books[selectedIndexPath.row];
+        NSString *name = self.books[selectedIndexPath.section][selectedIndexPath.row];
         Book *selectedBook = [[Book alloc] initWithName:name];
         
         BookPageViewController *bpvc = segue.destinationViewController;
