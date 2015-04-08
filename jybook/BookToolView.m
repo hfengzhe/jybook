@@ -189,7 +189,6 @@
             [self.pageViewController switchToNextChapter];
         } else if ([title isEqualToString:@"Aa"]) {
             [self.pageViewController showBookFontView];
-            [self.pageViewController hideBookToolView];
         } else if ([title isEqualToString:@"📚"]) {
             BookSpineViewController *bsvc = [[BookSpineViewController alloc] init];
             bsvc.bpvc = self.pageViewController;

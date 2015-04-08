@@ -32,7 +32,7 @@
 - (BookToolView *)bookToolView {
     if (!_bookToolView) {
         _bookToolView  = [[BookToolView alloc] init];
-        [_bookToolView setFrame:CGRectMake(0, self.view.frame.size.height - 80, self.view.frame.size.width, 80)];
+        [_bookToolView setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 80)];
         [self.view insertSubview:_bookToolView aboveSubview:self.webview];
         [_bookToolView setHidden:YES];
         _bookToolView.pageViewController = self;
@@ -44,7 +44,7 @@
 - (BookFontView *)bookFontView {
     if (!_bookFontView) {
         _bookFontView  = [[BookFontView alloc] init];
-        [_bookFontView setFrame:CGRectMake(0, self.view.frame.size.height - 200, self.view.frame.size.width, 200)];
+        [_bookFontView setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 200)];
         [self.view insertSubview:_bookFontView aboveSubview:self.webview];
         [_bookFontView setHidden:YES];
         _bookFontView.pageViewController = self;
@@ -53,7 +53,7 @@
     return _bookFontView;
 }
 
-- (BookSliderInfoView *)bookSlierInfoView {
+- (BookSliderInfoView *)bookSliderInfoView {
     if (!_bookSliderInfoView) {
         _bookSliderInfoView = [[BookSliderInfoView alloc] init];
         [_bookSliderInfoView setFrame:CGRectMake(self.view.frame.size.width / 2 - 100, self.view.frame.size.height - 200, 200, 100)];
@@ -78,7 +78,7 @@
         [self.navigationController setNavigationBarHidden:YES];
         [self setNeedsStatusBarAppearanceUpdate];
     }];
-    [self.bookSlierInfoView setHidden:TRUE];
+    [self.bookSliderInfoView setHidden:TRUE];
 }
 
 - (void)showBookToolView {
@@ -91,16 +91,24 @@
 }
 
 - (void)showBookFontView {
+    [self.bookToolView setHidden:YES];
     [self.bookFontView setHidden:NO];
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        [self.bookFontView setFrame:CGRectMake(0, self.view.frame.size.height - 200, self.view.frame.size.width, 200)];
+    } completion:^(BOOL finished) {}];
 }
 
 - (void)hideBookFontView {
-    [self.bookFontView setHidden:YES];
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        [self.bookFontView setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 200)];
+    } completion:^(BOOL finished) {
+        [self.bookFontView setHidden:TRUE];
+    }];
 }
 
 - (void)showBookSliderInfoView:(NSString *)progress {
-    [self.bookSlierInfoView.titleLabel setText:[NSString stringWithFormat:@"%@\n%@", [self.book titleForChapter:self.book.chapters[self.chapterIndex]], progress]];
-    [self.bookSlierInfoView setHidden:NO];
+    [self.bookSliderInfoView.titleLabel setText:[NSString stringWithFormat:@"%@\n%@", [self.book titleForChapter:self.book.chapters[self.chapterIndex]], progress]];
+    [self.bookSliderInfoView setHidden:NO];
 }
 
 + (UIImage *)sliderCircle {
