@@ -32,6 +32,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.bookconfig = [BookConfig sharedConfig];
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     // Do any additional setup after loading the view.
 }
 
@@ -43,7 +44,7 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+    return 2;
 }
 
 
@@ -62,6 +63,16 @@ static NSString * const reuseIdentifier = @"Cell";
 
     return cell;
 }
+
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *resuableView = nil;
+    if (kind == UICollectionElementKindSectionFooter) {
+        resuableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"footer" forIndexPath:indexPath];
+        resuableView.backgroundColor = [UIColor redColor];
+    }
+    return resuableView;
+}
+
 
 #pragma mark <UICollectionViewDelegate>
 
