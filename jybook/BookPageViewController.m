@@ -148,8 +148,6 @@
     // Do any additional setup after loading the view.
     self.bookconfig = [BookConfig sharedConfig];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.9];
-    
     NSURL *url = [NSURL fileURLWithPath:[self.book contentPathForChapter:self.book.chapters[self.chapterIndex]]];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [self.webview loadRequest:req];
@@ -173,6 +171,11 @@
     [self.webview addGestureRecognizer:tap];
     [self.webview addGestureRecognizer:swipeLeft];
     [self.webview addGestureRecognizer:swipeRight];
+    
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.95]];
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.95]];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

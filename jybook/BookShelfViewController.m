@@ -41,6 +41,8 @@ static NSString * const reuseIdentifier = @"Cell";
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     [layout setSectionInset:UIEdgeInsetsMake(20, 20, 0, 20)];
     [self.collectionView setBackgroundColor:[UIColor colorWithRed:0.7 green:0.5 blue:0.1 alpha:0.3]];
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0.9 green:0.5 blue:0.2 alpha:0.9]];
 }
 
 - (void)didReceiveMemoryWarning {
