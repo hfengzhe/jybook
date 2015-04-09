@@ -159,6 +159,7 @@
     self.webview.scrollView.bounces = NO;
     self.webview.scrollView.scrollEnabled = NO;
     self.webview.delegate = self;
+    self.webview.opaque = NO;
     
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
     [swipeLeft setDirection:UISwipeGestureRecognizerDirectionRight];
@@ -256,17 +257,28 @@
 
 #pragma mark -Background
 
++ (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
+
 - (void)syncNightMode:(BOOL) nightMode {
     if (nightMode) {
         NSString *str = @"document.body.style.background='#0C0C0C';document.body.style.color='#464646'";
         [self.webview stringByEvaluatingJavaScriptFromString:str];
+        self.webview.backgroundColor = [BookPageViewController colorFromHexString:@"#0C0C0C"];
     } else {
         if (self.bookconfig.backgroundColor) {
             NSString *str = [NSString stringWithFormat:@"document.body.style.background='%@';", self.bookconfig.backgroundColor];
             [self.webview stringByEvaluatingJavaScriptFromString:str];
+            self.webview.backgroundColor = [BookPageViewController colorFromHexString:self.bookconfig.backgroundColor];
         } else {
             NSString *str = @"document.body.style.background='#FFFFFF';document.body.style.color='#000000'";
             [self.webview stringByEvaluatingJavaScriptFromString:str];
+            self.webview.backgroundColor = [BookPageViewController colorFromHexString:self.bookconfig.backgroundColor];
         }
     }
 }
@@ -282,6 +294,7 @@
     [self.webview stringByEvaluatingJavaScriptFromString:str];
     self.bookconfig.backgroundColor = color;
     self.bookconfig.nightMode = FALSE;
+    self.webview.backgroundColor = [BookPageViewController colorFromHexString:color];
 }
 
 - (void)toggleBookmark {
