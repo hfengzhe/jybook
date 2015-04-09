@@ -20,7 +20,8 @@
 - (void) hideBookToolView;
 - (void) showBookFontView;
 - (void) showBookSliderInfoView:(NSString *)progress;
-+ (UIImage *) sliderCircle;
+
+- (UIImage *) drawSliderCircleImage;
 
 - (BOOL) canIncreaseFontSize;
 - (BOOL) canDecreaseFontSize;

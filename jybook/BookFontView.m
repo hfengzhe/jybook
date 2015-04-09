@@ -23,7 +23,7 @@
     [slider setValue:[UIScreen mainScreen].brightness];
     [slider setTintColor:[UIColor colorWithRed:0.9 green:0.1 blue:0.1 alpha:0.9]];
     [slider setBackgroundColor:[UIColor clearColor]];
-    [slider setThumbImage:[[self.pageViewController class] sliderCircle] forState:UIControlStateNormal];
+    [slider setThumbImage:[self.pageViewController drawSliderCircleImage] forState:UIControlStateNormal];
     
     [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self addSubview:slider];

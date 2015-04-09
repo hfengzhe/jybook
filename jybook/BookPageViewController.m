@@ -92,7 +92,7 @@
 }
 
 - (void)showBookFontView {
-    [self.bookToolView setHidden:YES];
+    [self hideBookToolView];
     [self.bookFontView setHidden:NO];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         [self.bookFontView setFrame:CGRectMake(0, self.view.frame.size.height - 200, self.view.frame.size.width, 200)];
@@ -112,27 +112,24 @@
     [self.bookSliderInfoView setHidden:NO];
 }
 
-+ (UIImage *)sliderCircle {
-    static UIImage *Circle = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(16.0f, 16.0f), YES, 0.0f);
-        CGContextRef ctx = UIGraphicsGetCurrentContext();
-        CGContextSaveGState(ctx);
-        
-        CGRect bounds = CGRectMake(0, 0, 16, 16);
-        CGPoint center = CGPointMake(bounds.size.width / 2, bounds.size.height / 2);
-        CGContextClearRect(ctx, bounds);
-        
-        CGContextSetLineWidth(ctx, 2);
-        CGContextSetRGBStrokeColor(ctx, 0.9, 0.1, 0.1, 1.0);
-        CGContextAddArc(ctx, center.x, center.y, 7, 0.0, M_PI*2, YES);
-        CGContextStrokePath(ctx);
-        
-        CGContextRestoreGState(ctx);
-        Circle = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    });
+- (UIImage *) drawSliderCircleImage {
+    UIImage *Circle = nil;
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(16.0f, 16.0f), YES, 0.0f);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+    
+    CGRect bounds = CGRectMake(0, 0, 16, 16);
+    CGPoint center = CGPointMake(bounds.size.width / 2, bounds.size.height / 2);
+    CGContextClearRect(ctx, bounds);
+    
+    CGContextSetLineWidth(ctx, 2);
+    CGContextSetRGBStrokeColor(ctx, 0.9, 0.1, 0.1, 1.0);
+    CGContextAddArc(ctx, center.x, center.y, 7, 0.0, M_PI*2, YES);
+    CGContextStrokePath(ctx);
+    
+    CGContextRestoreGState(ctx);
+    Circle = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     return Circle;
 }
 

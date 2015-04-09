@@ -72,7 +72,7 @@
         
         [_progressSlider setTintColor:[UIColor colorWithRed:0.9 green:0.1 blue:0.1 alpha:0.9]];
         [_progressSlider setBackgroundColor:[UIColor clearColor]];
-        [_progressSlider setThumbImage:[[self.pageViewController class] sliderCircle] forState:UIControlStateNormal];
+        [_progressSlider setThumbImage:[self.pageViewController drawSliderCircleImage] forState:UIControlStateNormal];
         
         [_progressSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         [_progressSlider addTarget:self action:@selector(sliderDragUp:) forControlEvents:UIControlEventTouchUpInside];
