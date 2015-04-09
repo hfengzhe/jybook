@@ -18,6 +18,7 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height - 60) style:UITableViewStyleGrouped];
+        _tableView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.95];
     }
     return _tableView;
 }
@@ -37,11 +38,11 @@
     [self.view addSubview:self.tableView];
 
     UIButton *dismissBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 40,self.view.frame.size.height / 2 - 20 , 40, 40)];
-    dismissBtn.backgroundColor = [UIColor redColor];
+    dismissBtn.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:0.4];
     [dismissBtn addTarget:self action:@selector(dismissBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:dismissBtn];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.95]];
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
@@ -70,7 +71,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0;
+    return 0.1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -85,6 +86,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"spineCell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"spineCell"];
+        cell.backgroundColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:0.9];
+        cell.textLabel.textColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:0.9];
     }
     if (self.index) {
         cell.textLabel.text = [self.bpvc.book bookmarkTitleForPosition:self.bpvc.book.bookmarks[indexPath.row]];
@@ -118,11 +121,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.index) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return self.index;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
