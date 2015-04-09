@@ -85,9 +85,10 @@
     [self.bookToolView setHidden:NO];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
          [self.bookToolView setFrame:CGRectMake(0, self.view.frame.size.height - 80, self.view.frame.size.width, 80)];
-    } completion:^(BOOL finished) {}];
-    [self.navigationController setNavigationBarHidden:NO];
-    [self setNeedsStatusBarAppearanceUpdate];
+        [self.navigationController setNavigationBarHidden:NO];
+    } completion:^(BOOL finished) {
+        [self setNeedsStatusBarAppearanceUpdate];
+    }];
 }
 
 - (void)showBookFontView {
