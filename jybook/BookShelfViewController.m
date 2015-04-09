@@ -67,7 +67,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // Configure the cell
     NSString *imgpath = [[NSBundle mainBundle] pathForResource:self.books[indexPath.section][indexPath.row] ofType:@"jpg" inDirectory:@"cover"];
     UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgpath]];
-    [image setFrame:CGRectMake(0, 0, 150, 216)];
+    [image setFrame:CGRectMake(0, 0, 150, 200)];
     [cell.contentView addSubview:image];
     
     return cell;
