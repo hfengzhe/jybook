@@ -43,7 +43,8 @@
 
 - (UIButton *)increaseFontBtn {
     if (!_increaseFontBtn) {
-        _increaseFontBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, 50, 100, 40)];
+        CGFloat width = (self.frame.size.width - 40 - 20 * 4) / 2;
+        _increaseFontBtn = [[UIButton alloc] initWithFrame:CGRectMake(width + 20 * 2, 50, width, 40)];
         [_increaseFontBtn setTitle:@"A+" forState:UIControlStateNormal];
         [self initBtnStyle:_increaseFontBtn];
         [_increaseFontBtn addTarget:self action:@selector(fontSizeTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
@@ -54,7 +55,8 @@
 
 - (UIButton *)decreaseFontBtn {
     if (!_decreaseFontBtn) {
-        _decreaseFontBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 50, 100, 40)];
+        CGFloat width = (self.frame.size.width - 40 - 20 * 4) / 2;
+        _decreaseFontBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 50, width, 40)];
         [_decreaseFontBtn setTitle:@"A-" forState:UIControlStateNormal];
         [self initBtnStyle:_decreaseFontBtn];
         [_decreaseFontBtn addTarget:self action:@selector(fontSizeTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
@@ -86,12 +88,13 @@
     UIColor *color6 = [UIColor colorWithRed:0.3 green:0.2 blue:0.2 alpha:1.0];
     NSArray *colors = [NSArray arrayWithObjects:color1,color2,color3,color4,color5,color6,nil];
     
-    NSValue *rect1 = [NSValue valueWithCGRect:CGRectMake(20, 105, 30, 30)];
-    NSValue *rect2 = [NSValue valueWithCGRect:CGRectMake(80, 105, 30, 30)];
-    NSValue *rect3 = [NSValue valueWithCGRect:CGRectMake(140, 105, 30, 30)];
-    NSValue *rect4 = [NSValue valueWithCGRect:CGRectMake(200, 105, 30, 30)];
-    NSValue *rect5 = [NSValue valueWithCGRect:CGRectMake(260, 105, 30, 30)];
-    NSValue *rect6 = [NSValue valueWithCGRect:CGRectMake(320, 105, 30, 30)];
+    CGFloat csize = (self.frame.size.width - 20 * 7) / 6;
+    NSValue *rect1 = [NSValue valueWithCGRect:CGRectMake(20, 105, csize, 30)];
+    NSValue *rect2 = [NSValue valueWithCGRect:CGRectMake(20 * 2 + csize, 105, csize, 30)];
+    NSValue *rect3 = [NSValue valueWithCGRect:CGRectMake(20 * 3 + csize * 2, 105, csize, 30)];
+    NSValue *rect4 = [NSValue valueWithCGRect:CGRectMake(20 * 4 + csize * 3, 105, csize, 30)];
+    NSValue *rect5 = [NSValue valueWithCGRect:CGRectMake(20 * 5 + csize * 4, 105, csize, 30)];
+    NSValue *rect6 = [NSValue valueWithCGRect:CGRectMake(20 * 6 + csize * 5, 105, csize, 30)];
     NSArray *rects = [NSArray arrayWithObjects:rect1,rect2,rect3,rect4,rect5,rect6,nil];
     
     NSDictionary *dict = [[NSDictionary alloc] initWithObjects:rects forKeys:colors];
@@ -106,9 +109,10 @@
 }
 
 - (void)setupLineSpacingBtn {
-    NSValue *rect1 =  [NSValue valueWithCGRect:CGRectMake(20, 150, 80, 40)];
-    NSValue *rect2 = [NSValue valueWithCGRect:CGRectMake(150, 150, 80, 40)];
-    NSValue *rect3 = [NSValue valueWithCGRect:CGRectMake(280, 150, 80, 40)];
+    CGFloat lsize = (self.frame.size.width - 20 * 4) / 3;
+    NSValue *rect1 =  [NSValue valueWithCGRect:CGRectMake(20, 150, lsize, 40)];
+    NSValue *rect2 = [NSValue valueWithCGRect:CGRectMake(20 * 2 + lsize, 150, lsize, 40)];
+    NSValue *rect3 = [NSValue valueWithCGRect:CGRectMake(20 * 3 + lsize * 2, 150, lsize, 40)];
     
     NSDictionary *dict = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:rect1,rect2,rect3, nil] forKeys: [NSArray arrayWithObjects:@"一",@"二",@"三", nil]];
     for (NSString *title in dict) {
@@ -120,10 +124,6 @@
         [[btn layer] setCornerRadius:8.0f];
         [[btn layer] setBorderColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.8].CGColor];
         [[btn layer] setBorderWidth:1.0f];
-        
-        //[btn setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8] forState:UIControlStateNormal];
-        //[btn setTitleColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1.0] forState:UIControlStateHighlighted];
-        //[btn setTitleColor:[UIColor colorWithRed:1.0 green:0 blue:0 alpha:0.8] forState:UIControlStateSelected];
         
         [btn addTarget:self action:@selector(lineSpacingTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
         [btn addTarget:self action:@selector(lineSpacingTouchDown:) forControlEvents:UIControlEventTouchDown];
