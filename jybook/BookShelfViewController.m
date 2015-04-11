@@ -39,7 +39,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.books = [NSArray arrayWithObjects:book1,book2,book3,book4,book5,book6,book7,book8, nil];
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-    [layout setSectionInset:UIEdgeInsetsMake(20, 20, 0, 20)];
+    [layout setSectionInset:UIEdgeInsetsMake(10, 10, 0, 10)];
     [self.collectionView setBackgroundColor:[UIColor colorWithRed:0.7 green:0.5 blue:0.1 alpha:0.3]];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
     [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:0.9 green:0.5 blue:0.2 alpha:0.9]];
@@ -67,7 +67,9 @@ static NSString * const reuseIdentifier = @"Cell";
     // Configure the cell
     NSString *imgpath = [[NSBundle mainBundle] pathForResource:self.books[indexPath.section][indexPath.row] ofType:@"jpg" inDirectory:@"cover"];
     UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgpath]];
-    [image setFrame:CGRectMake(0, 0, 150, 200)];
+    CGFloat width = (self.view.frame.size.width - 20 * 4) / 2.0;
+    [image setFrame:CGRectMake(0, 0, width, width * 180 / 125)];
+    cell.bounds = CGRectMake(0, 0, width, width * 180 / 125);
     [cell.contentView addSubview:image];
     
     return cell;

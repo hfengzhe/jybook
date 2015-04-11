@@ -44,7 +44,7 @@
 		E936163A1AC67E30001EB918 /* BookSliderInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookSliderInfoView.h; sourceTree = "<group>"; };
 		E936163B1AC67E30001EB918 /* BookSliderInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookSliderInfoView.m; sourceTree = "<group>"; };
 		E96F17E71AB733080004A8C4 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
-		E98511271AB1F2E900F02181 /* 金庸全集.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "金庸全集.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E98511271AB1F2E900F02181 /* jybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E985112B1AB1F2E900F02181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E985112C1AB1F2E900F02181 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E985112E1AB1F2E900F02181 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 		E98511281AB1F2E900F02181 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E98511271AB1F2E900F02181 /* 金庸全集.app */,
+				E98511271AB1F2E900F02181 /* jybook.app */,
 				E98511401AB1F2E900F02181 /* jybookTests.xctest */,
 			);
 			name = Products;
@@ -206,7 +206,7 @@
 			);
 			name = jybook;
 			productName = jybook;
-			productReference = E98511271AB1F2E900F02181 /* 金庸全集.app */;
+			productReference = E98511271AB1F2E900F02181 /* jybook.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E985113F1AB1F2E900F02181 /* jybookTests */ = {
@@ -460,7 +460,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = jybook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "金庸全集";
+				PRODUCT_NAME = jybook;
 			};
 			name = Debug;
 		};
@@ -472,7 +472,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = jybook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "金庸全集";
+				PRODUCT_NAME = jybook;
 			};
 			name = Release;
 		};
